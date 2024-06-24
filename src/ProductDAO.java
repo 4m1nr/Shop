@@ -6,4 +6,5 @@ public interface ProductDAO {
     public void updateProduct(Product product);
     public Product getProduct(String id);
     public ArrayList<Product> getAllProducts();
+    public ArrayList<Product> getProductsByCategory(String category);
 }

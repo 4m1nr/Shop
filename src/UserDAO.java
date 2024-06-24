@@ -6,4 +6,6 @@ public interface UserDAO {
     public void updateUser(User user);
     public User getUser(String id);
     public ArrayList<User> getAllUsers();
+    public ArrayList<User> getUsersByRole(String role);
+
 }

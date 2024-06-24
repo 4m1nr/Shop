@@ -1,22 +1,15 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class User {
+    private final static ArrayList<String> roles = (ArrayList<String>) List.of("admin","user");
     private final String id;
     private String name, lastName, phoneNumber, emailAddress;
-    private String hashedPassword;
+    private String hashedPassword,role;
     private ArrayList<Address> adrresses;
 
-    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.emailAddress = emailAddress;
-        this.hashedPassword = hashedPassword;
-        adrresses = new ArrayList<>();
-    }
-
-    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses) {
+    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses, String role) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -24,6 +17,7 @@ public class User {
         this.emailAddress = emailAddress;
         this.hashedPassword = hashedPassword;
         this.adrresses = addresses;
+        this.role = role;
     }
 
     public String getId() {return id;}
@@ -39,6 +33,9 @@ public class User {
 
     public String getEmailAddress() {return emailAddress;}
     public void setEmailAddress(String emailAddress) {this.emailAddress = emailAddress;}
+
+    public String getRole() {return role;}
+    public void setRole(String role) {if (roles.contains(role)) this.role = role;}
 
     public ArrayList<Address> getAddresses() {return adrresses;}
     public void addAddress(Address address) {

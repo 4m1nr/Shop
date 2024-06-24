@@ -1,25 +1,18 @@
 import java.util.ArrayList;
 
 public class Product {
-    private final String id;
+    private /*should be final ?*/ String id;
     private String name, description;
     private double price;
     private int stock;
     private ArrayList<String> images;
     private ArrayList<String> categories;
 
-    public Product(String id, String name, String description, double price, int stock) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
-        images = new ArrayList<>();
-        categories = new ArrayList<>();
-    }
-
     public Product(String id, String name, String description, double price, int stock, ArrayList<String> images, ArrayList<String> categories) {
-        this.id = id;
+        setId(id);
+        setName(name);
+        setDescription(description);
+        setStock(stock);
         this.name = name;
         this.description = description;
         this.price = price;
@@ -39,12 +32,25 @@ public class Product {
     public ArrayList<String> getCategories() {return categories;}
 
     //setters
-    public void setName(String name) {this.name = name;}
-    public void setDescription(String description) {this.description = description;}
-    public void setPrice(double price) {this.price = price;}
-    public void setStock(int stock) {this.stock = stock;}
+    private void setId(String id) {
+        //TODO
+        this.id = id;}
+    public void setName(String name) {
+        //TODO
+        this.name = name;}
+    public void setDescription(String description) {
+        //TODO
+        this.description = description;}
+    public void setPrice(double price) {
+        //TODO
+        this.price = price;}
+    public void setStock(int stock) {
+        //TODO
+        this.stock = stock;}
 
-    public void addImage(String link){images.add(link);}
+    public void addImage(String link){
+        //TODO
+        images.add(link);}
     public void removeImage(String link){images.remove(link);}
     public void removeImage(int index){images.remove(index);}
     public void removeAllImages(){images.clear();}

@@ -4,7 +4,7 @@ public class User {
     private final String id;
     private String name, lastName, phoneNumber, emailAddress;
     private String hashedPassword;
-    private ArrayList<Adrress> adrresses;
+    private ArrayList<Address> adrresses;
 
     public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword) {
         this.id = id;
@@ -16,7 +16,7 @@ public class User {
         adrresses = new ArrayList<>();
     }
 
-    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Adrress> addresses) {
+    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -40,10 +40,10 @@ public class User {
     public String getEmailAddress() {return emailAddress;}
     public void setEmailAddress(String emailAddress) {this.emailAddress = emailAddress;}
 
-    public ArrayList<Adrress> getAddresses() {return adrresses;}
-    public void addAddress(Adrress address) {
+    public ArrayList<Address> getAddresses() {return adrresses;}
+    public void addAddress(Address address) {
         adrresses.add(address);}
-    public void removeAddress(Adrress address) {
+    public void removeAddress(Address address) {
         adrresses.remove(address);}
     public void removeAddress(int index) {
         adrresses.remove(index);}

@@ -1,35 +1,39 @@
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Cart {
-    private ArrayList<String> products = new ArrayList<>();
+    private ArrayList<String> productsId;
 
-    public Cart(){}
     public Cart(String serializedCart) {
-        String[] products = serializedCart.split("-");
-        for (int i = 0; i < products.length; i++) this.addProduct(products[i]);
+        productsId = new ArrayList<>();
+        if (serializedCart != null){
+            String[] products = serializedCart.split("-");
+            for (String product : products) this.addProduct(product);
+        }
     }
 
     //getter
-    public ArrayList<String> getCart() {return products;}
+    public ArrayList<String> getCart() {return productsId;}
 
     //setters
     public void addProduct(Product product) {
-        products.add(product.getId());}
+        productsId.add(product.getId());}
     public void addProduct(String ID){
-        products.add(ID);}
+        productsId.add(ID);}
     public void removeProduct(Product product) {
-        products.remove(product.getId());}
+        productsId.remove(product.getId());}
     public void removeProduct(String ID) {
-        products.remove(ID);}
+        productsId.remove(ID);}
     public void removeAllProducts() {
-        products.clear();}
+        productsId.clear();}
 
     public String getSerializedCart(){
-        if (products.isEmpty()) return "";
-        String string = products.get(0);
-        for (int i = 1; i < products.size(); i++) string += "-" + products.get(i);
-        return string;
+        if (productsId.isEmpty()){
+            return null;
+        }else{
+        StringBuilder string = new StringBuilder();
+        for (String product : productsId ) string.append(productsId).append("-");
+        return string.toString();
+        }
     }
 
 

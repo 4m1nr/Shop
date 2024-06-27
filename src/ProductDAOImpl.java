@@ -48,7 +48,9 @@ public class ProductDAOImpl implements ProductDAO{
         String SQL = "SELECT * FROM " + tableName + " WHERE id = " + id;
             ResultSet resultSet = statement.executeQuery(SQL);
             if (resultSet.next()) {
-                return new Product(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("description"), resultSet.getDouble("price"), resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>());
+                return new Product(resultSet.getString("id"), resultSet.getString("name"),
+                        resultSet.getString("description"), resultSet.getDouble("price"),
+                        resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>());
             }
         return null;
     }
@@ -59,7 +61,9 @@ public class ProductDAOImpl implements ProductDAO{
         ResultSet resultSet = statement.executeQuery(SQL);
         ArrayList<Product> products = new ArrayList<>();
         while (resultSet.next()) {
-            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("description"), resultSet.getDouble("price"), resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
+            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
+                    resultSet.getString("description"), resultSet.getDouble("price"),
+                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
         }
         return products;
     }
@@ -69,30 +73,42 @@ public class ProductDAOImpl implements ProductDAO{
         ResultSet resultSet = statement.executeQuery(SQL);
         ArrayList<Product> products = new ArrayList<>();
         while (resultSet.next()) {
-            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("description"), resultSet.getDouble("price"), resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
+            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
+                    resultSet.getString("description"), resultSet.getDouble("price"),
+                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
         }
         return products;
     }
 
     @Override
     public ArrayList<Product> getProductsByCategorySorted(String category, String sortByThis, int page, int numPerPage) throws SQLException {
-        String SQL = "SELECT * FROM " + tableName + " WHERE category = " + category + " ORDER BY " + sortByThis + " LIMIT " + ((page - 1) * numPerPage) + /*check if needed*/1  + ", " + numPerPage;
+        String SQL = "SELECT * FROM " + tableName + " WHERE category = " + category + " ORDER BY " + sortByThis + " LIMIT " +
+                ((page - 1) * numPerPage) + /*check if needed*/1 + ", " + numPerPage;
+
         ResultSet resultSet = statement.executeQuery(SQL);
         ArrayList<Product> products = new ArrayList<>();
-        while (resultSet.next()) {
-            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("description"), resultSet.getDouble("price"), resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
-        }
+
+        while (resultSet.next())
+            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
+                    resultSet.getString("description"), resultSet.getDouble("price"),
+                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
+
         return products;
     }
 
     @Override
     public ArrayList<Product> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException {
-        String SQL = "SELECT * FROM " + tableName + " ORDER BY " + sortByThis + " LIMIT " + ((page - 1) * numPerPage) + /*check if needed*/1  + ", " + numPerPage;
+        String SQL = "SELECT * FROM " + tableName + " ORDER BY " + sortByThis + " LIMIT " +
+                ((page - 1) * numPerPage) + /*check if needed*/1  + ", " + numPerPage;
+
         ResultSet resultSet = statement.executeQuery(SQL);
         ArrayList<Product> products = new ArrayList<>();
-        while (resultSet.next()) {
-            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"), resultSet.getString("description"), resultSet.getDouble("price"), resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
-        }
+
+        while (resultSet.next())
+            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
+                    resultSet.getString("description"), resultSet.getDouble("price"),
+                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
+
         return products;
     }
 }

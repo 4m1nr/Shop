@@ -11,7 +11,8 @@ public class User {
     private ArrayList<Address> adrresses;
     private Cart cart = new Cart();
 
-    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses,Cart cart, String role) {
+    public User(String id, String name, String lastName, String phoneNumber, String emailAddress,
+                String hashedPassword, ArrayList<Address> addresses,Cart cart, String role){
         this.id = id;
         setName(name);
         setLastName(lastName);
@@ -24,34 +25,32 @@ public class User {
 
     //initialize getters and setters
     //getters
-    public String getId() {return id;}
-    public String getName() {return name;}
-    public String getLastName() {return lastName;}
-    public String getPhoneNumber() {return phoneNumber;}
-    public String getEmailAddress() {return emailAddress;}
-    public String getRole() {return role;}
-    public ArrayList<Address> getAddresses() {return adrresses;}
-    public Cart getCart() {return cart;}
-    public String getHashedPassword() {return hashedPassword;}
+    public String getId()                               {return id;}
+    public String getName()                             {return name;}
+    public String getLastName()                         {return lastName;}
+    public String getPhoneNumber()                      {return phoneNumber;}
+    public String getEmailAddress()                     {return emailAddress;}
+    public String getRole()                             {return role;}
+    public ArrayList<Address> getAddresses()            {return adrresses;}
+    public Cart getCart()                               {return cart;}
+    public String getHashedPassword()                   {return hashedPassword;}
 
     //setters
-    public void setName(String name) {this.name = name;}
-    public void setLastName(String lastName) {this.lastName = lastName;}
-    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
-    public void setEmailAddress(String emailAddress) {this.emailAddress = emailAddress;}
-    public void setRole(String role) {if (roles.contains(role)) this.role = role;}
-    public void addAddress(Address address) {adrresses.add(address);}
-    public void removeAddress(Address address) {adrresses.remove(address);}
-    public void removeAddress(int index) {adrresses.remove(index);}
-    public void removeAllAddresses() {adrresses.clear();}
-    public void setCart(Cart cart) {this.cart = cart;}
-    public void setHashedPassword(String hashedPassword) {this.hashedPassword = hashedPassword;}
+    public void setName(String name)                    {this.name = name;}
+    public void setLastName(String lastName)            {this.lastName = lastName;}
+    public void setPhoneNumber(String phoneNumber)      {this.phoneNumber = phoneNumber;}
+    public void setEmailAddress(String emailAddress)    {this.emailAddress = emailAddress;}
+    public void setRole(String role)                    {if (roles.contains(role)) this.role = role;}
+    public void addAddress(Address address)             {adrresses.add(address);}
+    public void removeAddress(Address address)          {adrresses.remove(address);}
+    public void removeAddress(int index)                {adrresses.remove(index);}
+    public void removeAllAddresses()                    {adrresses.clear();}
+    public void setCart(Cart cart)                      {this.cart = cart;}
+    public void setHashedPassword(String hashedPassword){this.hashedPassword = hashedPassword;}
 
-    public boolean checkPassword(String password) {
-        return this.hashedPassword.equals(HashPassword(password));
-    }
+    public boolean checkPassword(String password)       {return this.hashedPassword.equals(HashPassword(password));}
 
-    public static String HashPassword(String password) {
+    public static String HashPassword(String password){
         String hashedPassword;
         MessageDigest messageDigest;
         try {

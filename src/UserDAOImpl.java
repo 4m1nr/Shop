@@ -35,12 +35,14 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public void updateUser(User user) throws SQLException {
         StringBuilder SQL = new StringBuilder("UPDATE " + tableName + " SET ");
-        if (user.getName() != null) SQL.append("name = " + user.getName() + ", ");
-        if (user.getLastName() != null) SQL.append("lastName = " + user.getLastName() + ", ");
-        if (user.getPhoneNumber() != null) SQL.append("phoneNumber = " + user.getPhoneNumber() + ", ");
-        if (user.getEmailAddress() != null) SQL.append("emailAddress = " + user.getEmailAddress() + ", ");
-        if (user.getHashedPassword() != null) SQL.append("hashedPassword = " + user.getHashedPassword() + ", ");
-        if (user.getRole() != null) SQL.append("role = " + user.getRole() + ", ");
+
+        if (user.getName() != null)             SQL.append("name = " + user.getName() + ", ");
+        if (user.getLastName() != null)         SQL.append("lastName = " + user.getLastName() + ", ");
+        if (user.getPhoneNumber() != null)      SQL.append("phoneNumber = " + user.getPhoneNumber() + ", ");
+        if (user.getEmailAddress() != null)     SQL.append("emailAddress = " + user.getEmailAddress() + ", ");
+        if (user.getHashedPassword() != null)   SQL.append("hashedPassword = " + user.getHashedPassword() + ", ");
+        if (user.getRole() != null)             SQL.append("role = " + user.getRole() + ", ");
+
         SQL.deleteCharAt(SQL.length() - 2);
         SQL.append(" WHERE id = " + user.getId());
         statement.executeUpdate(SQL.toString());
@@ -49,7 +51,8 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public User getUser(String id) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + " WHERE id = " + id;
-            ResultSet resultSet = statement.executeQuery(SQL);
+        ResultSet resultSet = statement.executeQuery(SQL);
+
             if (resultSet.next()) {
                 return new User(resultSet.getString("id"), resultSet.getString("name")
                         , resultSet.getString("lastName"), resultSet.getString("phoneNumber")

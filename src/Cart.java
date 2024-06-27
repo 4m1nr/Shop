@@ -11,20 +11,19 @@ public class Cart {
         }
     }
 
+    public Cart() {
+        productsId = new ArrayList<>();
+    }
+
     //getter
     public ArrayList<String> getCart() {return productsId;}
 
     //setters
-    public void addProduct(Product product) {
-        productsId.add(product.getId());}
-    public void addProduct(String ID){
-        productsId.add(ID);}
-    public void removeProduct(Product product) {
-        productsId.remove(product.getId());}
-    public void removeProduct(String ID) {
-        productsId.remove(ID);}
-    public void removeAllProducts() {
-        productsId.clear();}
+    public void addProduct(Product product)    {productsId.add(product.getId());}
+    public void addProduct(String ID)          {productsId.add(ID);}
+    public void removeProduct(Product product) {productsId.remove(product.getId());}
+    public void removeProduct(String ID)       {productsId.remove(ID);}
+    public void removeAllProducts()            {productsId.clear();}
 
     public String getSerializedCart(){
         if (productsId.isEmpty()){

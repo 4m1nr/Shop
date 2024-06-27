@@ -1,8 +1,7 @@
 import java.util.ArrayList;
 
 public class Product {
-    private static int nextID = 1;
-    private /*should be final ?*/ String id;
+    private final String id;
     private String name, description;
     private double price;
     private int stock;
@@ -13,11 +12,8 @@ public class Product {
         this.id = id;
         setName(name);
         setDescription(description);
+        setPrice(price);
         setStock(stock);
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
         this.images = images;
         this.categories = categories;
     }
@@ -33,23 +29,12 @@ public class Product {
     public ArrayList<String> getCategories() {return categories;}
 
     //setters
-    private void generateId() {
-        this.id = String.valueOf(nextID++);}
+    public void setName(String name) {this.name = name;}
+    public void setDescription(String description) {this.description = description;}
+    public void setPrice(double price) {this.price = price;}
+    public void setStock(int stock) {this.stock = stock;}
 
-    public void setName(String name) {
-        this.name = name;}
-
-    public void setDescription(String description) {
-        this.description = description;}
-
-    public void setPrice(double price) {
-        this.price = price;}
-
-    public void setStock(int stock) {
-        this.stock = stock;}
-
-    public void addImage(String link){
-        images.add(link);}
+    public void addImage(String link){images.add(link);}
     public void removeImage(String link){images.remove(link);}
     public void removeImage(int index){images.remove(index);}
     public void removeAllImages(){images.clear();}
@@ -58,8 +43,4 @@ public class Product {
     public void removeCategory(String category){categories.remove(category);}
     public void removeCategory(int index){categories.remove(index);}
     public void removeAllCategories(){categories.clear();}
-
-
-
-
 }

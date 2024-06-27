@@ -11,7 +11,7 @@ public class User {
     private ArrayList<Address> adrresses;
     private Cart cart = new Cart();
 
-    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses,Cart cart, String role) {
+    public User(String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses,Cart cart, String role) {
         generateId();
         setName(name);
         setLastName(lastName);
@@ -36,23 +36,18 @@ public class User {
 
     //setters
     private void generateId() {
-        //TODO
         this.id = String.valueOf(nextID++);}
 
     public void setName(String name) {
-        //TODO
         this.name = name;}
 
     public void setLastName(String lastName) {
-        //TODO
         this.lastName = lastName;}
 
     public void setPhoneNumber(String phoneNumber) {
-        //TODO
         this.phoneNumber = phoneNumber;}
 
     public void setEmailAddress(String emailAddress) {
-        //TODO
         this.emailAddress = emailAddress;}
 
     public void setRole(String role) {if (roles.contains(role)) this.role = role;}
@@ -67,6 +62,5 @@ public class User {
         adrresses.clear();}
 
     public void setCart(Cart cart) {
-        //TODO
         this.cart = cart;}
 }

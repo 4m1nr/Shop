@@ -9,7 +9,7 @@ public class Product {
     private ArrayList<String> images;
     private ArrayList<String> categories;
 
-    public Product(String id, String name, String description, double price, int stock, ArrayList<String> images, ArrayList<String> categories) {
+    public Product(String name, String description, double price, int stock, ArrayList<String> images, ArrayList<String> categories) {
         generateId();
         setName(name);
         setDescription(description);
@@ -34,27 +34,21 @@ public class Product {
 
     //setters
     private void generateId() {
-        //TODO
         this.id = String.valueOf(nextID++);}
 
     public void setName(String name) {
-        //TODO
         this.name = name;}
 
     public void setDescription(String description) {
-        //TODO
         this.description = description;}
 
     public void setPrice(double price) {
-        //TODO
         this.price = price;}
 
     public void setStock(int stock) {
-        //TODO
         this.stock = stock;}
 
     public void addImage(String link){
-        //TODO
         images.add(link);}
     public void removeImage(String link){images.remove(link);}
     public void removeImage(int index){images.remove(index);}

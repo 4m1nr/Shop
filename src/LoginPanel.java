@@ -14,16 +14,6 @@ import java.awt.event.ActionEvent;
 
 public class LoginPanel extends JPanel {
 	
-	//
-	public static void main (String[] args) {
-		MainFrame frame = new MainFrame();
-		frame.setVisible(true);
-		JPanel panel = new LoginPanel();
-		frame.getContentPane().add(panel);
-		frame.revalidate();
-	}
-	//
-	
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JPasswordField passwordField;

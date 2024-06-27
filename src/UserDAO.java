@@ -1,11 +1,14 @@
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+
 public interface UserDAO {
-    public void insertUser(User user);
-    public void deleteUser(User user);
-    public void updateUser(User user);
-    public User getUser(String id);
-    public ArrayList<User> getAllUsers();
-    public ArrayList<User> getUsersByRole(String role);
+
+    public void insertUser(User user) throws SQLException;
+    public void deleteUser(User user) throws SQLException;
+    public void updateUser(User user) throws SQLException;
+    public User getUser(String id) throws SQLException;
+    public ArrayList<User> getAllUsers() throws SQLException;
+    public ArrayList<User> getUsersByRole(String role) throws SQLException;
 
 }

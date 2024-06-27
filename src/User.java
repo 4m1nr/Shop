@@ -66,12 +66,7 @@ public class User {
     public void removeAllAddresses() {
         adrresses.clear();}
 
-    public void addProductToCart(Product product) {
-        cart.addProduct(product);}
-    public void removeProductFromCart(Product product) {
-        cart.removeProduct(product);}
-    public void removeProductFromCart(int index) {
-        cart.removeProduct(index);}
-    public void removeAllProductsFromCart() {
-        cart.removeAllProducts();}
+    public void setCart(Cart cart) {
+        //TODO
+        this.cart = cart;}
 }

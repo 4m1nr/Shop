@@ -11,6 +11,17 @@ public class User {
     private ArrayList<Address> adrresses;
     private Cart cart = new Cart();
 
+    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses,Cart cart, String role) {
+        this.id = id;
+        setName(name);
+        setLastName(lastName);
+        setPhoneNumber(phoneNumber);
+        setEmailAddress(emailAddress);
+        this.hashedPassword = hashedPassword;
+        this.adrresses = addresses;
+        setRole(role);
+    }
+
     public User(String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses,Cart cart, String role) {
         generateId();
         setName(name);

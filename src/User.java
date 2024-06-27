@@ -11,7 +11,7 @@ public class User {
     private ArrayList<Address> adrresses;
     private Cart cart = new Cart();
 
-    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses, String role) {
+    public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses,Cart cart, String role) {
         generateId();
         setName(name);
         setLastName(lastName);

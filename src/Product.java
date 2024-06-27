@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class Product {
+    private int nextID = 1;
     private /*should be final ?*/ String id;
     private String name, description;
     private double price;
@@ -9,7 +10,7 @@ public class Product {
     private ArrayList<String> categories;
 
     public Product(String id, String name, String description, double price, int stock, ArrayList<String> images, ArrayList<String> categories) {
-        setId(id);
+        generateId();
         setName(name);
         setDescription(description);
         setStock(stock);
@@ -32,18 +33,22 @@ public class Product {
     public ArrayList<String> getCategories() {return categories;}
 
     //setters
-    private void setId(String id) {
+    private void generateId() {
         //TODO
-        this.id = id;}
+        this.id = String.valueOf(nextID++);}
+
     public void setName(String name) {
         //TODO
         this.name = name;}
+
     public void setDescription(String description) {
         //TODO
         this.description = description;}
+
     public void setPrice(double price) {
         //TODO
         this.price = price;}
+
     public void setStock(int stock) {
         //TODO
         this.stock = stock;}

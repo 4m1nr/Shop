@@ -4,13 +4,15 @@ import java.util.List;
 
 public class User {
     private final static ArrayList<String> roles = (ArrayList<String>) List.of("admin","user");
+    private static int nextID = 1;
     private /*should be final ?*/ String id;
     private String name, lastName, phoneNumber, emailAddress;
     private String hashedPassword,role;
     private ArrayList<Address> adrresses;
+    private Cart cart = new Cart();
 
     public User(String id, String name, String lastName, String phoneNumber, String emailAddress, String hashedPassword, ArrayList<Address> addresses, String role) {
-        setId(id);
+        generateId();
         setName(name);
         setLastName(lastName);
         setPhoneNumber(phoneNumber);
@@ -20,35 +22,41 @@ public class User {
         setRole(role);
     }
 
+    //initialize getters and setters
+    //getters
     public String getId() {return id;}
-    private void setId(String id) {
-        //TODO
-        this.id = id;}
-
     public String getName() {return name;}
+    public String getLastName() {return lastName;}
+    public String getPhoneNumber() {return phoneNumber;}
+    public String getEmailAddress() {return emailAddress;}
+    public String getRole() {return role;}
+    public ArrayList<Address> getAddresses() {return adrresses;}
+    public Cart getCart() {return cart;}
+    public String getHashedPassword() {return hashedPassword;}
+
+    //setters
+    private void generateId() {
+        //TODO
+        this.id = String.valueOf(nextID++);}
+
     public void setName(String name) {
         //TODO
         this.name = name;}
 
-    public String getLastName() {return lastName;}
     public void setLastName(String lastName) {
         //TODO
         this.lastName = lastName;}
 
-    public String getPhoneNumber() {return phoneNumber;}
     public void setPhoneNumber(String phoneNumber) {
         //TODO
         this.phoneNumber = phoneNumber;}
 
-    public String getEmailAddress() {return emailAddress;}
     public void setEmailAddress(String emailAddress) {
         //TODO
         this.emailAddress = emailAddress;}
 
-    public String getRole() {return role;}
     public void setRole(String role) {if (roles.contains(role)) this.role = role;}
 
-    public ArrayList<Address> getAddresses() {return adrresses;}
     public void addAddress(Address address) {
         adrresses.add(address);}
     public void removeAddress(Address address) {
@@ -58,7 +66,12 @@ public class User {
     public void removeAllAddresses() {
         adrresses.clear();}
 
-    public String getHashedPassword() {return hashedPassword;}
-
-
+    public void addProductToCart(Product product) {
+        cart.addProduct(product);}
+    public void removeProductFromCart(Product product) {
+        cart.removeProduct(product);}
+    public void removeProductFromCart(int index) {
+        cart.removeProduct(index);}
+    public void removeAllProductsFromCart() {
+        cart.removeAllProducts();}
 }

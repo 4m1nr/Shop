@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Product {
-    private int nextID = 1;
+    private static int nextID = 1;
     private /*should be final ?*/ String id;
     private String name, description;
     private double price;

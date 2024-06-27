@@ -1,5 +1,6 @@
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class User {
@@ -44,4 +45,22 @@ public class User {
     public void removeAddress(int index) {adrresses.remove(index);}
     public void removeAllAddresses() {adrresses.clear();}
     public void setCart(Cart cart) {this.cart = cart;}
+    public void setHashedPassword(String hashedPassword) {this.hashedPassword = hashedPassword;}
+
+    public boolean checkPassword(String password) {
+        return this.hashedPassword.equals(HashPassword(password));
+    }
+
+    public static String HashPassword(String password) {
+        String hashedPassword;
+        MessageDigest messageDigest;
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        messageDigest.update(password.getBytes());
+        hashedPassword = new String(messageDigest.digest());
+        return hashedPassword;
+    }
 }

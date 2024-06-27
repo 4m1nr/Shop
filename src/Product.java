@@ -9,8 +9,8 @@ public class Product {
     private ArrayList<String> images;
     private ArrayList<String> categories;
 
-    public Product(String name, String description, double price, int stock, ArrayList<String> images, ArrayList<String> categories) {
-        generateId();
+    public Product(String id, String name, String description, double price, int stock, ArrayList<String> images, ArrayList<String> categories) {
+        this.id = id;
         setName(name);
         setDescription(description);
         setStock(stock);

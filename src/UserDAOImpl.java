@@ -80,6 +80,7 @@ public class UserDAOImpl implements UserDAO{
                     , resultSet.getString("emailAddress"), resultSet.getString("hashedPassword")
                     , new ArrayList<Address>(),/*بعدا عوض شود*/ new Cart(), resultSet.getString("role")));
         }
+        resultSet.close();
         return users;
     }
 }

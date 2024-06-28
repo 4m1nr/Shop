@@ -7,38 +7,50 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public void insertProduct(Product product) throws SQLException{
-        productDAO.insertProduct(product);}
+        if(productDAO.getProduct(product.getId()) == null) productDAO.insertProduct(product);
+        else throw new RuntimeException("Product already exists");}
 
     @Override
     public void deleteProduct(Product product) throws SQLException{
-        productDAO.deleteProduct(product);}
+        if(productDAO.getProduct(product.getId()) != null) productDAO.deleteProduct(product);
+        else throw new RuntimeException("Product doesn't exist");}
 
     @Override
     public void deleteProductByID(String id) throws SQLException{
-        productDAO.deleteProductByID(id);}
+        if(productDAO.getProduct(id) != null) productDAO.deleteProductByID(id);
+        else throw new RuntimeException("Product doesn't exist");}
 
     @Override
     public void updateProduct(Product product) throws SQLException{
-        productDAO.updateProduct(product);}
+        if(productDAO.getProduct(product.getId()) != null) productDAO.updateProduct(product);
+        else throw new RuntimeException("Product doesn't exist");}
 
     @Override
     public Product getProduct(String id) throws SQLException{
-        return productDAO.getProduct(id);}
+        if(productDAO.getProduct(id) != null) return productDAO.getProduct(id);
+        else throw new RuntimeException("Product doesn't exist");}
 
     @Override
     public ArrayList<Product> getAllProducts() throws SQLException{
-        return productDAO.getAllProducts();}
+        ArrayList<Product> products = productDAO.getAllProducts();
+        while(products.size() < 6) products.add(null);
+        return products;}
 
     @Override
     public ArrayList<Product> getProductsByCategory(String category) throws SQLException{
-        return productDAO.getProductsByCategory(category);}
+        ArrayList<Product> products = productDAO.getProductsByCategory(category);
+        while(products.size() < 6) products.add(null);
+        return products;}
 
     @Override
     public ArrayList<Product> getProductsByCategorySorted(String category ,String sortByThis,int page,int numPerPage) throws SQLException{
-        return productDAO.getProductsByCategorySorted(category,sortByThis,page,numPerPage);}
+        ArrayList<Product> products = productDAO.getProductsByCategorySorted(category,sortByThis,page,numPerPage);
+        while(products.size() < 6) products.add(null);
+        return products;}
 
     @Override
     public ArrayList<Product> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException{
-        return productDAO.getProductsSorted(sortByThis,page,numPerPage);
-    }
+        ArrayList<Product> products = productDAO.getProductsSorted(sortByThis,page,numPerPage);
+        while(products.size() < 6) products.add(null);
+        return products;}
 }

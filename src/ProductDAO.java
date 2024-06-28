@@ -4,6 +4,9 @@ import java.util.ArrayList;
 public interface ProductDAO {
     public void insertProduct(Product product) throws SQLException;
     public void deleteProduct(Product product) throws SQLException;
+
+    void deleteProductByID(String id) throws SQLException;
+
     public void updateProduct(Product product) throws SQLException;
     public Product getProduct(String id) throws SQLException;
     public ArrayList<Product> getAllProducts() throws SQLException;

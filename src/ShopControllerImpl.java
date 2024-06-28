@@ -12,7 +12,7 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public Object login(String phoneNumber, String password){
+    public Object login(String phoneNumber, String password) throws SQLException{
         User user = userService.getUserByPhoneNumber(phoneNumber);
         if(user instanceof User && user.checkPassword(password)) return user;
         else{
@@ -22,12 +22,12 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public void logout() {
+    public void logout() throws SQLException{
         //TODO
     }
 
     @Override
-    public Object register(String phoneNumber, String passwordFirst, String passwordSecond) {
+    public Object register(String phoneNumber, String passwordFirst, String passwordSecond)throws SQLException {
         return null;
     }
 
@@ -38,19 +38,18 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public void addProduct(String productID, String name, double price, int stock, String category, String description) {
+    public void addProduct(String productID, String name, double price, int stock, ArrayList<String> category,ArrayList<String> images, String description) {
 
     }
 
     @Override
-    public void removeProduct(String productID) {
-
+    public void removeProduct(String productID) throws SQLException {
+        productService.deleteProductByID(productID);
     }
 
     @Override
-    public Object updateProduct(String productID, String name, double price, int stock, String category, String description) {
-
-        return null;
+    public void updateProduct(String productID, String name, double price, int stock, ArrayList<String> category,ArrayList<String> images, String description) throws SQLException {
+            productService.updateProduct(new Product(productID,name,description,price,stock,images,category));
     }
 
     @Override

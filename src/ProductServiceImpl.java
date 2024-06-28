@@ -14,6 +14,10 @@ public class ProductServiceImpl implements ProductService{
         productDAO.deleteProduct(product);}
 
     @Override
+    public void deleteProductByID(String id) throws SQLException{
+        productDAO.deleteProductByID(id);}
+
+    @Override
     public void updateProduct(Product product) throws SQLException{
         productDAO.updateProduct(product);}
 

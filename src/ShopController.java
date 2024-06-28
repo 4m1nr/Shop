@@ -5,6 +5,8 @@ public interface ShopController {
     public void logout();
     public Object register(String phoneNumber, String passwordFirst, String passwordSecond);
 
+    public void openRegisterPanel();
+
     public void addProduct(String name, double price, int stock, String category, String description);
 
     void addProduct(String productID, String name, double price, int stock, String category, String description);

@@ -12,17 +12,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class LoginPanel extends JPanel {
-	
-	
-	private static final long serialVersionUID = 1L;
+public class LoginPanel extends JPanel{
+	ShopController controller;
 	private JTextField textField;
 	private JPasswordField passwordField;
 
-	/**
-	 * Create the panel.
-	 */
-	public LoginPanel() {
+
+	public LoginPanel(ShopController controller) {
+		this.controller = controller;
 		setBackground(new Color(0, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
@@ -80,10 +77,11 @@ public class LoginPanel extends JPanel {
 		
 		JButton btnNewButton = new JButton("Enter");
 		btnNewButton.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
-				String password = passwordField.getText();
-				// To do
+				String password = new String(passwordField.getPassword());
+				controller.login(username, password);
 			}
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -92,7 +90,7 @@ public class LoginPanel extends JPanel {
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 6;
 		add(btnNewButton, gbc_btnNewButton);
-		
+
 		JLabel lblNoAccountSign = new JLabel("No account?");
 		lblNoAccountSign.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		GridBagConstraints gbc_lblNoAccountSign = new GridBagConstraints();
@@ -101,11 +99,11 @@ public class LoginPanel extends JPanel {
 		gbc_lblNoAccountSign.gridx = 1;
 		gbc_lblNoAccountSign.gridy = 7;
 		add(lblNoAccountSign, gbc_lblNoAccountSign);
-		
+
 		JButton btnSignUp = new JButton("Sign up");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//sign upe amin chize khassi nis be abalfazl
+				controller.openRegisterPanel();
 			}
 		});
 		btnSignUp.setFont(new Font("Tahoma", Font.BOLD, 18));
@@ -117,5 +115,4 @@ public class LoginPanel extends JPanel {
 		add(btnSignUp, gbc_btnSignUp);
 
 	}
-
 }

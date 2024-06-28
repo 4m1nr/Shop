@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class ShopControllerImpl implements ShopController{
     @Override
     public Object login(String phoneNumber, String password) {
@@ -14,6 +12,11 @@ public class ShopControllerImpl implements ShopController{
     @Override
     public Object register(String phoneNumber, String passwordFirst, String passwordSecond) {
         return null;
+    }
+
+    @Override
+    public void openRegisterPanel() {
+
     }
 
 

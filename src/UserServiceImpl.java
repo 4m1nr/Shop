@@ -29,21 +29,26 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void updateUser(User user) throws SQLException {
-
+        userDao.updateUser(user);
     }
 
     @Override
     public User getUser(String id) throws SQLException {
-        return null;
+        return userDao.getUser(id);
+    }
+
+    @Override
+    public User getUserByPhoneNumber(String phoneNumber) throws SQLException {
+        return userDao.getUserByPhoneNumber(phoneNumber);
     }
 
     @Override
     public ArrayList<User> getAllUsers() throws SQLException {
-        return null;
+        return userDao.getAllUsers();
     }
 
     @Override
     public ArrayList<User> getUsersByRole(String role) throws SQLException {
-        return null;
+        return getUsersByRole(role);
     }
 }

@@ -3,8 +3,7 @@ import java.util.ArrayList;
 
 public class ProductServiceImpl implements ProductService{
     ProductDAOImpl productDAO;
-    public ProductServiceImpl(Connection connection) throws SQLException {
-        this.productDAO = new ProductDAOImpl(connection);}
+    public ProductServiceImpl(ProductDAOImpl productDAO) throws SQLException {this.productDAO = productDAO;}
 
     @Override
     public void insertProduct(Product product) throws SQLException{

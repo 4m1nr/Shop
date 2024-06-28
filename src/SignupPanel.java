@@ -20,13 +20,15 @@ public class SignupPanel extends JPanel {
 	private JTextField nameTextField;
 	private JTextField phoneNumberTextField;
 	private JPasswordField passwordField;
+	public ShopControllerImpl controller;
 	private JTextField addressTextField;
 	private JTextField emailTextField;
 
 	/**
 	 * Create the panel.
 	 */
-	public SignupPanel(String error) {
+	public SignupPanel(ShopControllerImpl controller ,String error) {
+        this.controller = controller;
 		setBackground(new Color(0, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0};
@@ -44,7 +46,7 @@ public class SignupPanel extends JPanel {
 		gbc_signUpLabel.gridx = 1;
 		gbc_signUpLabel.gridy = 1;
 		add(signUpLabel, gbc_signUpLabel);
-		
+
 		JLabel nameLabel = new JLabel("Name");
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_nameLabel = new GridBagConstraints();
@@ -81,7 +83,7 @@ public class SignupPanel extends JPanel {
 		gbc_nameTextField.gridx = 1;
 		gbc_nameTextField.gridy = 3;
 		add(nameTextField, gbc_nameTextField);
-		
+
 		lastNameTextField = new JTextField();
 		lastNameTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lastNameTextField.setColumns(10);
@@ -91,7 +93,7 @@ public class SignupPanel extends JPanel {
 		gbc_lastNameTextField.gridx = 2;
 		gbc_lastNameTextField.gridy = 3;
 		add(lastNameTextField, gbc_lastNameTextField);
-		
+
 		phoneNumberTextField = new JTextField();
 		phoneNumberTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		phoneNumberTextField.setColumns(10);
@@ -101,7 +103,7 @@ public class SignupPanel extends JPanel {
 		gbc_phoneNumberTextField.gridx = 3;
 		gbc_phoneNumberTextField.gridy = 3;
 		add(phoneNumberTextField, gbc_phoneNumberTextField);
-		
+
 		JLabel addressLabel = new JLabel("Address");
 		addressLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_addressLabel = new GridBagConstraints();
@@ -110,7 +112,7 @@ public class SignupPanel extends JPanel {
 		gbc_addressLabel.gridx = 1;
 		gbc_addressLabel.gridy = 4;
 		add(addressLabel, gbc_addressLabel);
-		
+
 		JLabel emailLabel = new JLabel("Email");
 		emailLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_emailLabel = new GridBagConstraints();
@@ -119,7 +121,7 @@ public class SignupPanel extends JPanel {
 		gbc_emailLabel.gridx = 2;
 		gbc_emailLabel.gridy = 4;
 		add(emailLabel, gbc_emailLabel);
-		
+
 		JLabel passwordLabel = new JLabel("Password");
 		passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
@@ -128,7 +130,7 @@ public class SignupPanel extends JPanel {
 		gbc_passwordLabel.gridx = 3;
 		gbc_passwordLabel.gridy = 4;
 		add(passwordLabel, gbc_passwordLabel);
-		
+
 		JButton signUpButton = new JButton("Sign up");
 		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -137,7 +139,7 @@ public class SignupPanel extends JPanel {
 				// To do
 			}
 		});
-		
+
 		addressTextField = new JTextField();
 		addressTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		addressTextField.setColumns(10);
@@ -147,7 +149,7 @@ public class SignupPanel extends JPanel {
 		gbc_addressTextField.gridx = 1;
 		gbc_addressTextField.gridy = 5;
 		add(addressTextField, gbc_addressTextField);
-		
+
 		emailTextField = new JTextField();
 		emailTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		emailTextField.setColumns(10);
@@ -184,11 +186,11 @@ public class SignupPanel extends JPanel {
 		gbc_signUpButton.gridx = 1;
 		gbc_signUpButton.gridy = 7;
 		add(signUpButton, gbc_signUpButton);
-		
+
 		JButton backToLoginButton = new JButton("Back to login");
 		backToLoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do: back to login panel: rahate natars
+				controller.openLoginPanel();
 			}
 		});
 		backToLoginButton.setFont(new Font("Tahoma", Font.BOLD, 18));

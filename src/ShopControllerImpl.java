@@ -1,7 +1,7 @@
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 public class ShopControllerImpl implements ShopController{
+    User user;
 
     UserServiceImpl userService;
     ProductServiceImpl productService;
@@ -12,28 +12,34 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public Object login(String phoneNumber, String password){
-        User user = userService.getUserByPhoneNumber(phoneNumber);
-        if(user instanceof User && user.checkPassword(password)) return user;
-        else{
-            //TODO
-            return null;
+    public void login(String phoneNumber, String password) throws SQLException {
+        try {
+            user = userService.getUserByPhoneNumber(phoneNumber);
+        } catch (RuntimeException e) {
+            new LoginFrame(new LoginPanel(this,e.getMessage()));
         }
+        new MainFrame();
     }
+
+    public void openLoginPanel(){
+        new LoginFrame(new LoginPanel(this,null));
+    }
+
 
     @Override
     public void logout() throws SQLException{
-        //TODO
+        this.user = null;
+        new LoginFrame(new LoginPanel(this));
     }
 
     @Override
     public Object register(String phoneNumber, String passwordFirst, String passwordSecond) {
-        return null;
+
     }
 
     @Override
     public void openRegisterPanel() {
-
+        new LoginFrame(new SignupPanel(this));
     }
 
 

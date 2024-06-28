@@ -1,8 +1,8 @@
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 public interface ShopController {
-    public Object login(String phoneNumber, String password);
-    public void logout();
+    public void login(String phoneNumber, String password) throws SQLException;
+    public void logout() throws SQLException;
     public Object register(String phoneNumber, String passwordFirst, String passwordSecond);
 
     public void openRegisterPanel();

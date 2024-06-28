@@ -22,13 +22,13 @@ public class SignupPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public SignupPanel() {
+	public SignupPanel(String error) {
 		setBackground(new Color(0, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel = new JLabel("Sign up with username and password");
@@ -86,11 +86,20 @@ public class SignupPanel extends JPanel {
 				// To do
 			}
 		});
+		
+		JLabel errorLabel = new JLabel(error);
+		errorLabel.setForeground(Color.RED);
+		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		GridBagConstraints gbc_errorLabel = new GridBagConstraints();
+		gbc_errorLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_errorLabel.gridx = 1;
+		gbc_errorLabel.gridy = 6;
+		add(errorLabel, gbc_errorLabel);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 6;
+		gbc_btnNewButton.gridy = 7;
 		add(btnNewButton, gbc_btnNewButton);
 		
 		JButton btnBackToLogin = new JButton("Back to login");
@@ -104,7 +113,7 @@ public class SignupPanel extends JPanel {
 		gbc_btnBackToLogin.anchor = GridBagConstraints.SOUTH;
 		gbc_btnBackToLogin.insets = new Insets(0, 0, 5, 5);
 		gbc_btnBackToLogin.gridx = 1;
-		gbc_btnBackToLogin.gridy = 7;
+		gbc_btnBackToLogin.gridy = 8;
 		add(btnBackToLogin, gbc_btnBackToLogin);
 
 	}

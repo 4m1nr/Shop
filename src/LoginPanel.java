@@ -14,6 +14,7 @@ import java.awt.event.ActionEvent;
 
 public class LoginPanel extends JPanel {
 	
+	
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
 	private JPasswordField passwordField;
@@ -25,9 +26,9 @@ public class LoginPanel extends JPanel {
 		setBackground(new Color(0, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel = new JLabel("Login with username and password");
@@ -91,6 +92,29 @@ public class LoginPanel extends JPanel {
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 6;
 		add(btnNewButton, gbc_btnNewButton);
+		
+		JLabel lblNoAccountSign = new JLabel("No account?");
+		lblNoAccountSign.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		GridBagConstraints gbc_lblNoAccountSign = new GridBagConstraints();
+		gbc_lblNoAccountSign.anchor = GridBagConstraints.SOUTH;
+		gbc_lblNoAccountSign.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNoAccountSign.gridx = 1;
+		gbc_lblNoAccountSign.gridy = 7;
+		add(lblNoAccountSign, gbc_lblNoAccountSign);
+		
+		JButton btnSignUp = new JButton("Sign up");
+		btnSignUp.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//sign upe amin chize khassi nis be abalfazl
+			}
+		});
+		btnSignUp.setFont(new Font("Tahoma", Font.BOLD, 18));
+		GridBagConstraints gbc_btnSignUp = new GridBagConstraints();
+		gbc_btnSignUp.anchor = GridBagConstraints.NORTH;
+		gbc_btnSignUp.insets = new Insets(0, 0, 0, 5);
+		gbc_btnSignUp.gridx = 1;
+		gbc_btnSignUp.gridy = 8;
+		add(btnSignUp, gbc_btnSignUp);
 
 	}
 

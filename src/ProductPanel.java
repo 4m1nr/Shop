@@ -27,6 +27,7 @@ public class ProductPanel extends JPanel {
 		String productName = product.getName();
 		String productRate = String.format("%0.1d",product.getRating().getAverage());
 		Icon imageIcon=new ImageIcon(product.getImages().get(0));
+		String productPrice = product.getPrice();
 		
 		setBackground(new Color(128, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -61,7 +62,7 @@ public class ProductPanel extends JPanel {
 		gbc_rateLabel.gridy = 2;
 		add(rateLabel, gbc_rateLabel);
 		
-		JLabel priceLabel = new JLabel("price???");
+		JLabel priceLabel = new JLabel(productPrice);
 		GridBagConstraints gbc_priceLabel = new GridBagConstraints();
 		gbc_priceLabel.gridx = 0;
 		gbc_priceLabel.gridy = 3;

@@ -7,6 +7,7 @@ public class Product {
     private int stock;
     private ArrayList<String> images;
     private ArrayList<String> categories;
+    private Rating rating = new Rating();
 
     public Product(String id, String name, String description, double price, int stock, ArrayList<String> images, ArrayList<String> categories) {
         this.id = id;
@@ -27,12 +28,14 @@ public class Product {
     public int getStock()                           {return stock;}
     public ArrayList<String> getImages()            {return images;}
     public ArrayList<String> getCategories()        {return categories;}
+    public Rating getRating()                       {return rating;}
 
     //setters
     public void setName(String name)                {this.name = name;}
     public void setDescription(String description)  {this.description = description;}
     public void setPrice(double price)              {this.price = price;}
     public void setStock(int stock)                 {this.stock = stock;}
+    public void setRating(Rating rating)            {this.rating = rating;}
 
     public void addImage(String link)               {images.add(link);}
     public void removeImage(String link)            {images.remove(link);}

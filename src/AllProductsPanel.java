@@ -78,52 +78,63 @@ public class AllProductsPanel extends JPanel {
 		gbl_panel.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
 		
-		//JPanel panels[0] = new JPanel();
-		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
-		gbc_panel_1.fill = GridBagConstraints.BOTH;
-		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 0;
-		panel.add(panels[0], gbc_panel_1);
+		if (panels[0]!=null) {
+			GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+			gbc_panel_1.fill = GridBagConstraints.BOTH;
+			gbc_panel_1.insets = new Insets(0, 0, 5, 5);
+			gbc_panel_1.gridx = 0;
+			gbc_panel_1.gridy = 0;
+			panel.add(panels[0], gbc_panel_1);
+		}
 		
-		//JPanel panel_2 = new JPanel();
-		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
-		gbc_panel_2.fill = GridBagConstraints.BOTH;
-		gbc_panel_2.insets = new Insets(0, 0, 5, 5);
-		gbc_panel_2.gridx = 1;
-		gbc_panel_2.gridy = 0;
-		panel.add(panels[1], gbc_panel_2);
 		
-		//JPanel panel_3 = new JPanel();
-		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
-		gbc_panel_3.fill = GridBagConstraints.BOTH;
-		gbc_panel_3.insets = new Insets(0, 0, 5, 0);
-		gbc_panel_3.gridx = 2;
-		gbc_panel_3.gridy = 0;
-		panel.add(panels[2], gbc_panel_3);
+		if (panels[1]!=null) {
+			GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+			gbc_panel_2.fill = GridBagConstraints.BOTH;
+			gbc_panel_2.insets = new Insets(0, 0, 5, 5);
+			gbc_panel_2.gridx = 1;
+			gbc_panel_2.gridy = 0;
+			panel.add(panels[1], gbc_panel_2);
+		}
+	
 		
-		//JPanel panel_4 = new JPanel();
-		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
-		gbc_panel_4.fill = GridBagConstraints.BOTH;
-		gbc_panel_4.insets = new Insets(0, 0, 0, 5);
-		gbc_panel_4.gridx = 0;
-		gbc_panel_4.gridy = 1;
-		panel.add(panels[3], gbc_panel_4);
+		if (panels[2]!=null) {
+			GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+			gbc_panel_3.fill = GridBagConstraints.BOTH;
+			gbc_panel_3.insets = new Insets(0, 0, 5, 0);
+			gbc_panel_3.gridx = 2;
+			gbc_panel_3.gridy = 0;
+			panel.add(panels[2], gbc_panel_3);
+		}
+
 		
-		//JPanel panel_5 = new JPanel();
-		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
-		gbc_panel_5.fill = GridBagConstraints.BOTH;
-		gbc_panel_5.insets = new Insets(0, 0, 0, 5);
-		gbc_panel_5.gridx = 1;
-		gbc_panel_5.gridy = 1;
-		panel.add(panels[4], gbc_panel_5);
+		if (panels[3]!=null) {
+			GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+			gbc_panel_4.fill = GridBagConstraints.BOTH;
+			gbc_panel_4.insets = new Insets(0, 0, 0, 5);
+			gbc_panel_4.gridx = 0;
+			gbc_panel_4.gridy = 1;
+			panel.add(panels[3], gbc_panel_4);
+		}
 		
-		//JPanel panel_6 = new JPanel();
-		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
-		gbc_panel_6.fill = GridBagConstraints.BOTH;
-		gbc_panel_6.gridx = 2;
-		gbc_panel_6.gridy = 1;
-		panel.add(panels[5], gbc_panel_6);
+		
+		if (panels[4]!=null) {
+			GridBagConstraints gbc_panel_5 = new GridBagConstraints();
+			gbc_panel_5.fill = GridBagConstraints.BOTH;
+			gbc_panel_5.insets = new Insets(0, 0, 0, 5);
+			gbc_panel_5.gridx = 1;
+			gbc_panel_5.gridy = 1;
+			panel.add(panels[4], gbc_panel_5);
+		}
+		
+
+		if (panels[5]!=null) {
+			GridBagConstraints gbc_panel_6 = new GridBagConstraints();
+			gbc_panel_6.fill = GridBagConstraints.BOTH;
+			gbc_panel_6.gridx = 2;
+			gbc_panel_6.gridy = 1;
+			panel.add(panels[5], gbc_panel_6);
+		}
 		
 		JPanel panel_7 = new JPanel();
 		panel_7.setOpaque(false);

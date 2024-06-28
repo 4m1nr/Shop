@@ -23,7 +23,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Product getProduct(String id) throws SQLException{
-        return getProduct(id);}
+        return productDAO.getProduct(id);}
 
     @Override
     public ArrayList<Product> getAllProducts() throws SQLException{
@@ -31,14 +31,14 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public ArrayList<Product> getProductsByCategory(String category) throws SQLException{
-        return getProductsByCategory(category);}
+        return productDAO.getProductsByCategory(category);}
 
     @Override
     public ArrayList<Product> getProductsByCategorySorted(String category ,String sortByThis,int page,int numPerPage) throws SQLException{
-        return getProductsByCategorySorted(category,sortByThis,page,numPerPage);}
+        return productDAO.getProductsByCategorySorted(category,sortByThis,page,numPerPage);}
 
     @Override
     public ArrayList<Product> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException{
-        return getProductsSorted(sortByThis,page,numPerPage);
+        return productDAO.getProductsSorted(sortByThis,page,numPerPage);
     }
 }

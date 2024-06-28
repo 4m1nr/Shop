@@ -32,6 +32,12 @@ public class ProductDAOImpl implements ProductDAO{
     }
 
     @Override
+    public void deleteProductByID(String id) throws SQLException {
+        String SQL = "DELETE FROM " + tableName + " WHERE id = " + id;
+        statement.executeUpdate(SQL);
+    }
+
+    @Override
     public void updateProduct(Product product) throws SQLException {
         StringBuilder SQL = new StringBuilder("UPDATE " + tableName + " SET ");
         if (product.getName() != null) SQL.append("name = " + product.getName() + ", ");

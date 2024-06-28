@@ -22,8 +22,8 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public void logout() {
-
+    public void logout() throws SQLException{
+        //TODO
     }
 
     @Override
@@ -43,19 +43,18 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public void addProduct(String productID, String name, double price, int stock, String category, String description) {
+    public void addProduct(String productID, String name, double price, int stock, ArrayList<String> category,ArrayList<String> images, String description) {
 
     }
 
     @Override
-    public void removeProduct(String productID) {
-
+    public void removeProduct(String productID) throws SQLException {
+        productService.deleteProductByID(productID);
     }
 
     @Override
-    public Object updateProduct(String productID, String name, double price, int stock, String category, String description) {
-
-        return null;
+    public void updateProduct(String productID, String name, double price, int stock, ArrayList<String> category,ArrayList<String> images, String description) throws SQLException {
+            productService.updateProduct(new Product(productID,name,description,price,stock,images,category));
     }
 
     @Override

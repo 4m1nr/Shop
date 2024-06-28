@@ -13,7 +13,7 @@ public class LoginFrame extends JFrame {
 	}
 
 	private void buildFrame(){
-		setMinimumSize(new Dimension(500, 350));
+		setMinimumSize(new Dimension(500, 400));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 579, 386);
 	}

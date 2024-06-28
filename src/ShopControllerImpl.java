@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class ShopControllerImpl implements ShopController{
     @Override
     public Object login(String phoneNumber, String password) {
@@ -15,7 +17,7 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public void addProduct(String name, double price, int stock, String category, String description) {
+    public void addProduct(String name, double price, int stock, ArrayList<String> category, ArrayList<String> images, String description) {
 
     }
 

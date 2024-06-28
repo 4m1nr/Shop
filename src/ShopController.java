@@ -1,9 +1,14 @@
+import java.util.ArrayList;
+
 public interface ShopController {
     public Object login(String phoneNumber, String password);
     public void logout();
     public Object register(String phoneNumber, String passwordFirst, String passwordSecond);
 
     public void addProduct(String name, double price, int stock, String category, String description);
+
+    void addProduct(String name, double price, int stock, ArrayList<String> category, ArrayList<String> images, String description);
+
     public void removeProduct(String productID);
     public Object updateProduct(String productID, String name, double price, int stock, String category, String description);
 

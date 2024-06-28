@@ -1,6 +1,6 @@
 public class ShopControllerImpl implements ShopController{
     @Override
-    public User login(String phoneNumber, String password) {
+    public Object login(String phoneNumber, String password) {
         return null;
     }
 
@@ -10,7 +10,7 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public User register(String phoneNumber, String passwordFirst, String passwordSecond) {
+    public Object register(String phoneNumber, String passwordFirst, String passwordSecond) {
         return null;
     }
 
@@ -25,8 +25,9 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public void updateProduct(String productID, String name, double price, int stock, String category, String description) {
+    public Object updateProduct(String productID, String name, double price, int stock, String category, String description) {
 
+        return null;
     }
 
     @Override

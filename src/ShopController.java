@@ -1,11 +1,11 @@
 public interface ShopController {
-    public User login(String phoneNumber, String password);
+    public Object login(String phoneNumber, String password);
     public void logout();
-    public User register(String phoneNumber, String passwordFirst,String passwordSecond);
+    public Object register(String phoneNumber, String passwordFirst, String passwordSecond);
 
     public void addProduct(String name, double price, int stock, String category, String description);
     public void removeProduct(String productID);
-    public void updateProduct(String productID, String name, double price, int stock, String category, String description);
+    public Object updateProduct(String productID, String name, double price, int stock, String category, String description);
 
     public void viewCart();
     public void addProductToCart(String productID, int quantity);

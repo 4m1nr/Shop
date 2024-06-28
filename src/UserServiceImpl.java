@@ -29,8 +29,14 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void updateUser(User user) throws SQLException {
-
+        userDao.updateUser(user);
     }
+
+    @Override
+    public User getUserByPhoneNumber(String phoneNumber) throws SQLException {
+        return userDao.getUserByPhoneNumber(phoneNumber);
+    }
+
 
     @Override
     public User getUser(String id) throws SQLException {

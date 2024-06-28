@@ -63,6 +63,20 @@ public class UserDAOImpl implements UserDAO{
     }
 
     @Override
+    public User getUserByPhoneNumber(String phoneNumber) throws SQLException {
+        String SQL = "SELECT * FROM " + tableName + " WHERE phoneNumber = " + phoneNumber;
+        ResultSet resultSet = statement.executeQuery(SQL);
+
+        if (resultSet.next()) {
+            return new User(resultSet.getString("id"), resultSet.getString("name")
+                    , resultSet.getString("lastName"), resultSet.getString("phoneNumber")
+                    , resultSet.getString("emailAddress"), resultSet.getString("hashedPassword")
+                    , new ArrayList<Address>(),/*بعدا عوض شود*/ new Cart(), resultSet.getString("role"));
+        }
+        return null;
+    }
+
+    @Override
     public ArrayList<User> getAllUsers() throws SQLException {
         String SQL = "SELECT * FROM " + tableName;
         return getUsers(SQL);
@@ -72,6 +86,21 @@ public class UserDAOImpl implements UserDAO{
     public ArrayList<User> getUsersByRole(String role) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + "WHERE role = " + role;
         return getUsers(SQL);
+    }
+
+    @Override
+    public String getNewId() throws SQLException {
+        int id;
+
+        String SQL = "SELECT id FROM " + tableName + "LIMIT 1";
+        ResultSet resultSet = statement.executeQuery(SQL);
+        id = resultSet.getInt("id") + 1;
+        resultSet.close();
+
+        SQL = "UPDATE " + tableName + " SET id = " + id + " LIMIT 1";
+        statement.executeUpdate(SQL);
+
+        return Integer.toString(id);
     }
 
     private ArrayList<User> getUsers(String SQL) throws SQLException {

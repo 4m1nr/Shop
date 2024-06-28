@@ -34,7 +34,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User getUser(String id) throws SQLException {
-        return null;
+        User user = userDao.getUser(id);
+        if (user == null)
+            throw new RuntimeException("User not found");
+        else
+            return user;
     }
 
     @Override

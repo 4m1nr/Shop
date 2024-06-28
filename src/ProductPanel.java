@@ -15,7 +15,7 @@ public class ProductPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ProductPanel() {
+	public ProductPanel(Product product) {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -23,9 +23,9 @@ public class ProductPanel extends JPanel {
 			}
 		});
 		
-		String productName="";
-		String productRate="";
-		Icon imageIcon=new ImageIcon();
+		String productName = product.getName();
+		String productRate = String.format("%0.1d",product.getRating().getAverage());
+		Icon imageIcon=new ImageIcon(product.getImages().get(0));
 		
 		setBackground(new Color(128, 255, 255));
 		setLayout(null);

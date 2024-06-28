@@ -7,7 +7,7 @@ public interface ShopController {
 
     public void addProduct(String name, double price, int stock, String category, String description);
 
-    void addProduct(String name, double price, int stock, ArrayList<String> category, ArrayList<String> images, String description);
+    void addProduct(String productID, String name, double price, int stock, String category, String description);
 
     public void removeProduct(String productID);
     public Object updateProduct(String productID, String name, double price, int stock, String category, String description);

@@ -17,7 +17,12 @@ public class ShopControllerImpl implements ShopController{
     }
 
     @Override
-    public void addProduct(String name, double price, int stock, ArrayList<String> category, ArrayList<String> images, String description) {
+    public void addProduct(String name, double price, int stock, String category, String description) {
+
+    }
+
+    @Override
+    public void addProduct(String productID, String name, double price, int stock, String category, String description) {
 
     }
 

@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 
-public class LoginPanel extends JPanel {
+public class SignupPanel extends JPanel {
 	
 	
 	private static final long serialVersionUID = 1L;
@@ -22,7 +22,7 @@ public class LoginPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel() {
+	public SignupPanel() {
 		setBackground(new Color(0, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
@@ -31,7 +31,7 @@ public class LoginPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel lblNewLabel = new JLabel("Login with username and password");
+		JLabel lblNewLabel = new JLabel("Sign up with username and password");
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.anchor = GridBagConstraints.NORTH;
@@ -78,7 +78,7 @@ public class LoginPanel extends JPanel {
 		gbc_passwordField.gridy = 5;
 		add(passwordField, gbc_passwordField);
 		
-		JButton btnNewButton = new JButton("Enter");
+		JButton btnNewButton = new JButton("Sign up");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
@@ -93,28 +93,19 @@ public class LoginPanel extends JPanel {
 		gbc_btnNewButton.gridy = 6;
 		add(btnNewButton, gbc_btnNewButton);
 		
-		JLabel lblNoAccountSign = new JLabel("No account?");
-		lblNoAccountSign.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		GridBagConstraints gbc_lblNoAccountSign = new GridBagConstraints();
-		gbc_lblNoAccountSign.anchor = GridBagConstraints.SOUTH;
-		gbc_lblNoAccountSign.insets = new Insets(0, 0, 5, 5);
-		gbc_lblNoAccountSign.gridx = 1;
-		gbc_lblNoAccountSign.gridy = 7;
-		add(lblNoAccountSign, gbc_lblNoAccountSign);
-		
-		JButton btnSignUp = new JButton("Sign up");
-		btnSignUp.addActionListener(new ActionListener() {
+		JButton btnBackToLogin = new JButton("Back to login");
+		btnBackToLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//sign upe amin chize khassi nis be abalfazl
+				//To do: back to login panel: rahate natars
 			}
 		});
-		btnSignUp.setFont(new Font("Tahoma", Font.BOLD, 18));
-		GridBagConstraints gbc_btnSignUp = new GridBagConstraints();
-		gbc_btnSignUp.anchor = GridBagConstraints.NORTH;
-		gbc_btnSignUp.insets = new Insets(0, 0, 0, 5);
-		gbc_btnSignUp.gridx = 1;
-		gbc_btnSignUp.gridy = 8;
-		add(btnSignUp, gbc_btnSignUp);
+		btnBackToLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
+		GridBagConstraints gbc_btnBackToLogin = new GridBagConstraints();
+		gbc_btnBackToLogin.anchor = GridBagConstraints.SOUTH;
+		gbc_btnBackToLogin.insets = new Insets(0, 0, 5, 5);
+		gbc_btnBackToLogin.gridx = 1;
+		gbc_btnBackToLogin.gridy = 7;
+		add(btnBackToLogin, gbc_btnBackToLogin);
 
 	}
 

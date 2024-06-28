@@ -29,26 +29,25 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void updateUser(User user) throws SQLException {
-        userDao.updateUser(user);
+
     }
 
     @Override
     public User getUser(String id) throws SQLException {
-        return userDao.getUser(id);
-    }
-
-    @Override
-    public User getUserByPhoneNumber(String phoneNumber) throws SQLException {
-        return userDao.getUserByPhoneNumber(phoneNumber);
+        User user = userDao.getUser(id);
+        if (user == null)
+            throw new RuntimeException("User not found");
+        else
+            return user;
     }
 
     @Override
     public ArrayList<User> getAllUsers() throws SQLException {
-        return userDao.getAllUsers();
+        return null;
     }
 
     @Override
     public ArrayList<User> getUsersByRole(String role) throws SQLException {
-        return getUsersByRole(role);
+        return null;
     }
 }

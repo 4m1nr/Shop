@@ -1,3 +1,4 @@
+
 import javax.swing.JPanel;
 import java.awt.Color;
 import java.awt.GridBagLayout;
@@ -22,13 +23,13 @@ public class LoginPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public LoginPanel() {
+	public LoginPanel(String error) {
 		setBackground(new Color(0, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 0.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel = new JLabel("Login with username and password");
@@ -86,11 +87,21 @@ public class LoginPanel extends JPanel {
 				// To do
 			}
 		});
+		
+		JLabel errorLabel = new JLabel(error);
+		errorLabel.setForeground(new Color(255, 0, 0));
+		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		GridBagConstraints gbc_errorLabel = new GridBagConstraints();
+		gbc_errorLabel.fill = GridBagConstraints.VERTICAL;
+		gbc_errorLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_errorLabel.gridx = 1;
+		gbc_errorLabel.gridy = 6;
+		add(errorLabel, gbc_errorLabel);
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 5);
 		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 6;
+		gbc_btnNewButton.gridy = 7;
 		add(btnNewButton, gbc_btnNewButton);
 		
 		JLabel lblNoAccountSign = new JLabel("No account?");
@@ -99,7 +110,7 @@ public class LoginPanel extends JPanel {
 		gbc_lblNoAccountSign.anchor = GridBagConstraints.SOUTH;
 		gbc_lblNoAccountSign.insets = new Insets(0, 0, 5, 5);
 		gbc_lblNoAccountSign.gridx = 1;
-		gbc_lblNoAccountSign.gridy = 7;
+		gbc_lblNoAccountSign.gridy = 8;
 		add(lblNoAccountSign, gbc_lblNoAccountSign);
 		
 		JButton btnSignUp = new JButton("Sign up");
@@ -113,7 +124,7 @@ public class LoginPanel extends JPanel {
 		gbc_btnSignUp.anchor = GridBagConstraints.NORTH;
 		gbc_btnSignUp.insets = new Insets(0, 0, 0, 5);
 		gbc_btnSignUp.gridx = 1;
-		gbc_btnSignUp.gridy = 8;
+		gbc_btnSignUp.gridy = 9;
 		add(btnSignUp, gbc_btnSignUp);
 
 	}

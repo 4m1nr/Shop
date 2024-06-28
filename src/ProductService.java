@@ -10,7 +10,7 @@ public interface ProductService {
     public void updateProduct(Product product) throws SQLException;
     public Product getProduct(String id) throws SQLException;
     public ArrayList<Product> getAllProducts() throws SQLException;
-    public ArrayList<Product> getProductsByCategory(String category) throws SQLException;
-    public ArrayList<Product> getProductsByCategorySorted(String category ,String sortByThis,int page,int numPerPage) throws SQLException;
-    public ArrayList<Product> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException;
+    public ArrayList<ProductPanel> getProductsByCategory(String category) throws SQLException;
+    public ArrayList<ProductPanel> getProductsByCategorySorted(String category , String sortByThis, int page, int numPerPage) throws SQLException;
+    public ArrayList<ProductPanel> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException;
 }

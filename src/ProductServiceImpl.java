@@ -37,20 +37,26 @@ public class ProductServiceImpl implements ProductService{
         return products;}
 
     @Override
-    public ArrayList<Product> getProductsByCategory(String category) throws SQLException{
+    public ArrayList<ProductPanel> getProductsByCategory(String category) throws SQLException{
         ArrayList<Product> products = productDAO.getProductsByCategory(category);
-        while(products.size() < 6) products.add(null);
-        return products;}
+        ArrayList<ProductPanel> productPanels = new ArrayList<>();
+        for(int i = 0; i != products.size(); i++) productPanels.add(new ProductPanel(products.get(i)));
+        while(productPanels.size() < 6) productPanels.add(null);
+        return productPanels;}
 
     @Override
-    public ArrayList<Product> getProductsByCategorySorted(String category ,String sortByThis,int page,int numPerPage) throws SQLException{
+    public ArrayList<ProductPanel> getProductsByCategorySorted(String category , String sortByThis, int page, int numPerPage) throws SQLException{
         ArrayList<Product> products = productDAO.getProductsByCategorySorted(category,sortByThis,page,numPerPage);
-        while(products.size() < 6) products.add(null);
-        return products;}
+        ArrayList<ProductPanel> productPanels = new ArrayList<>();
+        for(int i = 0; i != products.size(); i++) productPanels.add(new ProductPanel(products.get(i)));
+        while(productPanels.size() < 6) productPanels.add(null);
+        return productPanels;}
 
     @Override
-    public ArrayList<Product> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException{
+    public ArrayList<ProductPanel> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException{
         ArrayList<Product> products = productDAO.getProductsSorted(sortByThis,page,numPerPage);
-        while(products.size() < 6) products.add(null);
-        return products;}
+        ArrayList<ProductPanel> productPanels = new ArrayList<>();
+        for(int i = 0; i != products.size(); i++) productPanels.add(new ProductPanel(products.get(i)));
+        while(productPanels.size() < 6) productPanels.add(null);
+        return productPanels;}
 }

@@ -111,4 +111,19 @@ public class ProductDAOImpl implements ProductDAO{
 
         return products;
     }
+
+    @Override
+    public String getNewId() throws SQLException {
+        int id;
+
+        String SQL = "SELECT id FROM " + tableName + "LIMIT 1";
+        ResultSet resultSet = statement.executeQuery(SQL);
+        id = resultSet.getInt("id") + 1;
+        resultSet.close();
+
+        SQL = "UPDATE " + tableName + " SET id = " + id + " LIMIT 1";
+        statement.executeUpdate(SQL);
+
+        return Integer.toString(id);
+    }
 }

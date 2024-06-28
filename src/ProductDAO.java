@@ -10,6 +10,5 @@ public interface ProductDAO {
     public ArrayList<Product> getProductsByCategory(String category) throws SQLException;
     public ArrayList<Product> getProductsByCategorySorted(String category ,String sortByThis,int page,int numPerPage) throws SQLException;
     public ArrayList<Product> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException;
-
-
+    public String getNewId() throws SQLException;
 }

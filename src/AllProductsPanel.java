@@ -40,7 +40,6 @@ public class AllProductsPanel extends JPanel {
 	 * Create the panel.
 	 */
 	public AllProductsPanel(ArrayList<ProductPanel> panels1, String sortType) {
-		setBackground(new Color(0, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{15, 528, 15, 0};
 		gridBagLayout.rowHeights = new int[]{0, 15, 10, 35, 0};

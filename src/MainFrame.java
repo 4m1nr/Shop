@@ -21,9 +21,9 @@ public class MainFrame extends JFrame {
 		setContentPane(contentPane);
 		GridBagLayout contentPaneGBLayout = new GridBagLayout();
 		contentPaneGBLayout.columnWidths = new int[]{562, 0};
-		contentPaneGBLayout.rowHeights = new int[]{72, 400, 0};
+		contentPaneGBLayout.rowHeights = new int[]{50, 400, 0};
 		contentPaneGBLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		contentPaneGBLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		contentPaneGBLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(contentPaneGBLayout);
 
 		HeaderPanel headerPanel = new HeaderPanel();

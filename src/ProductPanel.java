@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Insets;
+import java.net.URL;
 import java.sql.SQLException;
 
 public class ProductPanel extends JPanel {
@@ -19,7 +20,7 @@ public class ProductPanel extends JPanel {
 		if (product != null) {
 			String productName = product.getName();
 			String productRate = /*String.format("%0.1f", product.getRating().getAverage());*/5 + "";
-			Icon imageIcon = new ImageIcon(/*roduct.getImages().get(0)*/);
+			Icon imageIcon = new ImageIcon(/*نه*/);
 			String productPrice = product.getPrice() + "";
 
 

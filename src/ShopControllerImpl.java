@@ -12,7 +12,7 @@ public class ShopControllerImpl{
         this.userService = userService;
         this.productService = productService;
         loginFrame = new LoginFrame();
-        mainFrame = new MainFrame();
+        mainFrame = new MainFrame(user,this);
     }
 
     public void login(String phoneNumber, String password) throws SQLException {
@@ -36,6 +36,7 @@ public class ShopControllerImpl{
     }
 
     public void openLoginPanel(String errorMessage){
+        mainFrame.setVisible(false);
         loginFrame.setPanel(new LoginPanel(this,errorMessage));
         loginFrame.setVisible(true);
     }

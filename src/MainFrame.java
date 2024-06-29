@@ -7,9 +7,14 @@ import javax.swing.border.EmptyBorder;
 public class MainFrame extends JFrame {
 	JPanel currentPanel;
 	private JPanel contentPane;
+	ShopControllerImpl controller;
+	User user;
 
 
-	public MainFrame() {
+
+	public MainFrame(User user, ShopControllerImpl controller) {
+		this.controller = controller;
+		this.user = user;
 		buildFrame();
 	}
 
@@ -26,7 +31,7 @@ public class MainFrame extends JFrame {
 		contentPaneGBLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(contentPaneGBLayout);
 
-		HeaderPanel headerPanel = new HeaderPanel();
+		HeaderPanel headerPanel = new HeaderPanel(user,controller);
 		GridBagConstraints headerGBC = new GridBagConstraints();
 		headerGBC.fill = GridBagConstraints.BOTH;
 		headerGBC.insets = new Insets(0, 0, 5, 0);

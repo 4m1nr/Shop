@@ -6,22 +6,22 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class HeaderPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
+	User user;
+	ShopControllerImpl controller;
 
 	/**
 	 * Create the panel.
 	 */
-	public HeaderPanel() {
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+	public HeaderPanel(User user ,ShopControllerImpl controller) {
+		this.controller = controller;
+		this.user = user;
+		buildPanel();
 		
 		JButton btnNewButton = new JButton("Profile");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -33,8 +33,12 @@ public class HeaderPanel extends JPanel {
 		JButton btnExit = new JButton("Log out");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do: exit
-			}
+                try {
+                    controller.logout();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
 		});
 		GridBagConstraints gbc_btnExit = new GridBagConstraints();
 		gbc_btnExit.insets = new Insets(0, 0, 0, 5);
@@ -107,6 +111,15 @@ public class HeaderPanel extends JPanel {
 		gbc_btnNewButton_4.gridy = 0;
 		add(btnNewButton_4, gbc_btnNewButton_4);
 
+	}
+
+	private void buildPanel() {
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
 	}
 
 }

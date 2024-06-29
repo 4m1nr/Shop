@@ -30,7 +30,7 @@ public class HeaderPanel extends JPanel {
 			}
 		});
 		
-		JButton btnExit = new JButton("Exit");
+		JButton btnExit = new JButton("Log out");
 		btnExit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				//To do: exit

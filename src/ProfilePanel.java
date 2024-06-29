@@ -17,9 +17,8 @@ public class ProfilePanel extends JPanel {
 	private JTextField lastNameTextField;
 	private JTextField emailTextField;
 	private JTextField phoneNumberTextField;
-	private JPasswordField newPasswordField;
+	private JPasswordField passwordField;
 	private JTextField addBalanceTextField;
-	private JPasswordField oldPasswordField;
 
 	/**
 	 * Create the panel.
@@ -35,9 +34,9 @@ public class ProfilePanel extends JPanel {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel nameLabel = new JLabel("Name:");
@@ -120,43 +119,24 @@ public class ProfilePanel extends JPanel {
 		gbc_phoneNumberTextField.gridy = 3;
 		add(phoneNumberTextField, gbc_phoneNumberTextField);
 		
-		JLabel oldPasswordLabel = new JLabel("Old password:");
-		oldPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_oldPasswordLabel = new GridBagConstraints();
-		gbc_oldPasswordLabel.anchor = GridBagConstraints.EAST;
-		gbc_oldPasswordLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_oldPasswordLabel.gridx = 0;
-		gbc_oldPasswordLabel.gridy = 4;
-		add(oldPasswordLabel, gbc_oldPasswordLabel);
+		JLabel passwordLabel = new JLabel("Password:");
+		passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
+		gbc_passwordLabel.anchor = GridBagConstraints.EAST;
+		gbc_passwordLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_passwordLabel.gridx = 0;
+		gbc_passwordLabel.gridy = 4;
+		add(passwordLabel, gbc_passwordLabel);
 		
-		oldPasswordField = new JPasswordField();
-		oldPasswordField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		oldPasswordField.setColumns(10);
-		GridBagConstraints gbc_oldPasswordField = new GridBagConstraints();
-		gbc_oldPasswordField.anchor = GridBagConstraints.WEST;
-		gbc_oldPasswordField.insets = new Insets(0, 0, 5, 0);
-		gbc_oldPasswordField.gridx = 1;
-		gbc_oldPasswordField.gridy = 4;
-		add(oldPasswordField, gbc_oldPasswordField);
-		
-		JLabel newPasswordLabel = new JLabel("New password:");
-		newPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_newPasswordLabel = new GridBagConstraints();
-		gbc_newPasswordLabel.anchor = GridBagConstraints.EAST;
-		gbc_newPasswordLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_newPasswordLabel.gridx = 0;
-		gbc_newPasswordLabel.gridy = 5;
-		add(newPasswordLabel, gbc_newPasswordLabel);
-		
-		newPasswordField = new JPasswordField();
-		newPasswordField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		newPasswordField.setColumns(10);
-		GridBagConstraints gbc_newPasswordField = new GridBagConstraints();
-		gbc_newPasswordField.anchor = GridBagConstraints.WEST;
-		gbc_newPasswordField.insets = new Insets(0, 0, 5, 0);
-		gbc_newPasswordField.gridx = 1;
-		gbc_newPasswordField.gridy = 5;
-		add(newPasswordField, gbc_newPasswordField);
+		passwordField = new JPasswordField();
+		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		passwordField.setColumns(10);
+		GridBagConstraints gbc_passwordField = new GridBagConstraints();
+		gbc_passwordField.anchor = GridBagConstraints.WEST;
+		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
+		gbc_passwordField.gridx = 1;
+		gbc_passwordField.gridy = 4;
+		add(passwordField, gbc_passwordField);
 		
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -169,7 +149,7 @@ public class ProfilePanel extends JPanel {
 		gbc_btnNewButton.insets = new Insets(0, 0, 5, 0);
 		gbc_btnNewButton.anchor = GridBagConstraints.WEST;
 		gbc_btnNewButton.gridx = 1;
-		gbc_btnNewButton.gridy = 6;
+		gbc_btnNewButton.gridy = 5;
 		add(btnNewButton, gbc_btnNewButton);
 		
 		JLabel currentBalanceLabel = new JLabel("Current balance:");
@@ -178,7 +158,7 @@ public class ProfilePanel extends JPanel {
 		gbc_currentBalanceLabel.anchor = GridBagConstraints.EAST;
 		gbc_currentBalanceLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_currentBalanceLabel.gridx = 0;
-		gbc_currentBalanceLabel.gridy = 7;
+		gbc_currentBalanceLabel.gridy = 6;
 		add(currentBalanceLabel, gbc_currentBalanceLabel);
 		
 		JLabel balanceLabel = new JLabel("**balance**");
@@ -187,7 +167,7 @@ public class ProfilePanel extends JPanel {
 		gbc_balanceLabel.anchor = GridBagConstraints.WEST;
 		gbc_balanceLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_balanceLabel.gridx = 1;
-		gbc_balanceLabel.gridy = 7;
+		gbc_balanceLabel.gridy = 6;
 		add(balanceLabel, gbc_balanceLabel);
 		
 		JLabel addBalanceLabel = new JLabel("Add balance:");
@@ -196,7 +176,7 @@ public class ProfilePanel extends JPanel {
 		gbc_addBalanceLabel.anchor = GridBagConstraints.EAST;
 		gbc_addBalanceLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_addBalanceLabel.gridx = 0;
-		gbc_addBalanceLabel.gridy = 8;
+		gbc_addBalanceLabel.gridy = 7;
 		add(addBalanceLabel, gbc_addBalanceLabel);
 		
 		addBalanceTextField = new JTextField();
@@ -207,7 +187,7 @@ public class ProfilePanel extends JPanel {
 		gbc_addBalanceTextField.anchor = GridBagConstraints.WEST;
 		gbc_addBalanceTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_addBalanceTextField.gridx = 1;
-		gbc_addBalanceTextField.gridy = 8;
+		gbc_addBalanceTextField.gridy = 7;
 		add(addBalanceTextField, gbc_addBalanceTextField);
 		
 		JButton addButton = new JButton("Add");
@@ -221,7 +201,7 @@ public class ProfilePanel extends JPanel {
 		GridBagConstraints gbc_addButton = new GridBagConstraints();
 		gbc_addButton.anchor = GridBagConstraints.WEST;
 		gbc_addButton.gridx = 1;
-		gbc_addButton.gridy = 9;
+		gbc_addButton.gridy = 8;
 		add(addButton, gbc_addButton);
 
 	}

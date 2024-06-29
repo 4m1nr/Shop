@@ -17,9 +17,9 @@ public class HeaderPanel extends JPanel {
 	 */
 	public HeaderPanel() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
@@ -29,9 +29,21 @@ public class HeaderPanel extends JPanel {
 				//To do 
 			}
 		});
+		
+		JButton btnExit = new JButton("Exit");
+		btnExit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//To do: exit
+			}
+		});
+		GridBagConstraints gbc_btnExit = new GridBagConstraints();
+		gbc_btnExit.insets = new Insets(0, 0, 0, 5);
+		gbc_btnExit.gridx = 0;
+		gbc_btnExit.gridy = 0;
+		add(btnExit, gbc_btnExit);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton.gridx = 0;
+		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 0;
 		add(btnNewButton, gbc_btnNewButton);
 		//To do:
@@ -47,7 +59,7 @@ public class HeaderPanel extends JPanel {
 		});
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
 		gbc_btnNewButton_3.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_3.gridx = 1;
+		gbc_btnNewButton_3.gridx = 2;
 		gbc_btnNewButton_3.gridy = 0;
 		add(btnNewButton_3, gbc_btnNewButton_3);
 		
@@ -59,7 +71,7 @@ public class HeaderPanel extends JPanel {
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_1.gridx = 2;
+		gbc_btnNewButton_1.gridx = 3;
 		gbc_btnNewButton_1.gridy = 0;
 		add(btnNewButton_1, gbc_btnNewButton_1);
 		
@@ -67,7 +79,7 @@ public class HeaderPanel extends JPanel {
 		GridBagConstraints gbc_textField = new GridBagConstraints();
 		gbc_textField.anchor = GridBagConstraints.EAST;
 		gbc_textField.insets = new Insets(0, 0, 0, 5);
-		gbc_textField.gridx = 3;
+		gbc_textField.gridx = 4;
 		gbc_textField.gridy = 0;
 		add(textField, gbc_textField);
 		textField.setColumns(10);
@@ -80,7 +92,7 @@ public class HeaderPanel extends JPanel {
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();
 		gbc_btnNewButton_2.insets = new Insets(0, 0, 0, 5);
-		gbc_btnNewButton_2.gridx = 4;
+		gbc_btnNewButton_2.gridx = 5;
 		gbc_btnNewButton_2.gridy = 0;
 		add(btnNewButton_2, gbc_btnNewButton_2);
 		
@@ -91,7 +103,7 @@ public class HeaderPanel extends JPanel {
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();
-		gbc_btnNewButton_4.gridx = 5;
+		gbc_btnNewButton_4.gridx = 6;
 		gbc_btnNewButton_4.gridy = 0;
 		add(btnNewButton_4, gbc_btnNewButton_4);
 

@@ -62,6 +62,10 @@ public class ProductServiceImpl{
         return productDAO.getProductsByEverything(searchByThis,sortByThis,page,numPerPage);
     }
 
+    public int maxPageNum(int numPerPage,String sortByThis,String searchByThis)throws SQLException{
+        return productDAO.maxPageNum(numPerPage,sortByThis,searchByThis);
+    }
+
     public ArrayList<Product> getProductsBySearch(String searchByThis, int page, int numPerPage) throws SQLException{
         return productDAO.getProductsBySearch(searchByThis,page,numPerPage);
     }

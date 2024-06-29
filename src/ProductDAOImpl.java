@@ -103,6 +103,13 @@ public class ProductDAOImpl {
         return getProductsFromResultSet(SQL);
     }
 
+    public int maxPageNum(int numPerPage,String sortByThis,String searchByThis) throws SQLException{
+        String SQL = "SELECT * FROM " + tableName + " WHERE name LIKE '%" + searchByThis + "%'" + " ORDER BY " +
+                sortByThis;
+
+        return (int) Math.ceil(getProductsFromResultSet(SQL).size() / (double) numPerPage);
+    }
+
     public ArrayList<Product> getProductsByEverything(String searchByThis,String sortByThis,int page,int numPerPage) throws SQLException{
         String SQL = "SELECT * FROM " + tableName + " WHERE name LIKE '%" + searchByThis + "%'" + " ORDER BY " +
                 sortByThis + " LIMIT " + numPerPage + " OFFSET " + ((page - 1) * numPerPage);

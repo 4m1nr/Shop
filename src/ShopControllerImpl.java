@@ -139,6 +139,10 @@ public class ShopControllerImpl{
         mainFrame.setVisible(true);
     }
 
+    public int maxPageNum(String sortByThis,String searchByThis) throws SQLException{
+        return productService.maxPageNum(6,sortByThis,searchByThis);
+    }
+
     public void viewSearchedProducts(int page,String searchByThis) throws SQLException{
         ArrayList<Product> products = productService.getProductsBySearch(searchByThis,page,6);
         loginFrame.setVisible(false);

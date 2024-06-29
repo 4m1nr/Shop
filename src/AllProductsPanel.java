@@ -184,7 +184,7 @@ public class AllProductsPanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					if(true){
+					if(page < controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis())){
 						controller.viewProducts(page+1,controller.getSortByThis(),controller.getSearchByThis());
 					}
 				}

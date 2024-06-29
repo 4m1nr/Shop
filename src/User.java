@@ -10,17 +10,19 @@ public class User {
     private final String id;
     private String name, lastName, phoneNumber, emailAddress;
     private String hashedPassword,role;
+    private double balance;
     private ArrayList<Address> adrresses;
     private Cart cart = new Cart();
 
     public User(String id, String name, String lastName, String phoneNumber, String emailAddress,
-                String password, ArrayList<Address> addresses,Cart cart, String role){
+                String password, double balance, ArrayList<Address> addresses,Cart cart, String role){
         this.id = id;
         setName(name);
         setLastName(lastName);
         setPhoneNumber(phoneNumber);
         setEmailAddress(emailAddress);
         this.hashedPassword = password;
+        setBalance(balance);
         this.adrresses = addresses;
         setRole(role);
     }
@@ -36,6 +38,7 @@ public class User {
     public ArrayList<Address> getAddresses()            {return adrresses;}
     public Cart getCart()                               {return cart;}
     public String getHashedPassword()                   {return hashedPassword;}
+    public double getBalance()                          {return balance;}
 
     //setters
     public void setName(String name)                    {this.name = name;}
@@ -49,6 +52,7 @@ public class User {
     public void removeAllAddresses()                    {adrresses.clear();}
     public void setCart(Cart cart)                      {this.cart = cart;}
     public void setHashedPassword(String hashedPassword){this.hashedPassword = hashedPassword;}
+    public void setBalance(double balance)              {this.balance = balance;}
 
     public boolean checkPassword(String password)       {return this.hashedPassword.equals(HashPassword(password));}
 

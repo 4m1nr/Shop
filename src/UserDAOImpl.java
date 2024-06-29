@@ -14,17 +14,18 @@ public class UserDAOImpl implements UserDAO{
     @Override
     public void insertUser(User user) throws SQLException {
         String SQL = "INSERT INTO " + tableName +
-                " (Name, LastName, PhoneNumber, EmailAddress, HashedPassword, Role, Cart, Address)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                " (Name, LastName, PhoneNumber, EmailAddress, Balance, HashedPassword, Role, Cart, Address)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(SQL);
         preparedStatement.setString(1, user.getName());
         preparedStatement.setString(2, user.getLastName());
         preparedStatement.setString(3, user.getPhoneNumber());
         preparedStatement.setString(4, user.getEmailAddress());
-        preparedStatement.setString(5, user.getHashedPassword());
-        preparedStatement.setString(6, "USER");
-        preparedStatement.setNull(7, java.sql.Types.VARCHAR);
-        preparedStatement.setString(8, "USER");
+        preparedStatement.setString(5, String.valueOf(user.getBalance()));
+        preparedStatement.setString(6, user.getHashedPassword());
+        preparedStatement.setString(7, "USER");
+        preparedStatement.setNull(8, java.sql.Types.VARCHAR);
+        preparedStatement.setString(9, "USER");
         preparedStatement.executeUpdate();
     }
 
@@ -43,6 +44,7 @@ public class UserDAOImpl implements UserDAO{
         if (user.getPhoneNumber() != null)      SQL.append("phoneNumber = " + user.getPhoneNumber() + ", ");
         if (user.getEmailAddress() != null)     SQL.append("emailAddress = " + user.getEmailAddress() + ", ");
         if (user.getHashedPassword() != null)   SQL.append("hashedPassword = " + user.getHashedPassword() + ", ");
+        if (user.getBalance() != -1)            SQL.append("balance = " + user.getBalance() + ", ");
         if (user.getRole() != null)             SQL.append("role = " + user.getRole() + ", ");
 
         SQL.deleteCharAt(SQL.length() - 2);
@@ -59,6 +61,7 @@ public class UserDAOImpl implements UserDAO{
                 return new User(resultSet.getString("id"), resultSet.getString("name")
                         , resultSet.getString("lastName"), resultSet.getString("phoneNumber")
                         , resultSet.getString("emailAddress"), resultSet.getString("hashedPassword")
+                        , Double.parseDouble(resultSet.getString("balance"))
                         , new ArrayList<Address>(),/*بعدا عوض شود*/ new Cart(), resultSet.getString("role"));
             }
         return null;
@@ -73,6 +76,7 @@ public class UserDAOImpl implements UserDAO{
             return new User(resultSet.getString("id"), resultSet.getString("name")
                     , resultSet.getString("lastName"), resultSet.getString("phoneNumber")
                     , resultSet.getString("emailAddress"), resultSet.getString("hashedPassword")
+                    , Double.parseDouble(resultSet.getString("balance"))
                     , new ArrayList<Address>(),/*بعدا عوض شود*/ new Cart(), resultSet.getString("role"));
         }
         return null;
@@ -112,6 +116,7 @@ public class UserDAOImpl implements UserDAO{
             users.add(new User(resultSet.getString("id"), resultSet.getString("name")
                     , resultSet.getString("lastName"), resultSet.getString("phoneNumber")
                     , resultSet.getString("emailAddress"), resultSet.getString("hashedPassword")
+                    , Double.parseDouble(resultSet.getString("balance"))
                     , new ArrayList<Address>(),/*بعدا عوض شود*/ new Cart(), resultSet.getString("role")));
         }
         resultSet.close();

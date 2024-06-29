@@ -4,26 +4,28 @@ import java.util.ArrayList;
 public class UserDAOImpl implements UserDAO{
     Connection connection;
     Statement statement;
-    String tableName = "Products";
-    String host;
-    String username,password;
-    UserDAOImpl(Connection connection) throws SQLException {
+    String tableName = "Users";
+    String host = "jdbc:mysql://localhost:3306/shop";
+    String username = "root",password = "9376432064aA";
+    UserDAOImpl() throws SQLException {
         this.connection = DriverManager.getConnection(host,username, password);
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
     @Override
     public void insertUser(User user) throws SQLException {
-        StringBuilder SQL = new StringBuilder("INSERT INTO " + tableName + " VALUES (");
-        SQL.append(user.getId()).append(", ");
-        SQL.append(user.getName() + ", ");
-        SQL.append(user.getLastName() + ", ");
-        SQL.append(user.getPhoneNumber() + ", ");
-        SQL.append(user.getEmailAddress() + ", ");
-        SQL.append(user.getHashedPassword() + ", ");
-        SQL.append(user.getRole() + ",");
-        SQL.deleteCharAt(SQL.length() - 2);
-        SQL.append(")");
-        statement.executeUpdate(SQL.toString());
+        String SQL = "INSERT INTO " + tableName +
+                " (Name, LastName, PhoneNumber, EmailAddress, HashedPassword, Role, Cart, Address)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+        preparedStatement.setString(1, user.getName());
+        preparedStatement.setString(2, user.getLastName());
+        preparedStatement.setString(3, user.getPhoneNumber());
+        preparedStatement.setString(4, user.getEmailAddress());
+        preparedStatement.setString(5, user.getHashedPassword());
+        preparedStatement.setString(6, "USER");
+        preparedStatement.setNull(7, java.sql.Types.VARCHAR);
+        preparedStatement.setString(8, "USER");
+        preparedStatement.executeUpdate();
     }
 
     @Override
@@ -64,7 +66,7 @@ public class UserDAOImpl implements UserDAO{
 
     @Override
     public User getUserByPhoneNumber(String phoneNumber) throws SQLException {
-        String SQL = "SELECT * FROM " + tableName + " WHERE phoneNumber = " + phoneNumber;
+        String SQL = "SELECT * FROM " + tableName + " WHERE PhoneNumber = " + phoneNumber;
         ResultSet resultSet = statement.executeQuery(SQL);
 
         if (resultSet.next()) {

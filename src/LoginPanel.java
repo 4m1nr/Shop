@@ -10,15 +10,16 @@ import java.awt.Font;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 
 public class LoginPanel extends JPanel{
-	ShopController controller;
+	ShopControllerImpl controller;
 	private JTextField textField;
 	private JPasswordField passwordField;
 
 
-	public LoginPanel(ShopController controller, String error) {
+	public LoginPanel(ShopControllerImpl controller, String error) {
 		this.controller = controller;
 		setBackground(new Color(0, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
@@ -77,15 +78,19 @@ public class LoginPanel extends JPanel{
 		
 		JButton btnNewButton = new JButton("Enter");
 		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {
 				String username = textField.getText();
 				String password = new String(passwordField.getPassword());
-				controller.login(username, password);
-			}
+                try {
+                    controller.login(username, password);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
 		});
 
 		JLabel errorLabel = new JLabel(error);
-		errorLabel.setForeground(new Color(255, 0, 0));
+		errorLabel.setForeground(new Color(181, 80, 80));
 		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
 		GridBagConstraints gbc_errorLabel = new GridBagConstraints();
 		gbc_errorLabel.fill = GridBagConstraints.VERTICAL;
@@ -112,7 +117,7 @@ public class LoginPanel extends JPanel{
 		JButton btnSignUp = new JButton("Sign up");
 		btnSignUp.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.openRegisterPanel();
+				controller.openRegisterPanel(null);
 			}
 		});
 		btnSignUp.setFont(new Font("Tahoma", Font.BOLD, 18));

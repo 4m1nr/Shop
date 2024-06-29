@@ -5,9 +5,9 @@ public class ProductDAOImpl implements ProductDAO{
     Connection connection;
     Statement statement;
     String tableName = "Products";
-    String host;
-    String username,password;
-    ProductDAOImpl(Connection connection) throws SQLException {
+    String host = "jdbc:mysql://localhost:3306/shop";
+    String username = "root",password = "9376432064aA";
+    ProductDAOImpl() throws SQLException {
         this.connection = DriverManager.getConnection(host,username, password);
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
@@ -64,6 +64,10 @@ public class ProductDAOImpl implements ProductDAO{
     @Override
     public ArrayList<Product> getAllProducts() throws SQLException {
         String SQL = "SELECT * FROM " + tableName;
+        return getProductsFromResultSet(SQL);
+    }
+
+    private ArrayList<Product> getProductsFromResultSet(String SQL) throws SQLException {
         ResultSet resultSet = statement.executeQuery(SQL);
         ArrayList<Product> products = new ArrayList<>();
         while (resultSet.next()) {
@@ -73,17 +77,11 @@ public class ProductDAOImpl implements ProductDAO{
         }
         return products;
     }
+
     @Override
     public ArrayList<Product> getProductsByCategory(String category) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + " WHERE category = " + category;
-        ResultSet resultSet = statement.executeQuery(SQL);
-        ArrayList<Product> products = new ArrayList<>();
-        while (resultSet.next()) {
-            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
-                    resultSet.getString("description"), resultSet.getDouble("price"),
-                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
-        }
-        return products;
+        return getProductsFromResultSet(SQL);
     }
 
     @Override
@@ -91,31 +89,17 @@ public class ProductDAOImpl implements ProductDAO{
         String SQL = "SELECT * FROM " + tableName + " WHERE category = " + category + " ORDER BY " + sortByThis + " LIMIT " +
                 ((page - 1) * numPerPage) + /*check if needed*/1 + ", " + numPerPage;
 
-        ResultSet resultSet = statement.executeQuery(SQL);
-        ArrayList<Product> products = new ArrayList<>();
-
-        while (resultSet.next())
-            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
-                    resultSet.getString("description"), resultSet.getDouble("price"),
-                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
-
-        return products;
+        return getProductsFromResultSet(SQL);
     }
 
     @Override
     public ArrayList<Product> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException {
+        switch (sortByThis) {
+            case "Default" -> sortByThis = "id";
+        }
         String SQL = "SELECT * FROM " + tableName + " ORDER BY " + sortByThis + " LIMIT " +
-                ((page - 1) * numPerPage) + /*check if needed*/1  + ", " + numPerPage;
-
-        ResultSet resultSet = statement.executeQuery(SQL);
-        ArrayList<Product> products = new ArrayList<>();
-
-        while (resultSet.next())
-            products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
-                    resultSet.getString("description"), resultSet.getDouble("price"),
-                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
-
-        return products;
+                numPerPage  + " OFFSET " + ((page - 1) * numPerPage);
+        return getProductsFromResultSet(SQL);
     }
 
     @Override

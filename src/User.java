@@ -1,10 +1,12 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 public class User {
-    private final static ArrayList<String> roles = (ArrayList<String>) List.of("admin","user");
+    private final static ArrayList<String> roles = new ArrayList<>(List.of("admin","user"));
     private final String id;
     private String name, lastName, phoneNumber, emailAddress;
     private String hashedPassword,role;
@@ -12,13 +14,13 @@ public class User {
     private Cart cart = new Cart();
 
     public User(String id, String name, String lastName, String phoneNumber, String emailAddress,
-                String hashedPassword, ArrayList<Address> addresses,Cart cart, String role){
+                String password, ArrayList<Address> addresses,Cart cart, String role){
         this.id = id;
         setName(name);
         setLastName(lastName);
         setPhoneNumber(phoneNumber);
         setEmailAddress(emailAddress);
-        this.hashedPassword = hashedPassword;
+        this.hashedPassword = password;
         this.adrresses = addresses;
         setRole(role);
     }
@@ -58,8 +60,7 @@ public class User {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
-        messageDigest.update(password.getBytes());
-        hashedPassword = new String(messageDigest.digest());
+        hashedPassword = Base64.getEncoder().encodeToString(messageDigest.digest(password.getBytes()));
         return hashedPassword;
     }
 }

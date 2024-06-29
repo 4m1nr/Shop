@@ -1,159 +1,186 @@
 import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class ShopControllerImpl implements ShopController{
+public class ShopControllerImpl{
     User user;
-
     UserServiceImpl userService;
     ProductServiceImpl productService;
+    LoginFrame loginFrame;
+    MainFrame mainFrame;
 
     public ShopControllerImpl(UserServiceImpl userService,ProductServiceImpl productService){
         this.userService = userService;
         this.productService = productService;
+        loginFrame = new LoginFrame();
+        mainFrame = new MainFrame();
     }
 
-    @Override
     public void login(String phoneNumber, String password) throws SQLException {
+        User user = null;
         try {
             user = userService.getUserByPhoneNumber(phoneNumber);
         } catch (RuntimeException e) {
-            new LoginFrame(new LoginPanel(this,e.getMessage()));
+            openLoginPanel(e.getMessage());
         }
-        new MainFrame();
+        if (user != null) {
+            if (user.checkPassword(password)) {
+                this.user = user;
+                openDefaultPanel();
+            } else
+                openLoginPanel("password incorrect");
+        }
     }
 
-    public void openLoginPanel(){
-        new LoginFrame(new LoginPanel(this,null));
+    private void openDefaultPanel() throws SQLException {
+        viewProducts(1,"Default");
     }
 
+    public void openLoginPanel(String errorMessage){
+        loginFrame.setPanel(new LoginPanel(this,errorMessage));
+        loginFrame.setVisible(true);
+    }
 
-    @Override
     public void logout() throws SQLException{
         this.user = null;
-        new LoginFrame(new LoginPanel(this));
+        openLoginPanel(null);
     }
 
-    @Override
-    public Object register(String phoneNumber, String passwordFirst, String passwordSecond) {
-
+   
+    public Object register(String name, String lastName, String phoneNumber, String address, String emailAddress, String password) throws SQLException {
+        User user = new User(null,name,lastName,phoneNumber,emailAddress,password,new ArrayList<Address>(),new Cart(),null);
+        try {
+            userService.insertUser(user);
+            if (user != null)
+                this.user = user;
+                openDefaultPanel();
+        } catch (RuntimeException e) {
+            openRegisterPanel(e.getMessage());
+        }
+        return null;
     }
 
-    @Override
-    public void openRegisterPanel() {
-        new LoginFrame(new SignupPanel(this));
+   
+    public void openRegisterPanel(String errorMessage) {
+        loginFrame.setPanel(new SignupPanel(this,errorMessage));
+        loginFrame.setVisible(true);
     }
 
 
-    @Override
+   
     public void addProduct(String name, double price, int stock, String category, String description) {
 
     }
 
-    @Override
+   
     public void addProduct(String productID, String name, double price, int stock, ArrayList<String> category,ArrayList<String> images, String description) {
 
     }
 
-    @Override
+   
     public void removeProduct(String productID) throws SQLException {
         productService.deleteProductByID(productID);
     }
 
-    @Override
-    public void updateProduct(String productID, String name, double price, int stock, ArrayList<String> category,ArrayList<String> images, String description) throws SQLException {
+   
+    public void updateProduct(String productID, String name, double price, int stock, ArrayList<String> category, ArrayList<String> images, String description) throws SQLException {
             productService.updateProduct(new Product(productID,name,description,price,stock,images,category));
     }
 
-    @Override
+   
     public void viewCart() {
 
     }
 
-    @Override
+   
     public void addProductToCart(String productID, int quantity) {
 
     }
 
-    @Override
+   
     public void removeProductFromCart(String productID) {
 
     }
 
-    @Override
+   
     public void updateProductInCart(String productID, int quantity) {
 
     }
 
-    @Override
+   
     public void checkout() {
 
     }
 
-    @Override
+   
     public void viewOrders() {
 
     }
 
-    @Override
+   
     public void viewOrderDetails(String orderID) {
 
     }
 
-    @Override
-    public void viewProducts() {
-
+   
+    public void viewProducts(int page,String sortBy) throws SQLException {
+        loginFrame.setVisible(false);
+        mainFrame.setMainPanel(new AllProductsPanel(
+                productService.getProductsSorted(sortBy,
+                page, 6 ), sortBy ));
+        mainFrame.setVisible(true);
     }
 
-    @Override
+   
     public void viewProductDetails(String productID) {
 
     }
 
-    @Override
+   
     public void viewProfile() {
 
     }
 
-    @Override
+   
     public void updateProfile(String userID, String password) {
 
     }
 
-    @Override
+   
     public void viewUsers() {
 
     }
 
-    @Override
+   
     public void viewUserDetails(String ID) {
 
     }
 
-    @Override
+   
     public void changeUserRole(String ID, String role) {
 
     }
 
-    @Override
+   
     public void removeUser(String username) {
 
     }
 
-    @Override
+   
     public void viewUserOrders(String userId) {
 
     }
 
-    @Override
+   
     public void viewUserOrderDetails(String userID, String orderID) {
 
     }
 
-    @Override
+   
     public void viewUserCart(String username) {
 
     }
 
-    @Override
+   
     public void viewUserProfile(String userId) {
 
     }

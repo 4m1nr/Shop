@@ -39,24 +39,25 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public ArrayList<ProductPanel> getProductsByCategory(String category) throws SQLException{
         ArrayList<Product> products = productDAO.getProductsByCategory(category);
-        ArrayList<ProductPanel> productPanels = new ArrayList<>();
-        for(int i = 0; i != products.size(); i++) productPanels.add(new ProductPanel(products.get(i)));
-        while(productPanels.size() < 6) productPanels.add(null);
-        return productPanels;}
+        return getProductPanelsFromProducts(products);
+    }
 
     @Override
     public ArrayList<ProductPanel> getProductsByCategorySorted(String category , String sortByThis, int page, int numPerPage) throws SQLException{
         ArrayList<Product> products = productDAO.getProductsByCategorySorted(category,sortByThis,page,numPerPage);
-        ArrayList<ProductPanel> productPanels = new ArrayList<>();
-        for(int i = 0; i != products.size(); i++) productPanels.add(new ProductPanel(products.get(i)));
-        while(productPanels.size() < 6) productPanels.add(null);
-        return productPanels;}
+        return getProductPanelsFromProducts(products);
+    }
 
     @Override
     public ArrayList<ProductPanel> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException{
         ArrayList<Product> products = productDAO.getProductsSorted(sortByThis,page,numPerPage);
+        return getProductPanelsFromProducts(products);
+    }
+
+    private ArrayList<ProductPanel> getProductPanelsFromProducts(ArrayList<Product> products) {
         ArrayList<ProductPanel> productPanels = new ArrayList<>();
-        for(int i = 0; i != products.size(); i++) productPanels.add(new ProductPanel(products.get(i)));
-        while(productPanels.size() < 6) productPanels.add(null);
-        return productPanels;}
+        for (Product product : products) productPanels.add(new ProductPanel(product));
+        while(productPanels.size() < 6) productPanels.add(new ProductPanel(null));
+        return productPanels;
+    }
 }

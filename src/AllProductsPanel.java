@@ -66,6 +66,7 @@ public class AllProductsPanel extends JPanel {
 				//To do: rearranging panels array: if (comboBox.getSelectedIndex()==0 or ==1 or..)...
 				
 				//JPanel products= new AllProductsPanel(panels, sort[comboBox.getSelectedIndex()]);
+
 			}
 		});
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();

@@ -93,7 +93,12 @@ public class HeaderPanel extends JPanel {
 		JButton btnNewButton_2 = new JButton("Search");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do 
+				try {
+					controller.viewSearchedProducts(1,textField.getText());
+				}
+				catch (Exception ex){
+					throw new RuntimeException("SQLException");
+				}
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_2 = new GridBagConstraints();

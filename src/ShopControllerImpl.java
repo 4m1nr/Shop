@@ -131,7 +131,14 @@ public class ShopControllerImpl{
         mainFrame.setVisible(true);
     }
 
-   
+    public void viewSearchedProducts(int page,String searchByThis) throws SQLException{
+        ArrayList<Product> products = productService.getProductsBySearch(searchByThis,page,6);
+        loginFrame.setVisible(false);
+        mainFrame.setMainPanel(new AllProductsPanel(
+                this.getProductPanelsFromProducts(products), "Default" , page ,this));
+        mainFrame.setVisible(true);
+    }
+
     public void viewProductDetails(Product product) throws SQLException {
         product = productService.getProduct(product.getId());
         mainFrame.setMainPanel(new BuyProductPanel(product , this));

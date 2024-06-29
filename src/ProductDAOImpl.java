@@ -97,8 +97,9 @@ public class ProductDAOImpl {
         return getProductsFromResultSet(SQL);
     }
 
-    public ArrayList<Product> getProductsBySearch(String searchByThis) throws SQLException{
-        String SQL = "SELECT * FROM " + tableName + " WHERE name LIKE '%" + searchByThis + "%'";
+    public ArrayList<Product> getProductsBySearch(String searchByThis, int page, int numPerPage) throws SQLException{
+        String SQL = "SELECT * FROM " + tableName + " WHERE name LIKE '%" + searchByThis + "%'" + " LIMIT " +
+                numPerPage + " OFFSET " + ((page - 1) * numPerPage);
         return getProductsFromResultSet(SQL);
     }
 

@@ -50,7 +50,7 @@ public class ProductServiceImpl{
         return productDAO.getProductsSorted(sortByThis,page,numPerPage);
     }
 
-    public ArrayList<Product> getProductsBySearch(String searchByThis) throws SQLException{
-        return productDAO.getProductsBySearch(searchByThis);
+    public ArrayList<Product> getProductsBySearch(String searchByThis, int page, int numPerPage) throws SQLException{
+        return productDAO.getProductsBySearch(searchByThis,page,numPerPage);
     }
 }

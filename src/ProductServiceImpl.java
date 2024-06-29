@@ -50,6 +50,18 @@ public class ProductServiceImpl{
         return productDAO.getProductsSorted(sortByThis,page,numPerPage);
     }
 
+    public ArrayList<Product> getProductsByEverything(String searchByThis,String sortByThis,int page,int numPerPage) throws SQLException{
+        switch (sortByThis) {
+            case ("Deafult") -> sortByThis = "id";
+            case ("Price: Low to High") -> sortByThis = "price ASC";
+            case ("Price: High to Low") -> sortByThis = "price DESC";
+            case ("Rating: Low to High") -> sortByThis = "rating ASC";
+            case ("Rating: High to Low") -> sortByThis = "rating DESC";
+        }
+
+        return productDAO.getProductsByEverything(searchByThis,sortByThis,page,numPerPage);
+    }
+
     public ArrayList<Product> getProductsBySearch(String searchByThis, int page, int numPerPage) throws SQLException{
         return productDAO.getProductsBySearch(searchByThis,page,numPerPage);
     }

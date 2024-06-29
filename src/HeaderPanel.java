@@ -12,6 +12,7 @@ public class HeaderPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTextField textField;
+	JButton btnNewButton_3;
 	User user;
 	ShopControllerImpl controller;
 
@@ -55,10 +56,8 @@ public class HeaderPanel extends JPanel {
 			btnNewButton_3.setEnabled(false);
 		}*/
 		
-		JButton btnNewButton_3 = new JButton("Admin");
-		if (!(this.update())) {
-			btnNewButton_3.setEnabled(false);
-		}
+		btnNewButton_3 = new JButton("Admin");
+		this.update();
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -133,12 +132,12 @@ public class HeaderPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 	}
-	private boolean update() {
-		if (user.getRole().equals("admin")) {
-			return true;
-		}
-		else {
-			return false;
+	private void update() {
+		if (user != null){
+			if (!(user.getRole().equals("admin"))) {
+
+			}
+
 		}
 	}
 

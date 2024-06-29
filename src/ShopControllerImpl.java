@@ -48,7 +48,7 @@ public class ShopControllerImpl{
 
    
     public Object register(String name, String lastName, String phoneNumber, String address, String emailAddress, String password,Double balance) throws SQLException {
-        User user = new User(null,name,lastName,phoneNumber,emailAddress,password, balance, new ArrayList<Address>(), new Cart(), null);
+        User user = new User(null,name,lastName,phoneNumber,emailAddress,password, 0, new ArrayList<Address>(), new Cart(), null);
         try {
             userService.insertUser(user);
             if (user != null)

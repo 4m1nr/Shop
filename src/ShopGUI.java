@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class ShopGUI {
 
@@ -10,7 +11,7 @@ public class ShopGUI {
                 new ProductServiceImpl(new ProductDAOImpl())
         );
         controller.openLoginPanel(null);
-        }catch (Exception e){
+        }catch (SQLException e){
             JOptionPane.showMessageDialog(null,e.getMessage());
         }
     }

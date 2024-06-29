@@ -127,7 +127,7 @@ public class ShopControllerImpl{
         ArrayList<Product> products = productService.getProductsSorted(sortBy,page,6);
         loginFrame.setVisible(false);
         mainFrame.setMainPanel(new AllProductsPanel(
-                this.getProductPanelsFromProducts(products), sortBy ));
+                this.getProductPanelsFromProducts(products), sortBy , page ,this));
         mainFrame.setVisible(true);
     }
 

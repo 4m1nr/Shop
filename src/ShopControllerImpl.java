@@ -38,7 +38,7 @@ public class ShopControllerImpl{
     }
 
     public void openDefaultPanel() throws SQLException {
-        viewProducts(1,"Default");
+        viewProducts(1,"Default","");
     }
 
     public void openLoginPanel(String errorMessage){

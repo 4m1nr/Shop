@@ -52,7 +52,7 @@ public class ProductServiceImpl{
 
     public ArrayList<Product> getProductsByEverything(String searchByThis,String sortByThis,int page,int numPerPage) throws SQLException{
         switch (sortByThis) {
-            case ("Deafult") -> sortByThis = "id";
+            case ("Default") -> sortByThis = "id";
             case ("Price: Low to High") -> sortByThis = "price ASC";
             case ("Price: High to Low") -> sortByThis = "price DESC";
             case ("Rating: Low to High") -> sortByThis = "rating ASC";

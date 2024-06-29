@@ -93,7 +93,7 @@ public class HeaderPanel extends JPanel {
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					controller.viewSearchedProducts(1,textField.getText());
+					controller.viewProducts(1,controller.getSortByThis(),textField.getText());
 				}
 				catch (Exception ex){
 					throw new RuntimeException("SQLException");

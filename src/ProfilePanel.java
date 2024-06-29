@@ -17,9 +17,9 @@ public class ProfilePanel extends JPanel {
 	private JTextField lastNameTextField;
 	private JTextField emailTextField;
 	private JTextField phoneNumberTextField;
-	private JTextField addressTextField;
-	private JPasswordField passwordField;
+	private JPasswordField newPasswordField;
 	private JTextField addBalanceTextField;
+	private JPasswordField oldPasswordField;
 
 	/**
 	 * Create the panel.
@@ -120,44 +120,43 @@ public class ProfilePanel extends JPanel {
 		gbc_phoneNumberTextField.gridy = 3;
 		add(phoneNumberTextField, gbc_phoneNumberTextField);
 		
-		JLabel addressLabel = new JLabel("Address:");
-		addressLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_addressLabel = new GridBagConstraints();
-		gbc_addressLabel.anchor = GridBagConstraints.EAST;
-		gbc_addressLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_addressLabel.gridx = 0;
-		gbc_addressLabel.gridy = 4;
-		add(addressLabel, gbc_addressLabel);
+		JLabel oldPasswordLabel = new JLabel("Old password:");
+		oldPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_oldPasswordLabel = new GridBagConstraints();
+		gbc_oldPasswordLabel.anchor = GridBagConstraints.EAST;
+		gbc_oldPasswordLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_oldPasswordLabel.gridx = 0;
+		gbc_oldPasswordLabel.gridy = 4;
+		add(oldPasswordLabel, gbc_oldPasswordLabel);
 		
-		addressTextField = new JTextField();
-		addressTextField.setText(address);
-		addressTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		addressTextField.setColumns(10);
-		GridBagConstraints gbc_addressTextField = new GridBagConstraints();
-		gbc_addressTextField.anchor = GridBagConstraints.WEST;
-		gbc_addressTextField.insets = new Insets(0, 0, 5, 0);
-		gbc_addressTextField.gridx = 1;
-		gbc_addressTextField.gridy = 4;
-		add(addressTextField, gbc_addressTextField);
+		oldPasswordField = new JPasswordField();
+		oldPasswordField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		oldPasswordField.setColumns(10);
+		GridBagConstraints gbc_oldPasswordField = new GridBagConstraints();
+		gbc_oldPasswordField.anchor = GridBagConstraints.WEST;
+		gbc_oldPasswordField.insets = new Insets(0, 0, 5, 0);
+		gbc_oldPasswordField.gridx = 1;
+		gbc_oldPasswordField.gridy = 4;
+		add(oldPasswordField, gbc_oldPasswordField);
 		
-		JLabel passwordLabel = new JLabel("Password:");
-		passwordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_passwordLabel = new GridBagConstraints();
-		gbc_passwordLabel.anchor = GridBagConstraints.EAST;
-		gbc_passwordLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_passwordLabel.gridx = 0;
-		gbc_passwordLabel.gridy = 5;
-		add(passwordLabel, gbc_passwordLabel);
+		JLabel newPasswordLabel = new JLabel("New password:");
+		newPasswordLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_newPasswordLabel = new GridBagConstraints();
+		gbc_newPasswordLabel.anchor = GridBagConstraints.EAST;
+		gbc_newPasswordLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_newPasswordLabel.gridx = 0;
+		gbc_newPasswordLabel.gridy = 5;
+		add(newPasswordLabel, gbc_newPasswordLabel);
 		
-		passwordField = new JPasswordField();
-		passwordField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		passwordField.setColumns(10);
-		GridBagConstraints gbc_passwordField = new GridBagConstraints();
-		gbc_passwordField.anchor = GridBagConstraints.WEST;
-		gbc_passwordField.insets = new Insets(0, 0, 5, 0);
-		gbc_passwordField.gridx = 1;
-		gbc_passwordField.gridy = 5;
-		add(passwordField, gbc_passwordField);
+		newPasswordField = new JPasswordField();
+		newPasswordField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		newPasswordField.setColumns(10);
+		GridBagConstraints gbc_newPasswordField = new GridBagConstraints();
+		gbc_newPasswordField.anchor = GridBagConstraints.WEST;
+		gbc_newPasswordField.insets = new Insets(0, 0, 5, 0);
+		gbc_newPasswordField.gridx = 1;
+		gbc_newPasswordField.gridy = 5;
+		add(newPasswordField, gbc_newPasswordField);
 		
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.addActionListener(new ActionListener() {

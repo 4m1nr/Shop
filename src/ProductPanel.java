@@ -69,7 +69,6 @@ public class ProductPanel extends JPanel {
 	}
 
 	private void buildPanel(){
-		setBackground(new Color(128, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{280, 0};
 		gridBagLayout.rowHeights = new int[]{277, 25, 25, 25, 0};

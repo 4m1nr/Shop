@@ -29,6 +29,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class AllProductsPanel extends JPanel {
 
@@ -66,6 +68,7 @@ public class AllProductsPanel extends JPanel {
 		add(comboBox, gbc_comboBox);
 		
 		JPanel panel = new JPanel();
+		
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
@@ -143,6 +146,11 @@ public class AllProductsPanel extends JPanel {
 		panel_7.setLayout(gbl_panel_7);
 		
 		JButton btnNewButton_1 = new JButton("previous");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//to do
+			}
+		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
 		gbc_btnNewButton_1.gridx = 0;
@@ -152,6 +160,7 @@ public class AllProductsPanel extends JPanel {
 		JButton btnNewButton = new JButton("next");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// to do
 			}
 		});
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
@@ -160,6 +169,46 @@ public class AllProductsPanel extends JPanel {
 		panel_7.add(btnNewButton, gbc_btnNewButton);
 		
 		
+		panels1.get(0).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
+		
+		panels1.get(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
+		
+		panels1.get(2).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
+		
+		panels1.get(3).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
+		
+		panels1.get(4).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
 
+		panels1.get(5).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
 	}
 }

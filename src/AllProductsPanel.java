@@ -159,7 +159,7 @@ public class AllProductsPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					if(page > 1){
-						controller.viewProducts(page-1,sortType);
+						controller.viewProducts(page-1,controller.getSortByThis(),controller.getSearchByThis());
 					}
 				}
 				catch (SQLException ex){
@@ -178,7 +178,7 @@ public class AllProductsPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				try{
 					if(true){
-						controller.viewProducts(page+1,sortType);
+						controller.viewProducts(page+1,controller.getSortByThis(),controller.getSearchByThis());
 					}
 				}
 				catch (SQLException ex){

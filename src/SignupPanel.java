@@ -136,7 +136,7 @@ public class SignupPanel extends JPanel {
 		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 try {
-                    controller.register(nameTextField.getText(), lastNameTextField.getText(), phoneNumberTextField.getText(), addressTextField.getText(), emailTextField.getText(),User.HashPassword(new String(passwordField.getPassword())));
+                    controller.register(nameTextField.getText(), lastNameTextField.getText(), phoneNumberTextField.getText(), addressTextField.getText(), emailTextField.getText(),User.HashPassword(new String(passwordField.getPassword())),null);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }

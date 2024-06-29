@@ -46,8 +46,8 @@ public class ShopControllerImpl{
     }
 
    
-    public Object register(String name, String lastName, String phoneNumber, String address, String emailAddress, String password) throws SQLException {
-        User user = new User(null,name,lastName,phoneNumber,emailAddress,password,new ArrayList<Address>(),new Cart(),null);
+    public Object register(String name, String lastName, String phoneNumber, String address, String emailAddress, String password,Double balance) throws SQLException {
+        User user = new User(null,name,lastName,phoneNumber,emailAddress,password, balance, new ArrayList<Address>(), new Cart(), null);
         try {
             userService.insertUser(user);
             if (user != null)
@@ -82,8 +82,8 @@ public class ShopControllerImpl{
     }
 
    
-    public void updateProduct(String productID, String name, double price, int stock, ArrayList<String> category, ArrayList<String> images, String description) throws SQLException {
-            productService.updateProduct(new Product(productID,name,description,price,stock,images,category));
+    public void updateProduct(String productID, String name, double price,Rating rating, int stock, ArrayList<String> category, ArrayList<String> images, String description) throws SQLException {
+            productService.updateProduct(new Product(productID,name,description,price, stock, rating ,images,category));
     }
 
    
@@ -123,16 +123,24 @@ public class ShopControllerImpl{
 
    
     public void viewProducts(int page,String sortBy) throws SQLException {
+        ArrayList<Product> products = productService.getProductsSorted(sortBy,page,6);
         loginFrame.setVisible(false);
         mainFrame.setMainPanel(new AllProductsPanel(
-                productService.getProductsSorted(sortBy,
-                page, 6 ), sortBy ));
+                this.getProductPanelsFromProducts(products), sortBy ));
         mainFrame.setVisible(true);
     }
 
    
-    public void viewProductDetails(String productID) {
+    public void viewProductDetails(Product product) throws SQLException {
+        product = productService.getProduct(product.getId());
+        mainFrame.setMainPanel(new ProductPanel(product , this));
+    }
 
+    private ArrayList<ProductPanel> getProductPanelsFromProducts(ArrayList<Product> products) {
+        ArrayList<ProductPanel> productPanels = new ArrayList<>();
+        for (Product product : products) productPanels.add(new ProductPanel(product,this));
+        while(productPanels.size() < 6) productPanels.add(new ProductPanel(null,this));
+        return productPanels;
     }
 
    

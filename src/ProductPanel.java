@@ -8,17 +8,14 @@ import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Insets;
+import java.sql.SQLException;
 
 public class ProductPanel extends JPanel {
+	ShopControllerImpl controller;
 
-	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Create the panel.
-	 */
-	public ProductPanel(Product product) {
+	public ProductPanel(Product product, ShopControllerImpl controller) {
+		this.controller = controller;
 		buildPanel();
-
 		if (product != null) {
 			String productName = product.getName();
 			String productRate = /*String.format("%0.1f", product.getRating().getAverage());*/5 + "";
@@ -60,8 +57,12 @@ public class ProductPanel extends JPanel {
 			this.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					//Todo: open product page
-				}
+                    try {
+                        controller.viewProductDetails(product);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
 			});
 		}
 

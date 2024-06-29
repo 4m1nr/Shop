@@ -3,9 +3,9 @@ import javax.swing.*;
 public class ShopGUI {
 
     public static void main(String[] args) {
+        ShopControllerImpl controller;
         try {
-
-        ShopControllerImpl controller = new ShopControllerImpl(
+            controller = new ShopControllerImpl(
                 new UserServiceImpl(new UserDAOImpl()),
                 new ProductServiceImpl(new ProductDAOImpl())
         );

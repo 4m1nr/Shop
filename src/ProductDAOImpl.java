@@ -91,7 +91,7 @@ public class ProductDAOImpl implements ProductDAO{
     @Override
     public ArrayList<Product> getProductsByCategorySorted(String category, String sortByThis, int page, int numPerPage) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + " WHERE category = " + category + " ORDER BY " + sortByThis + " LIMIT " +
-                ((page - 1) * numPerPage) + /*check if needed*/1 + ", " + numPerPage;
+                ((page - 1) * numPerPage) + /*check if neededl*/1 + ", " + numPerPage;
 
         return getProductsFromResultSet(SQL);
     }

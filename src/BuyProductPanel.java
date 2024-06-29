@@ -11,23 +11,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class BuyProductPanel extends JPanel {
-
-	private static final long serialVersionUID = 1L;
 	private JTextField rateTextField;
 	private JTextField countTextField;
+	Product product;
 
-	/**
-	 * Create the panel.
-	 */
-	public BuyProductPanel() {
-		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{234, 0, 0};
-		gridBagLayout.rowHeights = new int[]{303, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		setLayout(gridBagLayout);
+
+	public BuyProductPanel(Product product) {
+
+		buildPanel();
 		
-		JLabel imageLabel = new JLabel("Product icon");
+		JLabel imageLabel = new JLabel(/*product.getImages().get(0)*/);
 		imageLabel.setIcon(null);
 		GridBagConstraints gbc_imageLabel = new GridBagConstraints();
 		gbc_imageLabel.gridwidth = 2;
@@ -68,7 +61,7 @@ public class BuyProductPanel extends JPanel {
 		gbc_rateLabel.gridy = 0;
 		ratePanel.add(rateLabel, gbc_rateLabel);
 		
-		rateTextField = new JTextField();
+		rateTextField = new JTextField(/*product.getRating()*/);
 		rateTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_rateTextField = new GridBagConstraints();
 		gbc_rateTextField.insets = new Insets(0, 0, 0, 5);
@@ -114,7 +107,7 @@ public class BuyProductPanel extends JPanel {
 		gbc_productPriceLabel.gridy = 0;
 		pricePanel.add(productPriceLabel, gbc_productPriceLabel);
 		
-		JLabel priceLabel = new JLabel("price label");
+		JLabel priceLabel = new JLabel(product.getPrice() + "");
 		priceLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_priceLabel = new GridBagConstraints();
 		gbc_priceLabel.anchor = GridBagConstraints.WEST;
@@ -133,7 +126,7 @@ public class BuyProductPanel extends JPanel {
 		pricePanel.add(countTextField, gbc_countTextField);
 		countTextField.setColumns(2);
 		
-		JButton addToBasketButton = new JButton("Add to basket");
+		JButton addToBasketButton = new JButton("Add to Cart");
 		addToBasketButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int count=Integer.parseInt(countTextField.getText());
@@ -148,7 +141,15 @@ public class BuyProductPanel extends JPanel {
 		gbc_addToBasketButton.gridx = 1;
 		gbc_addToBasketButton.gridy = 1;
 		pricePanel.add(addToBasketButton, gbc_addToBasketButton);
+	}
 
+	public void buildPanel(){
+		GridBagLayout gridBagLayout = new GridBagLayout();
+		gridBagLayout.columnWidths = new int[]{234, 0, 0};
+		gridBagLayout.rowHeights = new int[]{303, 0, 0};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		setLayout(gridBagLayout);
 	}
 
 }

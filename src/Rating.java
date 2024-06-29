@@ -6,14 +6,14 @@ public class Rating {
     private Map<String /*User ID*/,Integer /*Rate*/> rates;
 
     public Rating(String serializedRatings) {
-        rates = new HashMap<>();
+        /*rates = new HashMap<>();
         if (serializedRatings != null){
             String[] ratings = serializedRatings.split("-");
             for (String rating : ratings) {
                 String[] rateForUser = rating.split(":");
-                addRating(rateForUser[0], Integer.parseInt(rateForUser[1]));
+                addRating(rateForUser[0], Integer.parseInt(rateForUser[*//*1*//*0]));
             }
-        }
+        }*/
     }
 
     public Rating() {

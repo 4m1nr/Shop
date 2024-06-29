@@ -14,9 +14,9 @@ public class UserServiceImpl{
             throw new /*should be edited*/RuntimeException("User with this phone number already exists");
         else {
             User userToInsert = new User(null, user.getName(), user.getLastName(),
-                    user.getPhoneNumber(), user.getEmailAddress(),
-                    user.getHashedPassword(), user.getAddresses(),
-                    user.getCart(), user.getRole());
+                                user.getPhoneNumber(), user.getEmailAddress(),
+                                user.getHashedPassword(), user.getBalance(),
+                                user.getAddresses(), user.getCart(), user.getRole());
 
             userDao.insertUser(userToInsert);
         }

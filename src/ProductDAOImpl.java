@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-public class ProductDAOImpl implements ProductDAO{
+public class ProductDAOImpl {
     Connection connection;
     Statement statement;
     String tableName = "Products";
@@ -12,7 +12,6 @@ public class ProductDAOImpl implements ProductDAO{
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
 
-    @Override
     public void insertProduct(Product product) throws SQLException {
         StringBuilder SQL = new StringBuilder("INSERT INTO " + tableName + " VALUES (");
         SQL.append(product.getId()).append(", ");
@@ -26,19 +25,16 @@ public class ProductDAOImpl implements ProductDAO{
         statement.executeUpdate(SQL.toString());
     }
 
-    @Override
     public void deleteProduct(Product product) throws SQLException {
         String SQL = "DELETE FROM " + tableName + " WHERE id = " + product.getId();
         statement.executeUpdate(SQL);
     }
 
-    @Override
     public void deleteProductByID(String id) throws SQLException {
         String SQL = "DELETE FROM " + tableName + " WHERE id = " + id;
         statement.executeUpdate(SQL);
     }
 
-    @Override
     public void updateProduct(Product product) throws SQLException {
         StringBuilder SQL = new StringBuilder("UPDATE " + tableName + " SET ");
         if (product.getName() != null) SQL.append("name = " + product.getName() + ", ");
@@ -51,7 +47,6 @@ public class ProductDAOImpl implements ProductDAO{
         statement.executeUpdate(SQL.toString());
     }
 
-    @Override
     public Product getProduct(String id) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + " WHERE id = " + id;
             ResultSet resultSet = statement.executeQuery(SQL);
@@ -64,7 +59,6 @@ public class ProductDAOImpl implements ProductDAO{
         return null;
     }
 
-    @Override
     public ArrayList<Product> getAllProducts() throws SQLException {
         String SQL = "SELECT * FROM " + tableName;
         return getProductsFromResultSet(SQL);
@@ -82,13 +76,11 @@ public class ProductDAOImpl implements ProductDAO{
         return products;
     }
 
-    @Override
     public ArrayList<Product> getProductsByCategory(String category) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + " WHERE category = " + category;
         return getProductsFromResultSet(SQL);
     }
 
-    @Override
     public ArrayList<Product> getProductsByCategorySorted(String category, String sortByThis, int page, int numPerPage) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + " WHERE category = " + category + " ORDER BY " + sortByThis + " LIMIT " +
                 ((page - 1) * numPerPage) + /*check if neededl*/1 + ", " + numPerPage;
@@ -96,7 +88,6 @@ public class ProductDAOImpl implements ProductDAO{
         return getProductsFromResultSet(SQL);
     }
 
-    @Override
     public ArrayList<Product> getProductsSorted(String sortByThis, int page, int numPerPage) throws SQLException {
         switch (sortByThis) {
             case "Default" -> sortByThis = "id";
@@ -106,13 +97,11 @@ public class ProductDAOImpl implements ProductDAO{
         return getProductsFromResultSet(SQL);
     }
 
-    @Override
     public ArrayList<Product> getProductsBySearch(String searchByThis) throws SQLException{
         String SQL = "SELECT * FROM " + tableName + " WHERE name LIKE '%" + searchByThis + "%'";
         return getProductsFromResultSet(SQL);
     }
 
-    @Override
     public String getNewId() throws SQLException {
         int id;
 

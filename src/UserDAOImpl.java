@@ -1,7 +1,7 @@
 import java.sql.*;
 import java.util.ArrayList;
 
-public class UserDAOImpl implements UserDAO{
+public class UserDAOImpl{
     Connection connection;
     Statement statement;
     String tableName = "Users";
@@ -11,7 +11,7 @@ public class UserDAOImpl implements UserDAO{
         this.connection = DriverManager.getConnection(host,username, password);
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
     }
-    @Override
+
     public void insertUser(User user) throws SQLException {
         String SQL = "INSERT INTO " + tableName +
                 " (Name, LastName, PhoneNumber, EmailAddress, Balance, HashedPassword, Role, Cart, Address)" +
@@ -29,13 +29,13 @@ public class UserDAOImpl implements UserDAO{
         preparedStatement.executeUpdate();
     }
 
-    @Override
+
     public void deleteUser(User user) throws SQLException {
         String SQL = "DELETE FROM " + tableName + " WHERE id = " + user.getId();
         statement.executeUpdate(SQL);
     }
 
-    @Override
+
     public void updateUser(User user) throws SQLException {
         StringBuilder SQL = new StringBuilder("UPDATE " + tableName + " SET ");
 
@@ -52,7 +52,7 @@ public class UserDAOImpl implements UserDAO{
         statement.executeUpdate(SQL.toString());
     }
 
-    @Override
+
     public User getUser(String id) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + " WHERE id = " + id;
         ResultSet resultSet = statement.executeQuery(SQL);
@@ -67,7 +67,7 @@ public class UserDAOImpl implements UserDAO{
         return null;
     }
 
-    @Override
+
     public User getUserByPhoneNumber(String phoneNumber) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + " WHERE PhoneNumber = " + phoneNumber;
         ResultSet resultSet = statement.executeQuery(SQL);
@@ -82,19 +82,19 @@ public class UserDAOImpl implements UserDAO{
         return null;
     }
 
-    @Override
+
     public ArrayList<User> getAllUsers() throws SQLException {
         String SQL = "SELECT * FROM " + tableName;
         return getUsers(SQL);
     }
 
-    @Override
+
     public ArrayList<User> getUsersByRole(String role) throws SQLException {
         String SQL = "SELECT * FROM " + tableName + "WHERE role = " + role;
         return getUsers(SQL);
     }
 
-    @Override
+
     public String getNewId() throws SQLException {
         int id;
 

@@ -189,7 +189,7 @@ public class AllProductsPanel extends JPanel {
 					}
 				}
 				catch (SQLException ex){
-					throw new RuntimeException("SQLExeption");
+					System.out.println(ex.getMessage());
 				}
 			}
 		});

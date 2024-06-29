@@ -63,6 +63,13 @@ public class ProductServiceImpl{
     }
 
     public int maxPageNum(int numPerPage,String sortByThis,String searchByThis)throws SQLException{
+        switch (sortByThis) {
+            case ("Default") -> sortByThis = "id";
+            case ("Price: Low to High") -> sortByThis = "price ASC";
+            case ("Price: High to Low") -> sortByThis = "price DESC";
+            case ("Rating: Low to High") -> sortByThis = "rating ASC";
+            case ("Rating: High to Low") -> sortByThis = "rating DESC";
+        }
         return productDAO.maxPageNum(numPerPage,sortByThis,searchByThis);
     }
 

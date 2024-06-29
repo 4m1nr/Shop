@@ -105,7 +105,12 @@ public class HeaderPanel extends JPanel {
 		JButton btnNewButton_4 = new JButton("Products");
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do 
+				try {
+					controller.openDefaultPanel();
+				}
+				catch (SQLException ex){
+					throw new RuntimeException("SQLException");
+				}
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_4 = new GridBagConstraints();

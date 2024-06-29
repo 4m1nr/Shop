@@ -56,9 +56,11 @@ public class HeaderPanel extends JPanel {
 		}*/
 		
 		JButton btnNewButton_3 = new JButton("Admin");
+		if (!(this.update())) {
+			btnNewButton_3.setEnabled(false);
+		}
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do 
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
@@ -120,6 +122,14 @@ public class HeaderPanel extends JPanel {
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
+	}
+	private boolean update() {
+		if (user.getRole().equals("admin")) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }

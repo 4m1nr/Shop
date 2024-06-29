@@ -20,6 +20,7 @@ public class ProductDAOImpl implements ProductDAO{
         SQL.append(product.getDescription() + ", ");
         SQL.append(product.getPrice() + ", ");
         SQL.append(product.getStock() + ", ");
+        SQL.append(product.getRating().serializeRatings() + ", ");
         SQL.deleteCharAt(SQL.length() - 2);
         SQL.append(")");
         statement.executeUpdate(SQL.toString());
@@ -44,6 +45,7 @@ public class ProductDAOImpl implements ProductDAO{
         if (product.getDescription() != null) SQL.append("description = " + product.getDescription() + ", ");
         if (product.getPrice() != 0) SQL.append("price = " + product.getPrice() + ", ");
         if (product.getStock() != 0) SQL.append("stock = " + product.getStock() + ", ");
+        if (product.getRating() != null) SQL.append("rating = " + product.getRating().serializeRatings() + ", ");
         SQL.deleteCharAt(SQL.length() - 2);
         SQL.append(" WHERE id = " + product.getId());
         statement.executeUpdate(SQL.toString());
@@ -56,7 +58,8 @@ public class ProductDAOImpl implements ProductDAO{
             if (resultSet.next()) {
                 return new Product(resultSet.getString("id"), resultSet.getString("name"),
                         resultSet.getString("description"), resultSet.getDouble("price"),
-                        resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>());
+                        resultSet.getInt("stock"), new Rating(resultSet.getString("rating")),
+                        new ArrayList<String>(), new ArrayList<String>());
             }
         return null;
     }
@@ -69,7 +72,8 @@ public class ProductDAOImpl implements ProductDAO{
         while (resultSet.next()) {
             products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
                     resultSet.getString("description"), resultSet.getDouble("price"),
-                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
+                    resultSet.getInt("stock"), new Rating(resultSet.getString("rating")),
+                    new ArrayList<String>(), new ArrayList<String>()));
         }
         return products;
     }
@@ -81,7 +85,8 @@ public class ProductDAOImpl implements ProductDAO{
         while (resultSet.next()) {
             products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
                     resultSet.getString("description"), resultSet.getDouble("price"),
-                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
+                    resultSet.getInt("stock"), new Rating(resultSet.getString("rating")),
+                    new ArrayList<String>(), new ArrayList<String>()));
         }
         return products;
     }
@@ -97,7 +102,8 @@ public class ProductDAOImpl implements ProductDAO{
         while (resultSet.next())
             products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
                     resultSet.getString("description"), resultSet.getDouble("price"),
-                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
+                    resultSet.getInt("stock"), new Rating(resultSet.getString("rating")),
+                    new ArrayList<String>(), new ArrayList<String>()));
 
         return products;
     }
@@ -113,7 +119,8 @@ public class ProductDAOImpl implements ProductDAO{
         while (resultSet.next())
             products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
                     resultSet.getString("description"), resultSet.getDouble("price"),
-                    resultSet.getInt("stock"), new ArrayList<String>(), new ArrayList<String>()));
+                    resultSet.getInt("stock"), new Rating(resultSet.getString("rating")),
+                    new ArrayList<String>(), new ArrayList<String>()));
 
         return products;
     }

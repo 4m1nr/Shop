@@ -9,12 +9,13 @@ public class Product {
     private ArrayList<String> categories;
     private Rating rating = new Rating();
 
-    public Product(String id, String name, String description, double price, int stock, ArrayList<String> images, ArrayList<String> categories) {
+    public Product(String id, String name, String description, double price, int stock, Rating rating, ArrayList<String> images, ArrayList<String> categories) {
         this.id = id;
         setName(name);
         setDescription(description);
         setPrice(price);
         setStock(stock);
+        setRating(rating);
         this.images = images;
         this.categories = categories;
     }

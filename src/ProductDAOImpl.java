@@ -107,6 +107,12 @@ public class ProductDAOImpl implements ProductDAO{
     }
 
     @Override
+    public ArrayList<Product> getProductsBySearch(String searchByThis) throws SQLException{
+        String SQL = "SELECT * FROM " + tableName + " WHERE name LIKE '%" + searchByThis + "%'";
+        return getProductsFromResultSet(SQL);
+    }
+
+    @Override
     public String getNewId() throws SQLException {
         int id;
 

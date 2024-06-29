@@ -57,15 +57,22 @@ public class AllProductsPanel extends JPanel {
 		setLayout(gridBagLayout);
 		
 		
-		String sort[]={"Default", "Rate", "Price: low to high", "Price: high to low"};
+		String sort[]={"Default", "Rating: Low to High" , "Rating: High to Low", "Price: Low to High", "Price: High to Low"};
 		JComboBox comboBox = new JComboBox(sort);
 		comboBox.setSelectedItem(sortType);
 		comboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				//To do: rearranging panels array: if (comboBox.getSelectedIndex()==0 or ==1 or..)...
-				
-				//JPanel products= new AllProductsPanel(panels, sort[comboBox.getSelectedIndex()]);
+				try {
+                    switch (comboBox.getSelectedIndex()) {
+                        case 0 -> controller.viewProducts(page, "Default", controller.getSearchByThis());
+                    	case 1 -> controller.viewProducts(page, "Rating: Low to High", controller.getSearchByThis());
+                    	case 2 -> controller.viewProducts(page, "Rating: High to Low", controller.getSearchByThis());
+						case 3 -> controller.viewProducts(page, "Price: Low to High", controller.getSearchByThis());
+						case 4 -> controller.viewProducts(page, "Price: High to Low", controller.getSearchByThis());
+					}
+				}catch (Exception ex){
+					throw new RuntimeException("SQLException");
+				}
 
 			}
 		});

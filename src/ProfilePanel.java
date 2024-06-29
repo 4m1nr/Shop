@@ -9,6 +9,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class ProfilePanel extends JPanel {
 
@@ -19,18 +20,17 @@ public class ProfilePanel extends JPanel {
 	private JTextField phoneNumberTextField;
 	private JPasswordField passwordField;
 	private JTextField addBalanceTextField;
+	ShopControllerImpl controller;
+	User user;
 
-	/**
-	 * Create the panel.
-	 */
-	public ProfilePanel() {
-		
-		//To do: string haye name, lastname, phone number, email va address ro az data base meghdar dehi kon <3
-		String name="";
-		String lastName="";
-		String phoneNumber="";
-		String email="";
-		String address="";
+	public ProfilePanel(ShopControllerImpl controller) {
+
+		this.controller = controller;
+		this.user = controller.user;
+		String name = user.getName();
+		String lastName = user.getLastName();
+		String phoneNumber = user.getPhoneNumber();
+		String email = user.getEmailAddress();
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0};
@@ -141,8 +141,15 @@ public class ProfilePanel extends JPanel {
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do: Upda
-			}
+                try {
+                    controller.updateProfile(new User(user.getId(),nameTextField.getName(),
+                            lastNameTextField.getText(),phoneNumberTextField.getText(),
+                            emailTextField.getText(),User.HashPassword(new String(passwordField.getPassword())),
+                            user.getBalance(),user.getAddresses(),user.getCart(),user.getRole()));
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();

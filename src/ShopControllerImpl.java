@@ -165,12 +165,12 @@ public class ShopControllerImpl{
 
    
     public void viewProfile() {
-
+        mainFrame.setMainPanel(new ProfilePanel(this));
     }
 
    
-    public void updateProfile(String userID, String password) {
-
+    public void updateProfile(User user)throws SQLException {
+        userService.updateUser(user);
     }
 
    

@@ -27,7 +27,7 @@ public class HeaderPanel extends JPanel {
 		JButton btnNewButton = new JButton("Profile");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do 
+				controller.viewProfile();
 			}
 		});
 		

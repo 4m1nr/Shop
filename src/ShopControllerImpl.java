@@ -7,8 +7,14 @@ public class ShopControllerImpl{
     ProductServiceImpl productService;
     LoginFrame loginFrame;
     MainFrame mainFrame;
+    private String searchByThis,sortByThis;
 
-    public ShopControllerImpl(UserServiceImpl userService,ProductServiceImpl productService){
+    public String getSearchByThis() {return searchByThis;}
+    public String getSortByThis() {return sortByThis;}
+    public void setSearchByThis(String searchByThis) {this.searchByThis = searchByThis;}
+    public void setSortByThis(String sortByThis) {this.sortByThis = sortByThis;}
+
+    public ShopControllerImpl(UserServiceImpl userService, ProductServiceImpl productService){
         this.userService = userService;
         this.productService = productService;
         loginFrame = new LoginFrame();
@@ -123,11 +129,13 @@ public class ShopControllerImpl{
     }
 
    
-    public void viewProducts(int page,String sortBy) throws SQLException {
-        ArrayList<Product> products = productService.getProductsSorted(sortBy,page,6);
+    public void viewProducts(int page,String sortByThis,String searchByThis) throws SQLException {
+        this.sortByThis = sortByThis;
+        this.searchByThis = searchByThis;
+        ArrayList<Product> products = productService.getProductsByEverything(searchByThis,sortByThis,page,6);
         loginFrame.setVisible(false);
         mainFrame.setMainPanel(new AllProductsPanel(
-                this.getProductPanelsFromProducts(products), sortBy , page ,this));
+                this.getProductPanelsFromProducts(products), sortByThis , page ,this));
         mainFrame.setVisible(true);
     }
 

@@ -103,6 +103,12 @@ public class ProductDAOImpl {
         return getProductsFromResultSet(SQL);
     }
 
+    public ArrayList<Product> getProductsByEverything(String searchByThis,String sortByThis,int page,int numPerPage) throws SQLException{
+        String SQL = "SELECT * FROM " + tableName + " WHERE name LIKE '%" + searchByThis + "%'" + " ORDER BY " +
+                sortByThis + " LIMIT " + numPerPage + " OFFSET " + ((page - 1) * numPerPage);
+        return getProductsFromResultSet(SQL);
+    }
+
     public String getNewId() throws SQLException {
         int id;
 

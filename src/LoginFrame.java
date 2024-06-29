@@ -1,21 +1,44 @@
-import java.awt.EventQueue;
+import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Dimension;
 
 public class LoginFrame extends JFrame {
+	JPanel currentPanel;
 
-	public LoginFrame(JPanel panelToAdd) {
+	public LoginFrame(JPanel panelToSet) {
 		this.buildFrame();
-        this.add(panelToAdd);
+        this.setPanel(panelToSet);
 		this.pack();
 		this.setVisible(true);
+	}
+
+	public LoginFrame() {
+		this.buildFrame();
+		this.setVisible(false);
 	}
 
 	private void buildFrame(){
 		setMinimumSize(new Dimension(500, 400));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 579, 386);
+	}
+
+	public void setPanel(JPanel panelToSet){
+		if (currentPanel != null)
+			this.remove(currentPanel);
+
+		this.add(panelToSet);
+		currentPanel = panelToSet;
+		this.update();
+	}
+
+	public JPanel getPanel(){
+		return currentPanel;
+	}
+
+	public void update(){
+		this.revalidate();
+		this.repaint();
 	}
 
 }

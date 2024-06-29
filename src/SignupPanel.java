@@ -10,6 +10,7 @@ import java.awt.Font;
 import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 
 public class SignupPanel extends JPanel {
@@ -134,10 +135,12 @@ public class SignupPanel extends JPanel {
 		JButton signUpButton = new JButton("Sign up");
 		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String username = lastNameTextField.getText();
-				String password = passwordField.getText();
-				// To do
-			}
+                try {
+                    controller.register(nameTextField.getText(), lastNameTextField.getText(), phoneNumberTextField.getText(), addressTextField.getText(), emailTextField.getText(),User.HashPassword(new String(passwordField.getPassword())));
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
 		});
 
 		addressTextField = new JTextField();
@@ -190,7 +193,7 @@ public class SignupPanel extends JPanel {
 		JButton backToLoginButton = new JButton("Back to login");
 		backToLoginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.openLoginPanel();
+				controller.openLoginPanel(null);
 			}
 		});
 		backToLoginButton.setFont(new Font("Tahoma", Font.BOLD, 18));

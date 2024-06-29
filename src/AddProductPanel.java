@@ -1,95 +1,214 @@
 import javax.swing.JPanel;
+/*import javax.swing.JScrollPane;
+import javax.swing.JRadioButton;*/
+import java.awt.Color;
 import java.awt.GridBagLayout;
-import javax.swing.JLabel;
+import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import java.awt.Font;
+/*import javax.swing.SwingConstants;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.BoxLayout;
+import java.awt.CardLayout;
+import javax.swing.SpringLayout;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import net.miginfocom.swing.MigLayout;
+import com.jgoodies.forms.layout.FormLayout;
+import com.jgoodies.forms.layout.ColumnSpec;
+import com.jgoodies.forms.layout.FormSpecs;
+import com.jgoodies.forms.layout.RowSpec;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;*/
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-public class AddProductPanel extends JPanel {
+public class AllProductsPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField nameTextField;
-	private JTextField priceTextField;
-	private JTextField imageTextField;
 
 	/**
 	 * Create the panel.
 	 */
-	public AddProductPanel() {
+	public AllProductsPanel(ArrayList<ProductPanel> panels1, String sortType) {
+		setBackground(Color.LIGHT_GRAY);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{30, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 42, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWidths = new int[]{15, 528, 15, 0};
+		gridBagLayout.rowHeights = new int[]{0, 15, 10, 35, 0};
+		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
-		JLabel nameLabel = new JLabel("Product name:");
-		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_nameLabel = new GridBagConstraints();
-		gbc_nameLabel.anchor = GridBagConstraints.EAST;
-		gbc_nameLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_nameLabel.gridx = 0;
-		gbc_nameLabel.gridy = 0;
-		add(nameLabel, gbc_nameLabel);
 		
-		nameTextField = new JTextField();
-		nameTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_nameTextField = new GridBagConstraints();
-		gbc_nameTextField.anchor = GridBagConstraints.WEST;
-		gbc_nameTextField.insets = new Insets(0, 0, 5, 0);
-		gbc_nameTextField.gridx = 1;
-		gbc_nameTextField.gridy = 0;
-		add(nameTextField, gbc_nameTextField);
-		nameTextField.setColumns(10);
+		String sort[]={"Default", "Rate", "Price: low to high", "Price: high to low"};
+		JComboBox comboBox = new JComboBox(sort);
+		comboBox.setSelectedItem(sortType);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				//To do: rearranging panels array: if (comboBox.getSelectedIndex()==0 or ==1 or..)...
+				
+				//JPanel products= new AllProductsPanel(panels, sort[comboBox.getSelectedIndex()]);
+			}
+		});
+		GridBagConstraints gbc_comboBox = new GridBagConstraints();
+		gbc_comboBox.anchor = GridBagConstraints.WEST;
+		gbc_comboBox.insets = new Insets(0, 0, 5, 5);
+		gbc_comboBox.gridx = 1;
+		gbc_comboBox.gridy = 1;
+		add(comboBox, gbc_comboBox);
 		
-		JLabel priceLabel = new JLabel("Product price:");
-		priceLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_priceLabel = new GridBagConstraints();
-		gbc_priceLabel.anchor = GridBagConstraints.EAST;
-		gbc_priceLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_priceLabel.gridx = 0;
-		gbc_priceLabel.gridy = 1;
-		add(priceLabel, gbc_priceLabel);
+		JPanel panel = new JPanel();
 		
-		priceTextField = new JTextField();
-		priceTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_priceTextField = new GridBagConstraints();
-		gbc_priceTextField.anchor = GridBagConstraints.WEST;
-		gbc_priceTextField.insets = new Insets(0, 0, 5, 0);
-		gbc_priceTextField.gridx = 1;
-		gbc_priceTextField.gridy = 1;
-		add(priceTextField, gbc_priceTextField);
-		priceTextField.setColumns(10);
+		GridBagConstraints gbc_panel = new GridBagConstraints();
+		gbc_panel.insets = new Insets(0, 0, 5, 5);
+		gbc_panel.fill = GridBagConstraints.BOTH;
+		gbc_panel.gridx = 1;
+		gbc_panel.gridy = 2;
+		add(panel, gbc_panel);
+		GridBagLayout gbl_panel = new GridBagLayout();
+		gbl_panel.columnWidths = new int[]{166, 166, 166, 0};
+		gbl_panel.rowHeights = new int[]{168, 168, 0};
+		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		panel.setLayout(gbl_panel);
 		
-		JLabel imageLabel = new JLabel("Product image:");
-		imageLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_imageLabel = new GridBagConstraints();
-		gbc_imageLabel.anchor = GridBagConstraints.EAST;
-		gbc_imageLabel.insets = new Insets(0, 0, 5, 5);
-		gbc_imageLabel.gridx = 0;
-		gbc_imageLabel.gridy = 2;
-		add(imageLabel, gbc_imageLabel);
-		
-		imageTextField = new JTextField();
-		imageTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_imageTextField = new GridBagConstraints();
-		gbc_imageTextField.anchor = GridBagConstraints.WEST;
-		gbc_imageTextField.insets = new Insets(0, 0, 5, 0);
-		gbc_imageTextField.gridx = 1;
-		gbc_imageTextField.gridy = 2;
-		add(imageTextField, gbc_imageTextField);
-		imageTextField.setColumns(10);
-		
-		JButton addButton = new JButton("Add product");
-		addButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		GridBagConstraints gbc_addButton = new GridBagConstraints();
-		gbc_addButton.anchor = GridBagConstraints.WEST;
-		gbc_addButton.gridx = 1;
-		gbc_addButton.gridy = 3;
-		add(addButton, gbc_addButton);
 
+		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
+		gbc_panel_1.fill = GridBagConstraints.BOTH;
+		gbc_panel_1.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_1.gridx = 0;
+		gbc_panel_1.gridy = 0;
+		panel.add(panels1.get(0), gbc_panel_1);
+
+		
+		//JPanel panel_2 = new JPanel();
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.fill = GridBagConstraints.BOTH;
+		gbc_panel_2.insets = new Insets(0, 0, 5, 5);
+		gbc_panel_2.gridx = 1;
+		gbc_panel_2.gridy = 0;
+		panel.add(panels1.get(1), gbc_panel_2);
+		
+		//JPanel panel_3 = new JPanel();
+		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
+		gbc_panel_3.fill = GridBagConstraints.BOTH;
+		gbc_panel_3.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_3.gridx = 2;
+		gbc_panel_3.gridy = 0;
+		panel.add(panels1.get(2), gbc_panel_3);
+		
+		//JPanel panel_4 = new JPanel();
+		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
+		gbc_panel_4.fill = GridBagConstraints.BOTH;
+		gbc_panel_4.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_4.gridx = 0;
+		gbc_panel_4.gridy = 1;
+		panel.add(panels1.get(3), gbc_panel_4);
+		
+		//JPanel panel_5 = new JPanel();
+		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
+		gbc_panel_5.fill = GridBagConstraints.BOTH;
+		gbc_panel_5.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_5.gridx = 1;
+		gbc_panel_5.gridy = 1;
+		panel.add(panels1.get(4), gbc_panel_5);
+		
+		//JPanel panel_6 = new JPanel();
+		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
+		gbc_panel_6.fill = GridBagConstraints.BOTH;
+		gbc_panel_6.gridx = 2;
+		gbc_panel_6.gridy = 1;
+		panel.add(panels1.get(5), gbc_panel_6);
+		
+		JPanel panel_7 = new JPanel();
+		panel_7.setOpaque(false);
+		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
+		gbc_panel_7.insets = new Insets(0, 0, 0, 5);
+		gbc_panel_7.fill = GridBagConstraints.BOTH;
+		gbc_panel_7.gridx = 1;
+		gbc_panel_7.gridy = 3;
+		add(panel_7, gbc_panel_7);
+		GridBagLayout gbl_panel_7 = new GridBagLayout();
+		gbl_panel_7.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_7.rowHeights = new int[]{0, 0};
+		gbl_panel_7.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_7.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		panel_7.setLayout(gbl_panel_7);
+		
+		JButton btnNewButton_1 = new JButton("previous");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//to do
+			}
+		});
+		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
+		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);
+		gbc_btnNewButton_1.gridx = 0;
+		gbc_btnNewButton_1.gridy = 0;
+		panel_7.add(btnNewButton_1, gbc_btnNewButton_1);
+		
+		JButton btnNewButton = new JButton("next");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// to do
+			}
+		});
+		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
+		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridy = 0;
+		panel_7.add(btnNewButton, gbc_btnNewButton);
+		
+		
+		panels1.get(0).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
+		
+		panels1.get(1).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
+		
+		panels1.get(2).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
+		
+		panels1.get(3).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
+		
+		panels1.get(4).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
+
+		panels1.get(5).addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				//to do
+			}
+		});
 	}
-
 }

@@ -13,11 +13,12 @@ import java.awt.event.ActionEvent;
 public class BuyProductPanel extends JPanel {
 	private JTextField rateTextField;
 	private JTextField countTextField;
+	ShopControllerImpl controller;
 	Product product;
 
 
-	public BuyProductPanel(Product product) {
-
+	public BuyProductPanel(Product product,ShopControllerImpl controller) {
+		this.controller = controller;
 		buildPanel();
 		
 		JLabel imageLabel = new JLabel(/*product.getImages().get(0)*/);

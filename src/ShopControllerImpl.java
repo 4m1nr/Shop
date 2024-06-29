@@ -133,7 +133,7 @@ public class ShopControllerImpl{
    
     public void viewProductDetails(Product product) throws SQLException {
         product = productService.getProduct(product.getId());
-        mainFrame.setMainPanel(new ProductPanel(product , this));
+        mainFrame.setMainPanel(new BuyProductPanel(product , this));
     }
 
     private ArrayList<ProductPanel> getProductPanelsFromProducts(ArrayList<Product> products) {

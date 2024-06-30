@@ -7,6 +7,8 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AdminEditProduct extends JPanel {
 
@@ -22,17 +24,17 @@ public class AdminEditProduct extends JPanel {
 	 */
 	public AdminEditProduct() {
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
+		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{303, 0, 0};
-		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel lblNewLabel = new JLabel("Product icon");
 		lblNewLabel.setIcon(null);
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
-		gbc_lblNewLabel.gridwidth = 3;
-		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.gridwidth = 4;
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_lblNewLabel.gridx = 0;
 		gbc_lblNewLabel.gridy = 0;
 		add(lblNewLabel, gbc_lblNewLabel);
@@ -139,6 +141,7 @@ public class AdminEditProduct extends JPanel {
 		
 		JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.insets = new Insets(0, 0, 0, 5);
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
 		gbc_panel_2.gridx = 2;
 		gbc_panel_2.gridy = 1;
@@ -214,6 +217,30 @@ public class AdminEditProduct extends JPanel {
 		gbc_btnNewButton_2.gridx = 1;
 		gbc_btnNewButton_2.gridy = 3;
 		panel_2.add(btnNewButton_2, gbc_btnNewButton_2);
+		
+		JPanel removePanel = new JPanel();
+		GridBagConstraints gbc_removePanel = new GridBagConstraints();
+		gbc_removePanel.fill = GridBagConstraints.BOTH;
+		gbc_removePanel.gridx = 3;
+		gbc_removePanel.gridy = 1;
+		add(removePanel, gbc_removePanel);
+		GridBagLayout gbl_removePanel = new GridBagLayout();
+		gbl_removePanel.columnWidths = new int[]{0, 0};
+		gbl_removePanel.rowHeights = new int[]{0, 0};
+		gbl_removePanel.columnWeights = new double[]{1.0, Double.MIN_VALUE};
+		gbl_removePanel.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		removePanel.setLayout(gbl_removePanel);
+		
+		JButton removeButton = new JButton("Remove product");
+		removeButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		removeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GridBagConstraints gbc_removeButton = new GridBagConstraints();
+		gbc_removeButton.gridx = 0;
+		gbc_removeButton.gridy = 0;
+		removePanel.add(removeButton, gbc_removeButton);
 
 	}
 

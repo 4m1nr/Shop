@@ -136,9 +136,9 @@ public class CartPanel extends JPanel {
 		gbc_panel_7.gridy = 3;
 		add(panel_7, gbc_panel_7);
 		GridBagLayout gbl_panel_7 = new GridBagLayout();
-		gbl_panel_7.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_7.columnWidths = new int[]{0, 0, 0, 0};
 		gbl_panel_7.rowHeights = new int[]{0, 0};
-		gbl_panel_7.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_7.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_7.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel_7.setLayout(gbl_panel_7);
 		
@@ -158,8 +158,15 @@ public class CartPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		JButton buyButton = new JButton("Buy");
+		GridBagConstraints gbc_buyButton = new GridBagConstraints();
+		gbc_buyButton.insets = new Insets(0, 0, 0, 5);
+		gbc_buyButton.gridx = 1;
+		gbc_buyButton.gridy = 0;
+		panel_7.add(buyButton, gbc_buyButton);
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
-		gbc_btnNewButton.gridx = 1;
+		gbc_btnNewButton.gridx = 2;
 		gbc_btnNewButton.gridy = 0;
 		panel_7.add(btnNewButton, gbc_btnNewButton);
 		

@@ -19,9 +19,9 @@ public class AdminPanel extends JPanel {
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JButton addButton = new JButton("Add product");
@@ -32,7 +32,7 @@ public class AdminPanel extends JPanel {
 			}
 		});
 		GridBagConstraints gbc_addButton = new GridBagConstraints();
-		gbc_addButton.insets = new Insets(0, 0, 0, 5);
+		gbc_addButton.insets = new Insets(0, 0, 5, 5);
 		gbc_addButton.gridx = 0;
 		gbc_addButton.gridy = 0;
 		add(addButton, gbc_addButton);
@@ -45,7 +45,7 @@ public class AdminPanel extends JPanel {
 			}
 		});
 		GridBagConstraints gbc_ordersButton = new GridBagConstraints();
-		gbc_ordersButton.insets = new Insets(0, 0, 0, 5);
+		gbc_ordersButton.insets = new Insets(0, 0, 5, 5);
 		gbc_ordersButton.gridx = 1;
 		gbc_ordersButton.gridy = 0;
 		add(ordersButton, gbc_ordersButton);
@@ -58,9 +58,36 @@ public class AdminPanel extends JPanel {
 			}
 		});
 		GridBagConstraints gbc_customersButton = new GridBagConstraints();
+		gbc_customersButton.insets = new Insets(0, 0, 5, 0);
 		gbc_customersButton.gridx = 2;
 		gbc_customersButton.gridy = 0;
 		add(customersButton, gbc_customersButton);
+		
+		JButton adminMakerButton = new JButton("Add admin");
+		adminMakerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		adminMakerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		GridBagConstraints gbc_adminMakerButton = new GridBagConstraints();
+		gbc_adminMakerButton.anchor = GridBagConstraints.NORTHEAST;
+		gbc_adminMakerButton.insets = new Insets(0, 0, 0, 5);
+		gbc_adminMakerButton.gridx = 0;
+		gbc_adminMakerButton.gridy = 1;
+		add(adminMakerButton, gbc_adminMakerButton);
+		
+		JButton removeUserButton = new JButton("Remove User");
+		removeUserButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		removeUserButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		GridBagConstraints gbc_removeUserButton = new GridBagConstraints();
+		gbc_removeUserButton.anchor = GridBagConstraints.NORTH;
+		gbc_removeUserButton.insets = new Insets(0, 0, 0, 5);
+		gbc_removeUserButton.gridx = 1;
+		gbc_removeUserButton.gridy = 1;
+		add(removeUserButton, gbc_removeUserButton);
 
 	}
 

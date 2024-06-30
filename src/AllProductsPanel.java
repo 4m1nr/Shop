@@ -139,12 +139,15 @@ public class AllProductsPanel extends JPanel {
 		btnNewButton_1 = new JButton("previous");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try{
-					/*if(page > 1)*/
-						controller.viewProducts(page-1,controller.getSortByThis(),controller.getSearchByThis());
+				try {
+					if (page > 1)
+						controller.viewProducts(page - 1, controller.getSortByThis(), controller.getSearchByThis());
+					else
+						controller.viewProducts(controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis()),
+								controller.getSortByThis(), controller.getSearchByThis());
 				}
-				catch (SQLException ex){
-					throw new RuntimeException(ex.getMessage());
+				catch (Exception ex){
+					throw new RuntimeException(ex);
 				}
 			}
 		});
@@ -158,8 +161,10 @@ public class AllProductsPanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					/*if(page < controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis()))*/
-						controller.viewProducts(page+1,controller.getSortByThis(),controller.getSearchByThis());
+					if(page < controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis())) {
+						controller.viewProducts(page + 1, controller.getSortByThis(), controller.getSearchByThis());
+					}
+					else controller.viewProducts(1,controller.getSortByThis(), controller.getSearchByThis());
 				}
 				catch (SQLException ex){
 					throw new RuntimeException(ex.getMessage());

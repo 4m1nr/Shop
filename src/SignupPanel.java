@@ -11,6 +11,7 @@ import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
+import java.util.Stack;
 
 
 public class SignupPanel extends JPanel {
@@ -135,11 +136,45 @@ public class SignupPanel extends JPanel {
 		JButton signUpButton = new JButton("Sign up");
 		signUpButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-                try {
-                    controller.register(nameTextField.getText(), lastNameTextField.getText(), phoneNumberTextField.getText(), addressTextField.getText(), emailTextField.getText(),User.HashPassword(new String(passwordField.getPassword())),null);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
+				Stack<String> errorStack = new Stack<>();
+				if(nameTextField.getText().isEmpty()){
+					errorStack.add("Name cannot be empty");
+				}
+				if(!nameTextField.getText().matches("[a-zA-Z]+")){
+					errorStack.add("Invalid name");
+				}
+				if(lastNameTextField.getText().isEmpty()){
+					errorStack.add("Last Name cannot be empty");
+				}
+				if(!lastNameTextField.getText().matches("[a-zA-Z]+")){
+					errorStack.add("Invalid name");
+				}
+				if(phoneNumberTextField.getText().isEmpty()){
+					errorStack.add("Phone number cannot be empty");
+				}
+				if(phoneNumberTextField.getText().length() != 11 || !phoneNumberTextField.getText().startsWith("09") ||
+						!phoneNumberTextField.getText().matches("\\d+")){
+					errorStack.add("Invalid phone number");
+				}
+				if(emailTextField.getText().isEmpty()){
+					errorStack.add("Email cannot be empty");
+				}
+				if(!emailTextField.getText().contains("@")){
+					errorStack.add("Invalid email");
+				}
+				if(!addressTextField.getText().isEmpty()){
+					errorStack.add("Address cannot be empty");
+				}
+				if(passwordField.getPassword().length == 0){
+					errorStack.add("Password cannot be empty");
+				}
+				if(errorStack.isEmpty()) {
+					try {
+						controller.register(nameTextField.getText(), lastNameTextField.getText(), phoneNumberTextField.getText(), addressTextField.getText(), emailTextField.getText(), User.HashPassword(new String(passwordField.getPassword())), null);
+					} catch (SQLException ex) {
+						throw new RuntimeException(ex);
+					}
+				}
             }
 		});
 

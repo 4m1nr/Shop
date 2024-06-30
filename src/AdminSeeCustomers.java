@@ -3,6 +3,8 @@ import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import java.util.ArrayList;
+
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
@@ -15,7 +17,7 @@ public class AdminSeeCustomers extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AdminSeeCustomers() {
+	public AdminSeeCustomers(ArrayList<User> users) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{10, 2, 75, 82, 10, 0};
 		gridBagLayout.rowHeights = new int[]{10, 358, 15, 0};

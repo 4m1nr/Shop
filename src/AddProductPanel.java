@@ -13,6 +13,7 @@ public class AddProductPanel extends JPanel {
 	private JTextField nameTextField;
 	private JTextField priceTextField;
 	private JTextField imageTextField;
+	private JTextField productCountTextField;
 
 	/**
 	 * Create the panel.
@@ -20,9 +21,9 @@ public class AddProductPanel extends JPanel {
 	public AddProductPanel(ShopControllerImpl controller) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{30, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 42, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 42, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel nameLabel = new JLabel("Product name:");
@@ -82,12 +83,31 @@ public class AddProductPanel extends JPanel {
 		add(imageTextField, gbc_imageTextField);
 		imageTextField.setColumns(10);
 		
+		JLabel countLabel = new JLabel("Product count:");
+		countLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		GridBagConstraints gbc_countLabel = new GridBagConstraints();
+		gbc_countLabel.anchor = GridBagConstraints.EAST;
+		gbc_countLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_countLabel.gridx = 0;
+		gbc_countLabel.gridy = 3;
+		add(countLabel, gbc_countLabel);
+		
+		productCountTextField = new JTextField();
+		productCountTextField.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		productCountTextField.setColumns(10);
+		GridBagConstraints gbc_productCountTextField = new GridBagConstraints();
+		gbc_productCountTextField.anchor = GridBagConstraints.WEST;
+		gbc_productCountTextField.insets = new Insets(0, 0, 5, 0);
+		gbc_productCountTextField.gridx = 1;
+		gbc_productCountTextField.gridy = 3;
+		add(productCountTextField, gbc_productCountTextField);
+		
 		JButton addButton = new JButton("Add product");
 		addButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_addButton = new GridBagConstraints();
 		gbc_addButton.anchor = GridBagConstraints.WEST;
 		gbc_addButton.gridx = 1;
-		gbc_addButton.gridy = 3;
+		gbc_addButton.gridy = 4;
 		add(addButton, gbc_addButton);
 
 	}

@@ -6,11 +6,13 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 public class AdminPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	ShopControllerImpl controller;
+	private JTextField textField;
 	/**
 	 * Create the panel.
 	 */
@@ -19,9 +21,9 @@ public class AdminPanel extends JPanel {
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JButton addButton = new JButton("Add product");
@@ -68,12 +70,21 @@ public class AdminPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		textField = new JTextField();
+		GridBagConstraints gbc_textField = new GridBagConstraints();
+		gbc_textField.gridwidth = 2;
+		gbc_textField.insets = new Insets(0, 0, 5, 5);
+		gbc_textField.gridx = 0;
+		gbc_textField.gridy = 1;
+		add(textField, gbc_textField);
+		textField.setColumns(10);
 		adminMakerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_adminMakerButton = new GridBagConstraints();
 		gbc_adminMakerButton.anchor = GridBagConstraints.NORTHEAST;
 		gbc_adminMakerButton.insets = new Insets(0, 0, 0, 5);
 		gbc_adminMakerButton.gridx = 0;
-		gbc_adminMakerButton.gridy = 1;
+		gbc_adminMakerButton.gridy = 2;
 		add(adminMakerButton, gbc_adminMakerButton);
 		
 		JButton removeUserButton = new JButton("Remove User");
@@ -86,7 +97,7 @@ public class AdminPanel extends JPanel {
 		gbc_removeUserButton.anchor = GridBagConstraints.NORTH;
 		gbc_removeUserButton.insets = new Insets(0, 0, 0, 5);
 		gbc_removeUserButton.gridx = 1;
-		gbc_removeUserButton.gridy = 1;
+		gbc_removeUserButton.gridy = 2;
 		add(removeUserButton, gbc_removeUserButton);
 
 	}

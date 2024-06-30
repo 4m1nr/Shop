@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 public class AdminPanel extends JPanel {
 
@@ -21,9 +22,9 @@ public class AdminPanel extends JPanel {
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JButton addButton = new JButton("Add product");
@@ -71,20 +72,29 @@ public class AdminPanel extends JPanel {
 			}
 		});
 		
+		JLabel lblNewLabel = new JLabel("Phone number:");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
+		gbc_lblNewLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_lblNewLabel.anchor = GridBagConstraints.EAST;
+		gbc_lblNewLabel.gridx = 0;
+		gbc_lblNewLabel.gridy = 2;
+		add(lblNewLabel, gbc_lblNewLabel);
+		
 		textField = new JTextField();
 		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.gridwidth = 2;
+		gbc_textField.anchor = GridBagConstraints.WEST;
 		gbc_textField.insets = new Insets(0, 0, 5, 5);
-		gbc_textField.gridx = 0;
-		gbc_textField.gridy = 1;
+		gbc_textField.gridx = 1;
+		gbc_textField.gridy = 2;
 		add(textField, gbc_textField);
-		textField.setColumns(10);
+		textField.setColumns(12);
 		adminMakerButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_adminMakerButton = new GridBagConstraints();
 		gbc_adminMakerButton.anchor = GridBagConstraints.NORTHEAST;
 		gbc_adminMakerButton.insets = new Insets(0, 0, 0, 5);
 		gbc_adminMakerButton.gridx = 0;
-		gbc_adminMakerButton.gridy = 2;
+		gbc_adminMakerButton.gridy = 3;
 		add(adminMakerButton, gbc_adminMakerButton);
 		
 		JButton removeUserButton = new JButton("Remove User");
@@ -97,7 +107,7 @@ public class AdminPanel extends JPanel {
 		gbc_removeUserButton.anchor = GridBagConstraints.NORTH;
 		gbc_removeUserButton.insets = new Insets(0, 0, 0, 5);
 		gbc_removeUserButton.gridx = 1;
-		gbc_removeUserButton.gridy = 2;
+		gbc_removeUserButton.gridy = 3;
 		add(removeUserButton, gbc_removeUserButton);
 
 	}

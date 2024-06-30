@@ -10,11 +10,13 @@ import java.awt.Font;
 public class AdminPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
-
+	ShopControllerImpl controller;
 	/**
 	 * Create the panel.
 	 */
-	public AdminPanel() {
+	public AdminPanel(ShopControllerImpl controller) {
+		this.controller = controller;
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0};
@@ -26,7 +28,7 @@ public class AdminPanel extends JPanel {
 		addButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do
+				controller.viewAddProductPanel();
 			}
 		});
 		GridBagConstraints gbc_addButton = new GridBagConstraints();
@@ -39,7 +41,7 @@ public class AdminPanel extends JPanel {
 		ordersButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ordersButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do
+				controller.viewAllOrders();
 			}
 		});
 		GridBagConstraints gbc_ordersButton = new GridBagConstraints();
@@ -50,6 +52,11 @@ public class AdminPanel extends JPanel {
 		
 		JButton customersButton = new JButton("Check customers");
 		customersButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		customersButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				controller.viewUsers();
+			}
+		});
 		GridBagConstraints gbc_customersButton = new GridBagConstraints();
 		gbc_customersButton.gridx = 2;
 		gbc_customersButton.gridy = 0;

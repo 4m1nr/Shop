@@ -1,12 +1,8 @@
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.GridBagLayout;
-import javax.swing.JTextField;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
@@ -153,7 +149,9 @@ public class ProfilePanel extends JPanel {
 							user.getBalance(),user.getAddresses(),user.getCart(),user.getRole());
 
                 try {
-                    controller.updateProfile(newProfile);
+					if (JOptionPane.showConfirmDialog(null, "are you sure"
+							,"update profile", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+								controller.updateProfile(newProfile);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex.getMessage());
                 }
@@ -186,7 +184,7 @@ public class ProfilePanel extends JPanel {
 		gbc_currentBalanceLabel.gridy = 7;
 		add(currentBalanceLabel, gbc_currentBalanceLabel);
 		
-		JLabel balanceLabel = new JLabel("**balance**");
+		JLabel balanceLabel = new JLabel(user.getBalance() + "");
 		balanceLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_balanceLabel = new GridBagConstraints();
 		gbc_balanceLabel.anchor = GridBagConstraints.WEST;
@@ -218,9 +216,16 @@ public class ProfilePanel extends JPanel {
 		JButton addButton = new JButton("Add");
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int balanceToAdd = Integer.parseInt(addBalanceTextField.getText());
-				//To do
-			}
+				Double balanceToAdd = Double.parseDouble(addBalanceTextField.getText());
+                try {
+					if (JOptionPane.showConfirmDialog(null, "are you sure you want to add "
+							+ balanceToAdd + " to your balance?", "Bank", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+						controller.upadteUserBalance(balanceToAdd + user.getBalance());
+						controller.viewProfile();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex.getMessage());
+                }
+            }
 		});
 		addButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_addButton = new GridBagConstraints();

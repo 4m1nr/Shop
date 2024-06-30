@@ -12,7 +12,7 @@ public class User {
     private String hashedPassword,role;
     private double balance;
     private ArrayList<Address> adrresses;
-    private Cart cart = new Cart();
+    private Cart cart;
 
     public User(String id, String name, String lastName, String phoneNumber, String emailAddress,
                 String password, double balance, ArrayList<Address> addresses,Cart cart, String role){
@@ -25,6 +25,7 @@ public class User {
         setBalance(balance);
         this.adrresses = addresses;
         setRole(role);
+        setCart(cart);
     }
 
     //initialize getters and setters
@@ -46,10 +47,10 @@ public class User {
     public void setPhoneNumber(String phoneNumber)      {this.phoneNumber = phoneNumber;}
     public void setEmailAddress(String emailAddress)    {this.emailAddress = emailAddress;}
     public void setRole(String role)                    {if (roles.contains(role)) this.role = role;}
-    public void addAddress(Address address)             {adrresses.add(address);}
+  /*public void addAddress(Address address)             {adrresses.add(address);}
     public void removeAddress(Address address)          {adrresses.remove(address);}
     public void removeAddress(int index)                {adrresses.remove(index);}
-    public void removeAllAddresses()                    {adrresses.clear();}
+    public void removeAllAddresses()                    {adrresses.clear();}*/
     public void setCart(Cart cart)                      {this.cart = cart;}
     public void setHashedPassword(String hashedPassword){this.hashedPassword = hashedPassword;}
     public void setBalance(double balance)              {this.balance = balance;}

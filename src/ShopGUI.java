@@ -8,7 +8,8 @@ public class ShopGUI {
         try {
             controller = new ShopControllerImpl(
                 new UserServiceImpl(new UserDAOImpl()),
-                new ProductServiceImpl(new ProductDAOImpl())
+                new ProductServiceImpl(new ProductDAOImpl()),
+                new CartService(new CartDAO())
         );
         controller.openLoginPanel(null);
         }catch (SQLException e){

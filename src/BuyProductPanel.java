@@ -1,24 +1,25 @@
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.sql.SQLException;
 
 public class BuyProductPanel extends JPanel {
 	private JTextField rateTextField;
 	private JTextField countTextField;
 	ShopControllerImpl controller;
 	Product product;
+	User user;
 
 
-	public BuyProductPanel(Product product,ShopControllerImpl controller) {
+	public BuyProductPanel(Product product,ShopControllerImpl controller) throws SQLException {
+		this.product = product;
 		this.controller = controller;
+		this.user = controller.getUser();
 		buildPanel();
 		
 		JLabel imageLabel = new JLabel(/*product.getImages().get(0)*/);
@@ -130,10 +131,25 @@ public class BuyProductPanel extends JPanel {
 		JButton addToBasketButton = new JButton("Add to Cart");
 		addToBasketButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int count=Integer.parseInt(countTextField.getText());
-				int wholePrice=(Integer.parseInt(priceLabel.getText()))*count;
-				
-				//To do: count: teEdade kharid     wholePrice: gheymate kol
+				int count;
+				try {
+					count=Integer.parseInt(countTextField.getText());
+				}catch (NumberFormatException ex){
+					return;
+				}
+
+				double wholePrice= product.getPrice() *count;
+
+				if (count<= 0)
+					return;
+				try {
+					controller.addProductToCart(product,count);
+					controller.openDialog(count+ "عدد " +product.getName() +
+							"به سبد خرید اضافه شد","success", JOptionPane.DEFAULT_OPTION);
+					controller.viewProductDetails(product);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex.getMessage());
+                    }
 			}
 		});
 		addToBasketButton.setFont(new Font("Tahoma", Font.PLAIN, 14));

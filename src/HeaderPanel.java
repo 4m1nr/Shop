@@ -64,6 +64,7 @@ public class HeaderPanel extends JPanel {
 		this.updateAdmin();
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				controller.viewAdminPanel();
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_3 = new GridBagConstraints();
@@ -75,7 +76,7 @@ public class HeaderPanel extends JPanel {
 		JButton btnNewButton_1 = new JButton("Cart");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//To do 
+				controller.viewCart();
 			}
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();

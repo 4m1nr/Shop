@@ -1,40 +1,32 @@
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Order {
-    private ArrayList<String> productsId;
-    private String userID;
+    private HashMap<String,Integer> productsId;
+    private final String userID;
+    private final String orderID;
+    String status;
 
-    public Order(String serializedOrder) {
-        productsId = new ArrayList<>();
-        this.setUserID(serializedOrder.split(":")[0]);
-        String[] products = serializedOrder.split(":")[1].split("-");
-        for (String product : products) this.addProduct(product);
+    public Order(String orderId, Cart cart,String status) {
+        this.orderID = orderId;
+        this.userID = cart.getUserID();
+        this.productsId = cart.getCartMap();
+        this.status = status;
     }
 
-    public Order(Cart cart,String userID) {
-        productsId = (ArrayList<String>) cart.getCart().clone();
-        this.setUserID(userID);
+    public Order(String userId, String orderId, HashMap<String, Integer> orderMap,String status) {
+        this.userID = userId;
+        this.orderID = orderId;
+        this.productsId = orderMap;
+        this.status = status;
     }
+
 
     //getter
-    public ArrayList<String> getOrder() {return productsId;}
+    public HashMap<String,Integer> getOrder() {return productsId;}
     public String getUserID() {return userID;}
+    public String getOrderID() {return orderID;}
+    public String getStatus() {return status;}
 
     //setters
-    private void addProduct(Product product)    {productsId.add(product.getId());}
-    private void addProduct(String ID)          {productsId.add(ID);}
-    private void removeProduct(Product product) {productsId.remove(product.getId());}
-    private void removeProduct(String ID)       {productsId.remove(ID);}
-    private void removeAllProducts()            {productsId.clear();}
-    private void setUserID(String userID)       {this.userID = userID;}
-
-    public String getSerializedOrder() {
-        if (productsId.isEmpty()) {
-            return null;
-        } else {
-            StringBuilder string = new StringBuilder();
-            for (String product : productsId) string.append(productsId).append("-");
-            return userID + ":" + string.toString();
-        }
-    }
+    public void setStatus(String status) {this.status = status;}
 }

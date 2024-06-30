@@ -8,15 +8,16 @@ import javax.swing.JTextField;
 
 public class ProductInCartPanel extends JPanel {
 
-	private static final long serialVersionUID = 1L;
 	private JTextField countTextField;
+	ShopControllerImpl controller;
+	Product product;
+	int quantity;
 
-	/**
-	 * Create the panel.
-	 */
-	
-	//To do: needs constructor
-	public ProductInCartPanel() {
+	public ProductInCartPanel(Product product,int quantity,ShopControllerImpl controller) {
+		this.controller = controller;
+		this.product = product;
+		this.quantity = quantity;
+
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{192, 24, 24, 0};

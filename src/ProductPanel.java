@@ -25,15 +25,15 @@ public class ProductPanel extends JPanel {
 			URL imageUrl;
 
             try {
-                imageUrl = new URL("https://dkstatics-public.digikala.com/digikala-products/21f906bb62bc6f06480bfb771ad3243ec36c00d7_1711736546.jpg");
+                imageUrl = new URL("https://m.media-amazon.com/images/I/8187NKA5bcL._SY500_.jpg");
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
-            imageIcon = new ImageIcon(/*imageUrl*/);
+            imageIcon = new ImageIcon(imageUrl);
 			String productPrice = product.getPrice() + "";
 
 
-			JLabel iconLabel = new JLabel();
+			JLabel iconLabel = new JLabel(imageIcon);
 			iconLabel.setIcon(imageIcon);
 			GridBagConstraints gbc_iconLabel = new GridBagConstraints();
 			gbc_iconLabel.fill = GridBagConstraints.VERTICAL;
@@ -75,7 +75,15 @@ public class ProductPanel extends JPanel {
                 }
 			});
 		}else {
-			JLabel iconLabel = new JLabel();
+			URL imageUrl;
+			ImageIcon imageIcon;
+			try {
+				imageUrl = new URL("https://uploadkon.ir/uploads/ae2e30_24Screenshot-2024-06-30-083035.png");
+			} catch (MalformedURLException e) {
+				throw new RuntimeException(e);
+			}
+			imageIcon = new ImageIcon(imageUrl);
+			JLabel iconLabel = new JLabel(/*imageIcon*/);
 			GridBagConstraints gbc_iconLabel = new GridBagConstraints();
 			gbc_iconLabel.fill = GridBagConstraints.VERTICAL;
 			gbc_iconLabel.insets = new Insets(0, 0, 5, 0);

@@ -15,13 +15,13 @@ public class CartDAO {
     public Cart getCart(Cart cart) throws SQLException {
         String cartId = cart.getCartID();
         HashMap<String,Integer> cartMap;
-        String userId;
-        String SQL = "SELECT * FROM " + cartsTableName + " WHERE cart_id = " + cartId;
+        String userId = cart.getUserID();
+        String SQL = "SELECT * FROM " + cartsTableName + " WHERE user_id = " + userId;
         String SQL2 = "SELECT * FROM " + cartsItemsTableName + " WHERE cart_id = " + cartId;
         ResultSet resultSet = statement.executeQuery(SQL);
 
         if (resultSet.next()) {
-            userId = resultSet.getString("user_id");
+            cartId = resultSet.getString("cart_id");
             cartMap = extractCartMapFromRS(SQL2);
             return new Cart(userId, cartId, cartMap);
         }else
@@ -37,6 +37,23 @@ public class CartDAO {
         return cartMap;
     }
 
+    public HashMap<String,Integer> extractCartMapFromRS(User user,int page,String sortByThis) throws SQLException {
+        int numPerPage = 6;
+        HashMap<String,Integer> cartMap = new HashMap<>();
+        String cartId = user.getCart().getCartID();
+
+        String SQL = "SELECT * FROM " + cartsItemsTableName +
+                " WHERE cart_id = " + cartId
+                + " ORDER BY " + sortByThis + " LIMIT " + numPerPage +
+                " OFFSET " + ((page - 1) * numPerPage);
+
+
+        ResultSet resultSet = statement.executeQuery(SQL);
+        while (resultSet.next())
+            cartMap.put(resultSet.getString("product_id"), resultSet.getInt("quantity"));
+        return cartMap;
+    }
+
     public void deleteCart(Cart cart) throws SQLException {
         String cartId = cart.getCartID();
         String SQL = "DELETE FROM " + cartsTableName + " WHERE cart_id = " + cartId;
@@ -44,12 +61,13 @@ public class CartDAO {
         statement.executeUpdate(SQL);
         statement.executeUpdate(SQL2);
     }
-    public void createCart(Cart cart) throws SQLException {
-        String SQL = "INSERT INTO " + cartsTableName + " (cart_id, user_id) VALUES (?, ?)";
+    public Cart createCart(Cart cart) throws SQLException {
+        String SQL = "INSERT INTO " + cartsTableName + " (user_id) VALUES (?)";
         PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-        preparedStatement.setString(1, cart.getCartID());
-        preparedStatement.setString(2, cart.getUserID());
+        preparedStatement.setString(1, cart.getUserID());
         preparedStatement.executeUpdate();
+
+        return getCart(cart);
     }
 
     public void addProductToCart(Cart cart, Product product, int quantity) throws SQLException {

@@ -1,10 +1,13 @@
+import javax.swing.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ShopControllerImpl{
     User user;
     UserServiceImpl userService;
     ProductServiceImpl productService;
+    CartService cartService;
     LoginFrame loginFrame;
     MainFrame mainFrame;
     private String searchByThis,sortByThis;
@@ -14,7 +17,8 @@ public class ShopControllerImpl{
     public void setSearchByThis(String searchByThis) {this.searchByThis = searchByThis;}
     public void setSortByThis(String sortByThis) {this.sortByThis = sortByThis;}
 
-    public ShopControllerImpl(UserServiceImpl userService, ProductServiceImpl productService){
+    public ShopControllerImpl(UserServiceImpl userService, ProductServiceImpl productService, CartService cartService){
+        this.cartService = cartService;
         this.userService = userService;
         this.productService = productService;
         loginFrame = new LoginFrame();
@@ -54,10 +58,11 @@ public class ShopControllerImpl{
 
    
     public void register(String name, String lastName, String phoneNumber, String address, String emailAddress, String password,Double balance) throws SQLException {
-        User user = new User(null,name,lastName,phoneNumber,emailAddress,password, 0, new ArrayList<Address>(), new Cart(), null);
+        User user = new User(null,name,lastName,phoneNumber,emailAddress,password, 0, new ArrayList<Address>(), null, null);
         try {
             userService.insertUser(user);
             this.user = userService.getUserByPhoneNumber(user.getPhoneNumber());
+            this.user.setCart(cartService.createCart(new Cart(this.user.getId(),null,null)));
             openDefaultPanel();
         } catch (RuntimeException e) {
             openRegisterPanel(e.getMessage());
@@ -91,29 +96,50 @@ public class ShopControllerImpl{
             productService.updateProduct(new Product(productID,name,description,price, stock, rating ,images,category));
     }
 
-   
-    public void viewCart() {
+    public void viewCartByEveryThing(int page,String searchByThis) throws SQLException {
+        ArrayList<ProductInCartPanel> products = new ArrayList<>();
 
+        HashMap<String,Integer> cartMapFromRS = cartService.extractCartMapFromRS(this.getUser(),page,sortByThis);
+        cartMapFromRS.forEach((productID,quantity) -> {
+            try {
+                Product product = productService.getProduct(productID);
+                products.add(new ProductInCartPanel(product,quantity,this));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+        while (products.size() < 6) products.add(new ProductInCartPanel(null,0,this));
+        mainFrame.setMainPanel(new CartPanel(products, "Default"));
+    }
+   
+    public void viewCart() throws SQLException {
+        viewCartByEveryThing(1,"Default");
     }
 
    
-    public void addProductToCart(String productID, int quantity) {
-
+    public void addProductToCart(Product product, int quantity) throws SQLException {
+        cartService.addProductToCart(user.getCart(),product,quantity);
     }
 
    
-    public void removeProductFromCart(String productID) {
-
+    public void removeProductFromCart(Product product) throws SQLException {
+        cartService.deleteProductFromCart(user.getCart(),product);
     }
 
    
-    public void updateProductInCart(String productID, int quantity) {
-
+    public void updateProductInCart(Product product, int quantity) throws SQLException {
+        if (quantity == 0) removeProductFromCart(product);
+        else if (quantity > 0)
+        cartService.updateProductQuantity(user.getCart(),product,quantity);
+        else return;
+        viewCart();
     }
 
    
-    public void checkout() {
-
+    public void checkout() throws SQLException {
+        //TODO
+        cartService.deleteCart(user.getCart());
+        cartService.createCart(user.getCart());
     }
 
    
@@ -161,6 +187,10 @@ public class ShopControllerImpl{
         for (Product product : products) productPanels.add(new ProductPanel(product,this));
         while(productPanels.size() < 6) productPanels.add(new ProductPanel(null,this));
         return productPanels;
+    }
+
+    public int openDialog(String message,String title , int type){
+        return JOptionPane.showConfirmDialog(null,message,title, JOptionPane.DEFAULT_OPTION);
     }
 
     private void setUser () throws SQLException {
@@ -220,8 +250,26 @@ public class ShopControllerImpl{
 
     }
 
+    public void viewAdminPanel() {
+        mainFrame.setMainPanel(new AdminPanel(this));
+    }
+
     public User getUser() throws SQLException {
         setUser();
         return this.user;
+    }
+
+    public void viewAddProductPanel() {
+        mainFrame.setMainPanel(new AddProductPanel(this));
+    }
+
+    public void viewAllOrders() {
+        /*mainFrame.setMainPanel(new AllOrdersPanel(this));*/
+    }
+
+    public void upadteUserBalance(Double newBalance) throws SQLException {
+        userService.updateUser(new User(this.user.getId(),null,null,null,
+                null,null,
+                newBalance,null,null,null));
     }
 }

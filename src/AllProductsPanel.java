@@ -174,10 +174,10 @@ public class AllProductsPanel extends JPanel {
 		if (page == 1)
 			btnNewButton_1.setVisible(false);
         try {
-            if (page == controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis()))
+            if (page >= controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis()))
                 btnNewButton.setVisible(false);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException(e.getMessage());
         }
     }
 }

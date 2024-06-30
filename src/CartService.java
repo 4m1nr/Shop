@@ -15,8 +15,21 @@ public class CartService {
     public void deleteCart(Cart cart) throws SQLException {
         cartDAO.deleteCart(cart);
     }
-    public void createCart(Cart cart) throws SQLException {
-       cartDAO.createCart(cart);
+
+    public HashMap<String,Integer> extractCartMapFromRS(User user,int page,String sortByThis) throws SQLException {
+        switch (sortByThis) {
+            case ("Default") -> sortByThis = "id";
+            case ("Price: Low to High") -> sortByThis = "price ASC";
+            case ("Price: High to Low") -> sortByThis = "price DESC";
+            case ("Rating: Low to High") -> sortByThis = "rating ASC";
+            case ("Rating: High to Low") -> sortByThis = "rating DESC";
+        }
+
+        return cartDAO.extractCartMapFromRS(user, page, sortByThis);
+    }
+
+    public Cart createCart(Cart cart) throws SQLException {
+       return cartDAO.createCart(cart);
     }
 
     public void addProductToCart(Cart cart, Product product, int quantity) throws SQLException {

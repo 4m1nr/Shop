@@ -17,7 +17,7 @@ public class AddProductPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AddProductPanel() {
+	public AddProductPanel(ShopControllerImpl controller) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{30, 0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0, 42, 0};

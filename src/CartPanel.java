@@ -34,9 +34,6 @@ public class CartPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * Create the panel.
-	 */
 	public CartPanel(ArrayList<ProductInCartPanel> panels1, String sortType) {
 		setBackground(new Color(0, 255, 255));
 		GridBagLayout gridBagLayout = new GridBagLayout();

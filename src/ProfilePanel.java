@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.awt.Color;
+import java.util.Stack;
 
 public class ProfilePanel extends JPanel {
 
-	private static final long serialVersionUID = 1L;
 	private JTextField nameTextField;
 	private JTextField lastNameTextField;
 	private JTextField emailTextField;
@@ -20,7 +20,7 @@ public class ProfilePanel extends JPanel {
 	ShopControllerImpl controller;
 	User user;
 
-	public ProfilePanel(ShopControllerImpl controller, String error) {
+	public ProfilePanel(ShopControllerImpl controller) {
 
 		this.controller = controller;
 		this.user = controller.user;
@@ -139,22 +139,50 @@ public class ProfilePanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				User newProfile;
-				if (passwordField.getPassword().length == 0)
-				newProfile = new User(user.getId(),nameTextField.getText(),lastNameTextField.getText(),
-						phoneNumberTextField.getText(),emailTextField.getText(),user.getHashedPassword(),
-						user.getBalance(),user.getAddresses(),user.getCart(),user.getRole());
-				else
-					newProfile = new User(user.getId(),nameTextField.getText(),lastNameTextField.getText(),
-							phoneNumberTextField.getText(),emailTextField.getText(),User.HashPassword(new String(passwordField.getPassword())),
-							user.getBalance(),user.getAddresses(),user.getCart(),user.getRole());
+				Stack<String> errorStack = new Stack<>();
+				if(nameTextField.getText().isEmpty()){
+					errorStack.add("Name cannot be empty");
+				}
+				if(!nameTextField.getText().matches("[a-zA-Z]+")){
+					errorStack.add("Invalid name");
+				}
+				if(lastNameTextField.getText().isEmpty()){
+					errorStack.add("Last Name cannot be empty");
+				}
+				if(!lastNameTextField.getText().matches("[a-zA-Z]+")){
+					errorStack.add("Invalid name");
+				}
+				if(phoneNumberTextField.getText().isEmpty()){
+					errorStack.add("Phone number cannot be empty");
+				}
+				if(phoneNumberTextField.getText().length() != 11 || !phoneNumberTextField.getText().startsWith("09") ||
+					!phoneNumberTextField.getText().matches("\\d+")){
+					errorStack.add("Invalid phone number");
+				}
+				if(emailTextField.getText().isEmpty()){
+					errorStack.add("Email cannot be empty");
+				}
+				if(!emailTextField.getText().contains("@")){
+					errorStack.add("Invalid email");
+				}
+				if(errorStack.isEmpty()){
+					if (passwordField.getPassword().length == 0)
+						newProfile = new User(user.getId(), nameTextField.getText(), lastNameTextField.getText(),
+								phoneNumberTextField.getText(), emailTextField.getText(), user.getHashedPassword(),
+								user.getBalance(), user.getAddresses(), user.getCart(), user.getRole());
+					else
+						newProfile = new User(user.getId(), nameTextField.getText(), lastNameTextField.getText(),
+								phoneNumberTextField.getText(), emailTextField.getText(), User.HashPassword(new String(passwordField.getPassword())),
+								user.getBalance(), user.getAddresses(), user.getCart(), user.getRole());
 
-                try {
-					if (JOptionPane.showConfirmDialog(null, "are you sure"
-							,"update profile", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-								controller.updateProfile(newProfile);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex.getMessage());
-                }
+					try {
+						if (JOptionPane.showConfirmDialog(null, "are you sure"
+								, "update profile", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+							controller.updateProfile(newProfile);
+					} catch (SQLException ex) {
+						throw new RuntimeException(ex.getMessage());
+					}
+				}
             }
 		});
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));

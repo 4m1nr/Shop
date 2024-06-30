@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
+import java.awt.Color;
 
 public class ProfilePanel extends JPanel {
 
@@ -23,7 +24,7 @@ public class ProfilePanel extends JPanel {
 	ShopControllerImpl controller;
 	User user;
 
-	public ProfilePanel(ShopControllerImpl controller) {
+	public ProfilePanel(ShopControllerImpl controller, String error) {
 
 		this.controller = controller;
 		this.user = controller.user;
@@ -34,9 +35,9 @@ public class ProfilePanel extends JPanel {
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0};
-		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		gridBagLayout.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel nameLabel = new JLabel("Name:");
@@ -166,13 +167,23 @@ public class ProfilePanel extends JPanel {
 		gbc_btnNewButton.gridy = 5;
 		add(btnNewButton, gbc_btnNewButton);
 		
+		JLabel errorLabel = new JLabel(error);
+		errorLabel.setForeground(new Color(255, 0, 0));
+		errorLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
+		GridBagConstraints gbc_errorLabel = new GridBagConstraints();
+		gbc_errorLabel.gridwidth = 2;
+		gbc_errorLabel.insets = new Insets(0, 0, 5, 5);
+		gbc_errorLabel.gridx = 0;
+		gbc_errorLabel.gridy = 6;
+		add(errorLabel, gbc_errorLabel);
+		
 		JLabel currentBalanceLabel = new JLabel("Current balance:");
 		currentBalanceLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_currentBalanceLabel = new GridBagConstraints();
 		gbc_currentBalanceLabel.anchor = GridBagConstraints.EAST;
 		gbc_currentBalanceLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_currentBalanceLabel.gridx = 0;
-		gbc_currentBalanceLabel.gridy = 6;
+		gbc_currentBalanceLabel.gridy = 7;
 		add(currentBalanceLabel, gbc_currentBalanceLabel);
 		
 		JLabel balanceLabel = new JLabel("**balance**");
@@ -181,7 +192,7 @@ public class ProfilePanel extends JPanel {
 		gbc_balanceLabel.anchor = GridBagConstraints.WEST;
 		gbc_balanceLabel.insets = new Insets(0, 0, 5, 0);
 		gbc_balanceLabel.gridx = 1;
-		gbc_balanceLabel.gridy = 6;
+		gbc_balanceLabel.gridy = 7;
 		add(balanceLabel, gbc_balanceLabel);
 		
 		JLabel addBalanceLabel = new JLabel("Add balance:");
@@ -190,7 +201,7 @@ public class ProfilePanel extends JPanel {
 		gbc_addBalanceLabel.anchor = GridBagConstraints.EAST;
 		gbc_addBalanceLabel.insets = new Insets(0, 0, 5, 5);
 		gbc_addBalanceLabel.gridx = 0;
-		gbc_addBalanceLabel.gridy = 7;
+		gbc_addBalanceLabel.gridy = 8;
 		add(addBalanceLabel, gbc_addBalanceLabel);
 		
 		addBalanceTextField = new JTextField();
@@ -201,7 +212,7 @@ public class ProfilePanel extends JPanel {
 		gbc_addBalanceTextField.anchor = GridBagConstraints.WEST;
 		gbc_addBalanceTextField.insets = new Insets(0, 0, 5, 0);
 		gbc_addBalanceTextField.gridx = 1;
-		gbc_addBalanceTextField.gridy = 7;
+		gbc_addBalanceTextField.gridy = 8;
 		add(addBalanceTextField, gbc_addBalanceTextField);
 		
 		JButton addButton = new JButton("Add");
@@ -215,7 +226,7 @@ public class ProfilePanel extends JPanel {
 		GridBagConstraints gbc_addButton = new GridBagConstraints();
 		gbc_addButton.anchor = GridBagConstraints.WEST;
 		gbc_addButton.gridx = 1;
-		gbc_addButton.gridy = 8;
+		gbc_addButton.gridy = 9;
 		add(addButton, gbc_addButton);
 
 	}

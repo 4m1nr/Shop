@@ -18,7 +18,7 @@ public class ShopControllerImpl{
         this.userService = userService;
         this.productService = productService;
         loginFrame = new LoginFrame();
-        mainFrame = new MainFrame(user,this);
+        mainFrame = new MainFrame(this);
     }
 
     public void login(String phoneNumber, String password) throws SQLException {
@@ -53,17 +53,15 @@ public class ShopControllerImpl{
     }
 
    
-    public Object register(String name, String lastName, String phoneNumber, String address, String emailAddress, String password,Double balance) throws SQLException {
+    public void register(String name, String lastName, String phoneNumber, String address, String emailAddress, String password,Double balance) throws SQLException {
         User user = new User(null,name,lastName,phoneNumber,emailAddress,password, 0, new ArrayList<Address>(), new Cart(), null);
         try {
             userService.insertUser(user);
-            if (user != null)
-                this.user = user;
-                openDefaultPanel();
+            this.user = userService.getUserByPhoneNumber(user.getPhoneNumber());
+            openDefaultPanel();
         } catch (RuntimeException e) {
             openRegisterPanel(e.getMessage());
         }
-        return null;
     }
 
    
@@ -130,6 +128,7 @@ public class ShopControllerImpl{
 
    
     public void viewProducts(int page,String sortByThis,String searchByThis) throws SQLException {
+        setUser();
         this.sortByThis = sortByThis;
         this.searchByThis = searchByThis;
         ArrayList<Product> products = productService.getProductsByEverything(searchByThis,sortByThis,page,6);
@@ -152,6 +151,7 @@ public class ShopControllerImpl{
     }
 
     public void viewProductDetails(Product product) throws SQLException {
+        setUser();
         product = productService.getProduct(product.getId());
         mainFrame.setMainPanel(new BuyProductPanel(product , this));
     }
@@ -163,14 +163,21 @@ public class ShopControllerImpl{
         return productPanels;
     }
 
+    private void setUser () throws SQLException {
+        if (user != null)
+        this.user = userService.getUser(user.getId());
+    }
    
-    public void viewProfile() {
+    public void viewProfile() throws SQLException {
+        setUser();
         mainFrame.setMainPanel(new ProfilePanel(this));
     }
 
    
     public void updateProfile(User user)throws SQLException {
+        this.user = user;
         userService.updateUser(user);
+        mainFrame.setMainPanel(new ProfilePanel(this));
     }
 
    
@@ -211,5 +218,10 @@ public class ShopControllerImpl{
    
     public void viewUserProfile(String userId) {
 
+    }
+
+    public User getUser() throws SQLException {
+        setUser();
+        return this.user;
     }
 }

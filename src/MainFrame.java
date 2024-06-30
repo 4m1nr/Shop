@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.sql.SQLException;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -6,16 +7,21 @@ import javax.swing.border.EmptyBorder;
 
 public class MainFrame extends JFrame {
 	JPanel currentPanel;
+	HeaderPanel headerPanel;
 	private JPanel contentPane;
 	ShopControllerImpl controller;
 	User user;
 
 
 
-	public MainFrame(User user, ShopControllerImpl controller) {
+	public MainFrame(ShopControllerImpl controller) {
 		this.controller = controller;
-		this.user = user;
-		buildFrame();
+        try {
+            this.user = controller.getUser();
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+        buildFrame();
 	}
 
 	private void buildFrame(){
@@ -31,7 +37,8 @@ public class MainFrame extends JFrame {
 		contentPaneGBLayout.rowWeights = new double[]{0.0, 1.0, Double.MIN_VALUE};
 		contentPane.setLayout(contentPaneGBLayout);
 
-		HeaderPanel headerPanel = new HeaderPanel(user,controller);
+		headerPanel = new HeaderPanel(controller);
+		headerPanel.updateAdmin();
 		GridBagConstraints headerGBC = new GridBagConstraints();
 		headerGBC.fill = GridBagConstraints.BOTH;
 		headerGBC.insets = new Insets(0, 0, 5, 0);
@@ -51,15 +58,15 @@ public class MainFrame extends JFrame {
 
 		contentPane.add(panelToSet, MainPanelGBC);
 		currentPanel = panelToSet;
-
-		this.update();
+		headerPanel.updateAdmin();
+		this.repaintAndRevalidate();
 	}
 
 	public JPanel getPanel(){
 		return currentPanel;
 	}
 
-	public void update(){
+	public void repaintAndRevalidate(){
 		this.revalidate();
 		this.repaint();
 	}

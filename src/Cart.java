@@ -1,39 +1,30 @@
+import com.mysql.cj.conf.ConnectionUrlParser;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Cart {
-    private ArrayList<String> productsId;
+    private HashMap<String,Integer> productsId;
+    private String userID;
+    private String cartID;
 
-    public Cart(String serializedCart) {
-        productsId = new ArrayList<>();
-        if (serializedCart != null){
-            String[] products = serializedCart.split("-");
-            for (String product : products) this.addProduct(product);
-        }
+    public Cart(String userID, String cartID, HashMap<String, Integer> productsId) {
+        this.userID = userID;
+        this.cartID = cartID;
+        this.productsId = productsId;
     }
 
-    public Cart() {
-        productsId = new ArrayList<>();
-    }
 
     //getter
-    public ArrayList<String> getCart() {return productsId;}
+    public HashMap<String,Integer> getCartMap() {return productsId;}
+    public String getUserID() {return userID;}
+    public String getCartID() {return cartID;}
 
     //setters
-    public void addProduct(Product product)    {productsId.add(product.getId());}
-    public void addProduct(String ID)          {productsId.add(ID);}
+    public void addProduct(Product product, int quantity)    {productsId.put(product.getId() ,quantity);}
     public void removeProduct(Product product) {productsId.remove(product.getId());}
-    public void removeProduct(String ID)       {productsId.remove(ID);}
     public void removeAllProducts()            {productsId.clear();}
 
-    public String getSerializedCart(){
-        if (productsId.isEmpty()){
-            return null;
-        }else{
-        StringBuilder string = new StringBuilder();
-        for (String product : productsId ) string.append(productsId).append("-");
-        return string.toString();
-        }
-    }
 
 
 }

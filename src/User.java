@@ -6,7 +6,7 @@ import java.util.Base64;
 import java.util.List;
 
 public class User {
-    private final static ArrayList<String> roles = new ArrayList<>(List.of("admin","user"));
+    private final static ArrayList<String> roles = new ArrayList<>(List.of("ADMIN","USER"));
     private final String id;
     private String name, lastName, phoneNumber, emailAddress;
     private String hashedPassword,role;

@@ -1,48 +1,23 @@
 import javax.swing.JPanel;
-/*import javax.swing.JScrollPane;
-import javax.swing.JRadioButton;*/
 import java.awt.Color;
 import java.awt.GridBagLayout;
 import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-/*import javax.swing.SwingConstants;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.BoxLayout;
-import java.awt.CardLayout;
-import javax.swing.SpringLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;*/
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class AllProductsPanel extends JPanel {
 
-	private static final long serialVersionUID = 1L;
 	private int page;
 	private ShopControllerImpl controller;
 	private User user;
+	JButton btnNewButton_1;
+	JButton btnNewButton;
 
-	/**
-	 * Create the panel.
-	 */
 	public AllProductsPanel(ArrayList<ProductPanel> panels1, String sortType,int page ,ShopControllerImpl controller) {
 		this.controller = controller;
 		this.user = controller.user;
@@ -161,16 +136,15 @@ public class AllProductsPanel extends JPanel {
 		gbl_panel_7.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel_7.setLayout(gbl_panel_7);
 		
-		JButton btnNewButton_1 = new JButton("previous");
+		btnNewButton_1 = new JButton("previous");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					if(page > 1){
+					/*if(page > 1)*/
 						controller.viewProducts(page-1,controller.getSortByThis(),controller.getSearchByThis());
-					}
 				}
 				catch (SQLException ex){
-					throw new RuntimeException("SQLExeption");
+					throw new RuntimeException(ex.getMessage());
 				}
 			}
 		});
@@ -180,16 +154,15 @@ public class AllProductsPanel extends JPanel {
 		gbc_btnNewButton_1.gridy = 0;
 		panel_7.add(btnNewButton_1, gbc_btnNewButton_1);
 		
-		JButton btnNewButton = new JButton("next");
+		btnNewButton = new JButton("next");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					if(page < controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis())){
+					/*if(page < controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis()))*/
 						controller.viewProducts(page+1,controller.getSortByThis(),controller.getSearchByThis());
-					}
 				}
 				catch (SQLException ex){
-					System.out.println(ex.getMessage());
+					throw new RuntimeException(ex.getMessage());
 				}
 			}
 		});
@@ -198,6 +171,13 @@ public class AllProductsPanel extends JPanel {
 		gbc_btnNewButton.gridy = 0;
 		panel_7.add(btnNewButton, gbc_btnNewButton);
 		
-
-	}
+		if (page == 1)
+			btnNewButton_1.setVisible(false);
+        try {
+            if (page == controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis()))
+                btnNewButton.setVisible(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -141,13 +141,20 @@ public class ProfilePanel extends JPanel {
 		JButton btnNewButton = new JButton("Save");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				User newProfile;
+				if (passwordField.getPassword().length == 0)
+				newProfile = new User(user.getId(),nameTextField.getText(),lastNameTextField.getText(),
+						phoneNumberTextField.getText(),emailTextField.getText(),user.getHashedPassword(),
+						user.getBalance(),user.getAddresses(),user.getCart(),user.getRole());
+				else
+					newProfile = new User(user.getId(),nameTextField.getText(),lastNameTextField.getText(),
+							phoneNumberTextField.getText(),emailTextField.getText(),User.HashPassword(new String(passwordField.getPassword())),
+							user.getBalance(),user.getAddresses(),user.getCart(),user.getRole());
+
                 try {
-                    controller.updateProfile(new User(user.getId(),nameTextField.getName(),
-                            lastNameTextField.getText(),phoneNumberTextField.getText(),
-                            emailTextField.getText(),User.HashPassword(new String(passwordField.getPassword())),
-                            user.getBalance(),user.getAddresses(),user.getCart(),user.getRole()));
+                    controller.updateProfile(newProfile);
                 } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                    throw new RuntimeException(ex.getMessage());
                 }
             }
 		});

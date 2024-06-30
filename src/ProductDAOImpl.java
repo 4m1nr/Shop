@@ -2,11 +2,11 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ProductDAOImpl {
-    Connection connection;
-    Statement statement;
-    String tableName = "Products";
-    String host = "jdbc:mysql://localhost:3306/shop";
-    String username = "root",password = "9376432064aA";
+    private Connection connection;
+    private Statement statement;
+    private String tableName = "Products";
+    private String host = "jdbc:mysql://localhost:3306/shop";
+    private String username = "root",password = "9376432064aA";
     ProductDAOImpl() throws SQLException {
         this.connection = DriverManager.getConnection(host,username, password);
         statement = connection.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);

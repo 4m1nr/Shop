@@ -2,7 +2,7 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class ProductServiceImpl{
-    ProductDAOImpl productDAO;
+    private ProductDAOImpl productDAO;
     public ProductServiceImpl(ProductDAOImpl productDAO) throws SQLException {this.productDAO = productDAO;}
 
     

@@ -19,16 +19,20 @@ public class HeaderPanel extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public HeaderPanel(User user ,ShopControllerImpl controller) {
+	public HeaderPanel(ShopControllerImpl controller) {
 		this.controller = controller;
-		this.user = user;
+		this.user = controller.user;
 		buildPanel();
 		
 		JButton btnNewButton = new JButton("Profile");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.viewProfile();
-			}
+                try {
+                    controller.viewProfile();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex.getMessage());
+                }
+            }
 		});
 		
 		JButton btnExit = new JButton("Log out");
@@ -57,7 +61,7 @@ public class HeaderPanel extends JPanel {
 		}*/
 		
 		btnNewButton_3 = new JButton("Admin");
-		this.update();
+		this.updateAdmin();
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -132,13 +136,16 @@ public class HeaderPanel extends JPanel {
 		gridBagLayout.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 	}
-	private void update() {
-		if (user != null){
-			if (!(user.getRole().equals("admin"))) {
-
-			}
-
-		}
+	public void updateAdmin() {
+        try {
+            this.user = controller.getUser();
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage());
+        }
+        if (user != null)
+            this.btnNewButton_3.setVisible(user.getRole().equalsIgnoreCase("admin"));
+		this.repaint();
+		this.revalidate();
 	}
 
 }

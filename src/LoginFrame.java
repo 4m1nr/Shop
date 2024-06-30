@@ -29,14 +29,14 @@ public class LoginFrame extends JFrame {
 
 		this.add(panelToSet);
 		currentPanel = panelToSet;
-		this.update();
+		this.repaintAndRevalidate();
 	}
 
 	public JPanel getPanel(){
 		return currentPanel;
 	}
 
-	public void update(){
+	public void repaintAndRevalidate(){
 		this.revalidate();
 		this.repaint();
 	}

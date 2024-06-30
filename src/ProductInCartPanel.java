@@ -20,9 +20,9 @@ public class ProductInCartPanel extends JPanel {
 
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
-		gridBagLayout.rowHeights = new int[]{192, 24, 24, 0};
+		gridBagLayout.rowHeights = new int[]{192, 24, 24, 24, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, Double.MIN_VALUE};
+		gridBagLayout.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
 		
 		JLabel productImage = new JLabel("Product icon");
@@ -32,12 +32,40 @@ public class ProductInCartPanel extends JPanel {
 		gbc_productImage.gridy = 0;
 		add(productImage, gbc_productImage);
 		
+		JPanel panel_2 = new JPanel();
+		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
+		gbc_panel_2.insets = new Insets(0, 0, 5, 0);
+		gbc_panel_2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_panel_2.gridx = 0;
+		gbc_panel_2.gridy = 1;
+		add(panel_2, gbc_panel_2);
+		GridBagLayout gbl_panel_2 = new GridBagLayout();
+		gbl_panel_2.columnWidths = new int[]{0, 0, 0};
+		gbl_panel_2.rowHeights = new int[]{0, 0};
+		gbl_panel_2.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
+		gbl_panel_2.rowWeights = new double[]{0.0, Double.MIN_VALUE};
+		panel_2.setLayout(gbl_panel_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		GridBagConstraints gbc_lblNewLabel_1 = new GridBagConstraints();
+		gbc_lblNewLabel_1.insets = new Insets(0, 0, 0, 5);
+		gbc_lblNewLabel_1.gridx = 0;
+		gbc_lblNewLabel_1.gridy = 0;
+		panel_2.add(lblNewLabel_1, gbc_lblNewLabel_1);
+		
+		JLabel nameLabel = new JLabel("**product name**");
+		GridBagConstraints gbc_nameLabel = new GridBagConstraints();
+		gbc_nameLabel.anchor = GridBagConstraints.WEST;
+		gbc_nameLabel.gridx = 1;
+		gbc_nameLabel.gridy = 0;
+		panel_2.add(nameLabel, gbc_nameLabel);
+		
 		JPanel panel = new JPanel();
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 0);
 		gbc_panel.fill = GridBagConstraints.BOTH;
 		gbc_panel.gridx = 0;
-		gbc_panel.gridy = 1;
+		gbc_panel.gridy = 2;
 		add(panel, gbc_panel);
 		GridBagLayout gbl_panel = new GridBagLayout();
 		gbl_panel.columnWidths = new int[]{0, 0, 0, 0};
@@ -74,7 +102,7 @@ public class ProductInCartPanel extends JPanel {
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
 		gbc_panel_1.gridx = 0;
-		gbc_panel_1.gridy = 2;
+		gbc_panel_1.gridy = 3;
 		add(panel_1, gbc_panel_1);
 		GridBagLayout gbl_panel_1 = new GridBagLayout();
 		gbl_panel_1.columnWidths = new int[]{0, 0, 0};

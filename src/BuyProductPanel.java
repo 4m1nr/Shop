@@ -6,6 +6,8 @@ import java.awt.Insets;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.sql.SQLException;
 
 public class BuyProductPanel extends JPanel {
@@ -21,8 +23,14 @@ public class BuyProductPanel extends JPanel {
 		this.controller = controller;
 		this.user = controller.getUser();
 		buildPanel();
-		
-		JLabel imageLabel = new JLabel(/*product.getImages().get(0)*/);
+		/*URL url;
+        try {
+            url = new URL(product.getImage());
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }*/
+		ImageIcon imageIcon = new ImageIcon(/*url*/"C:\\Users\\aminr\\Desktop\\image.png");
+        JLabel imageLabel = new JLabel(imageIcon);
 		imageLabel.setIcon(null);
 		GridBagConstraints gbc_imageLabel = new GridBagConstraints();
 		gbc_imageLabel.gridwidth = 2;

@@ -1,6 +1,5 @@
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
-import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.util.ArrayList;
@@ -8,17 +7,16 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
-import java.awt.Component;
 
 public class AdminSeeOrdersPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private JTable table;
-
+	Double sum;
 	/**
 	 * Create the panel.
 	 */
-	public AdminSeeOrdersPanel(){//ArrayList<Order> orders) {
+	public AdminSeeOrdersPanel(ArrayList<Order> orders) {
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{10, 2, 75, 82, 10, 0};
 		gridBagLayout.rowHeights = new int[]{25, 358, 25, 0};
@@ -28,7 +26,18 @@ public class AdminSeeOrdersPanel extends JPanel {
 		
 		
 		String[] columnNames = { "Customer ID", "Final price", "Verified" };
-		String data[][] = new String[200][3];
+		String[][] data;
+		data = new String[orders.size()][3];
+		orders.forEach(order -> {
+			data[orders.indexOf(order)][0] = order.getUserID();
+			data[orders.indexOf(order)][1] = order.getPrice() + "\t\t\t";
+			data[orders.indexOf(order)][2] = order.getStatus() + "\t\t\t";
+		});
+
+		sum = 0.0;
+		orders.forEach(order -> {
+			sum += order.getPrice();
+		});
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();
@@ -62,7 +71,7 @@ public class AdminSeeOrdersPanel extends JPanel {
 		gbc_sumLabel.gridy = 0;
 		panel.add(sumLabel, gbc_sumLabel);
 		
-		JLabel sumForRealLabel = new JLabel("**sum**");
+		JLabel sumForRealLabel = new JLabel(sum + "");
 		GridBagConstraints gbc_sumForRealLabel = new GridBagConstraints();
 		gbc_sumForRealLabel.anchor = GridBagConstraints.WEST;
 		gbc_sumForRealLabel.gridx = 1;

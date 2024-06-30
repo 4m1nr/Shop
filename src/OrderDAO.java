@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class OrderDAO {
     private Connection connection;
     private Statement statement;
-    private String ordersTableName = "carts";
+    private String ordersTableName = "orders";
     private String ordersItemsTableName = "cartitems";
     private String host = "jdbc:mysql://localhost:3306/shop";
     private String username = "root",password = "9376432064aA";
@@ -53,8 +53,22 @@ public class OrderDAO {
         ResultSet resultSet = statement.executeQuery(SQL);
         while (resultSet.next()) {
             String orderId = resultSet.getString("order_id");
-            orders.add(getOrder(new Order(userId, orderId, new HashMap<>(), resultSet.getString("status"))));
+            orders.add((new Order(userId, orderId, new HashMap<>(), resultSet.getString("status"))));
         }
         return orders;
     }
+
+    public ArrayList<Order> getAllOrders() throws SQLException {
+        ArrayList<Order> orders = new ArrayList<>();
+        String SQL = "SELECT * FROM " + ordersTableName;
+        ResultSet resultSet = statement.executeQuery(SQL);
+        while (resultSet.next()) {
+            String orderId = resultSet.getInt("order_id") + "";
+            Order order = ((new Order(resultSet.getString("user_id"), orderId, new HashMap<>(), resultSet.getString("status"))));
+            order.setPrice(resultSet.getDouble("price"));
+        }
+        return orders;
+    }
+
+
 }

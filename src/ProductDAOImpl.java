@@ -13,15 +13,9 @@ public class ProductDAOImpl {
     }
 
     public void insertProduct(Product product) throws SQLException {
-        StringBuilder SQL = new StringBuilder("INSERT INTO " + tableName + " VALUES (");
-        SQL.append(product.getId()).append(", ");
-        SQL.append(product.getName() + ", ");
-        SQL.append(product.getDescription() + ", ");
-        SQL.append(product.getPrice() + ", ");
-        SQL.append(product.getStock() + ", ");
-        SQL.append(product.getRating().serializeRatings() + ", ");
-        SQL.deleteCharAt(SQL.length() - 2);
-        SQL.append(")");
+        String SQL = "INSERT INTO " + tableName + " (name, price, stock, image) VALUES (" +
+                product.getName() + ", " + product.getPrice() +
+                ", " + product.getStock() + ", " + product.getImage() + ")";
         statement.executeUpdate(SQL.toString());
     }
 
@@ -54,7 +48,7 @@ public class ProductDAOImpl {
                 return new Product(resultSet.getString("id"), resultSet.getString("name"),
                         resultSet.getString("description"), resultSet.getDouble("price"),
                         resultSet.getInt("stock"), new Rating(resultSet.getString("rating")),
-                        new ArrayList<String>(), new ArrayList<String>());
+                        resultSet.getString("image"), new ArrayList<String>());
             }
         return null;
     }
@@ -71,7 +65,7 @@ public class ProductDAOImpl {
             products.add(new Product(resultSet.getString("id"), resultSet.getString("name"),
                     resultSet.getString("description"), resultSet.getDouble("price"),
                     resultSet.getInt("stock"), new Rating(resultSet.getString("rating")),
-                    new ArrayList<String>(), new ArrayList<String>()));
+                    resultSet.getString("image"), new ArrayList<String>()));
         }
         return products;
     }

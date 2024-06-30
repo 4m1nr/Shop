@@ -20,4 +20,7 @@ public class OrderService {
     public ArrayList<Order> getOrdersByUser(User user) throws SQLException {
         return orderDAO.getOrdersByUser(user);
     }
+    public ArrayList<Order> getAllOrders() throws SQLException {
+        return orderDAO.getAllOrders();
+    }
 }

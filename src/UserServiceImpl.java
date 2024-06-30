@@ -53,7 +53,7 @@ public class UserServiceImpl{
 
     
     public ArrayList<User> getAllUsers() throws SQLException {
-        return null;
+        return userDao.getAllUsers();
     }
 
     

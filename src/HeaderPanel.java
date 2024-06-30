@@ -28,7 +28,7 @@ public class HeaderPanel extends JPanel {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
                 try {
-                    controller.viewProfile();
+                    controller.viewProfile(null);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex.getMessage());
                 }
@@ -76,8 +76,12 @@ public class HeaderPanel extends JPanel {
 		JButton btnNewButton_1 = new JButton("Cart");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.viewCart();
-			}
+                try {
+                    controller.viewCart();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex.getMessage());
+                }
+            }
 		});
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.insets = new Insets(0, 0, 0, 5);

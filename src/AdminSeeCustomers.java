@@ -26,8 +26,15 @@ public class AdminSeeCustomers extends JPanel {
 		setLayout(gridBagLayout);
 		
 		
-		String[] columnNames = {"Customer ID", "Name", "Last name", "Phone number" , "Total verified order" };
-		String data[][] = new String[200][5];
+		String[] columnNames = {"Customer ID", "Name", "Last name", "Phone number" , "Role" };
+		String data[][] = new String[users.size()][5];
+		users.forEach(user -> {
+			data[users.indexOf(user)][0] = user.getPhoneNumber();
+			data[users.indexOf(user)][1] = user.getName();
+			data[users.indexOf(user)][2] = user.getLastName();
+			data[users.indexOf(user)][3] = user.getPhoneNumber();
+			data[users.indexOf(user)][4] = user.getRole();
+		});
 		
 		JScrollPane scrollPane_1 = new JScrollPane();
 		GridBagConstraints gbc_scrollPane_1 = new GridBagConstraints();

@@ -1,14 +1,13 @@
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
-import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class AdminEditProduct extends JPanel {
 
@@ -18,19 +17,30 @@ public class AdminEditProduct extends JPanel {
 	private JTextField textField_2;
 	private JTextField textField_3;
 	private JTextField textField_4;
+	ShopControllerImpl shopController;
+	Product product;
 
 	/**
 	 * Create the panel.
 	 */
-	public AdminEditProduct() {
+	public AdminEditProduct(Product product,ShopControllerImpl shopController) {
+		this.product = product;
+		this.shopController = shopController;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0, 0, 0, 0};
 		gridBagLayout.rowHeights = new int[]{303, 0, 0};
 		gridBagLayout.columnWeights = new double[]{1.0, 1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		
-		JLabel lblNewLabel = new JLabel("Product icon");
+
+        URL url;
+        try {
+            url = new URL(product.getImage());
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        ImageIcon imageIcon = new ImageIcon(url);
+		JLabel lblNewLabel = new JLabel(imageIcon);
 		lblNewLabel.setIcon(null);
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();
 		gbc_lblNewLabel.gridwidth = 4;
@@ -112,7 +122,7 @@ public class AdminEditProduct extends JPanel {
 		gbc_lblNewLabel_5.gridy = 0;
 		panel_1.add(lblNewLabel_5, gbc_lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("price label");
+		JLabel lblNewLabel_6 = new JLabel(product.getPrice() + "");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_lblNewLabel_6 = new GridBagConstraints();
 		gbc_lblNewLabel_6.anchor = GridBagConstraints.WEST;
@@ -131,7 +141,7 @@ public class AdminEditProduct extends JPanel {
 		panel_1.add(textField, gbc_textField);
 		textField.setColumns(2);
 		
-		JButton btnNewButton_1 = new JButton("Add to basket");
+		JButton btnNewButton_1 = new JButton("Add to Cart");
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GridBagConstraints gbc_btnNewButton_1 = new GridBagConstraints();
 		gbc_btnNewButton_1.anchor = GridBagConstraints.WEST;

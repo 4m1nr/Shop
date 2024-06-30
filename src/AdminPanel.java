@@ -1,12 +1,11 @@
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.GridBagLayout;
-import javax.swing.JButton;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
-import javax.swing.JTextField;
+import java.sql.SQLException;
 import javax.swing.JLabel;
 
 public class AdminPanel extends JPanel {
@@ -44,8 +43,12 @@ public class AdminPanel extends JPanel {
 		ordersButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		ordersButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.viewAllOrders();
-			}
+                try {
+                    controller.viewAllOrders();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex.getMessage());
+                }
+            }
 		});
 		GridBagConstraints gbc_ordersButton = new GridBagConstraints();
 		gbc_ordersButton.insets = new Insets(0, 0, 5, 5);
@@ -57,8 +60,12 @@ public class AdminPanel extends JPanel {
 		customersButton.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		customersButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controller.viewUsers();
-			}
+                try {
+                    controller.viewUsers();
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex.getMessage());
+                }
+            }
 		});
 		GridBagConstraints gbc_customersButton = new GridBagConstraints();
 		gbc_customersButton.insets = new Insets(0, 0, 5, 0);
@@ -71,7 +78,7 @@ public class AdminPanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		
+
 		JLabel lblNewLabel = new JLabel("Phone number:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		GridBagConstraints gbc_lblNewLabel = new GridBagConstraints();

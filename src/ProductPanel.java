@@ -24,12 +24,12 @@ public class ProductPanel extends JPanel {
 			ImageIcon imageIcon;
 			URL imageUrl;
 
-            try {
-                imageUrl = new URL("https://m.media-amazon.com/images/I/8187NKA5bcL._SY500_.jpg");
+            /*try {
+                imageUrl = new URL(product.getImage());
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
-            }
-            imageIcon = new ImageIcon(imageUrl);
+            }*/
+            imageIcon = new ImageIcon("C:\\Users\\aminr\\Desktop\\image.png");
 			String productPrice = product.getPrice() + "";
 
 

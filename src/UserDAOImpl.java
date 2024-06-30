@@ -25,7 +25,7 @@ public class UserDAOImpl{
         preparedStatement.setString(5, String.valueOf(user.getBalance()));
         preparedStatement.setString(6, user.getHashedPassword());
         preparedStatement.setString(7, "USER");
-        preparedStatement.setNull(8, java.sql.Types.VARCHAR);
+        preparedStatement.setInt(8, Integer.parseInt(user.getCart().getCartID()));
         preparedStatement.setString(9, "USER");
         preparedStatement.executeUpdate();
     }
@@ -75,7 +75,7 @@ public class UserDAOImpl{
                     , resultSet.getString("lastName"), resultSet.getString("phoneNumber")
                     , resultSet.getString("emailAddress"), resultSet.getString("hashedPassword")
                     , Double.parseDouble(resultSet.getString("balance"))
-                    , new ArrayList<Address>(),new Cart(resultSet.getString("id"), resultSet.getString("cart"), new HashMap<>())
+                    , new ArrayList<Address>(),new Cart(resultSet.getString("cart"), resultSet.getString("cart"), new HashMap<>())
                     ,resultSet.getString("role"));
         }
         return null;
@@ -101,7 +101,7 @@ public class UserDAOImpl{
                     , resultSet.getString("lastName"), resultSet.getString("phoneNumber")
                     , resultSet.getString("emailAddress"), resultSet.getString("hashedPassword")
                     , Double.parseDouble(resultSet.getString("balance"))
-                    , new ArrayList<Address>(),new Cart(resultSet.getString("id"), resultSet.getString("cart"), new HashMap<>())
+                    , new ArrayList<Address>(),new Cart(resultSet.getInt("cart") + "", resultSet.getString("cart"), new HashMap<>())
                     , resultSet.getString("role")));
         }
         resultSet.close();

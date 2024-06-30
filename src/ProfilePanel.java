@@ -20,7 +20,7 @@ public class ProfilePanel extends JPanel {
 	ShopControllerImpl controller;
 	User user;
 
-	public ProfilePanel(ShopControllerImpl controller) {
+	public ProfilePanel(ShopControllerImpl controller,String error) {
 
 		this.controller = controller;
 		this.user = controller.user;
@@ -174,14 +174,15 @@ public class ProfilePanel extends JPanel {
 						newProfile = new User(user.getId(), nameTextField.getText(), lastNameTextField.getText(),
 								phoneNumberTextField.getText(), emailTextField.getText(), User.HashPassword(new String(passwordField.getPassword())),
 								user.getBalance(), user.getAddresses(), user.getCart(), user.getRole());
-
-					try {
+                	try {
 						if (JOptionPane.showConfirmDialog(null, "are you sure"
-								, "update profile", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
-							controller.updateProfile(newProfile);
-					} catch (SQLException ex) {
-						throw new RuntimeException(ex.getMessage());
-					}
+								,"update profile", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+									controller.updateProfile(newProfile,null);
+                	} catch (SQLException ex) {
+                    	throw new RuntimeException(ex.getMessage());
+                	}
+				}else {
+					errorStack.forEach(error -> controller.openDialog(error,"Error",JOptionPane.ERROR_MESSAGE));
 				}
             }
 		});
@@ -249,7 +250,7 @@ public class ProfilePanel extends JPanel {
 					if (JOptionPane.showConfirmDialog(null, "are you sure you want to add "
 							+ balanceToAdd + " to your balance?", "Bank", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 						controller.upadteUserBalance(balanceToAdd + user.getBalance());
-						controller.viewProfile();
+						controller.viewProfile(null);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex.getMessage());
                 }

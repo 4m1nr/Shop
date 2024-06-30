@@ -1,13 +1,9 @@
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.Color;
 import java.awt.GridBagLayout;
-import javax.swing.JButton;
 import java.awt.GridBagConstraints;
-import javax.swing.JLabel;
 import java.awt.Insets;
-import javax.swing.JTextField;
 import java.awt.Font;
-import javax.swing.JPasswordField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
@@ -162,7 +158,7 @@ public class SignupPanel extends JPanel {
 				if(!emailTextField.getText().contains("@")){
 					errorStack.add("Invalid email");
 				}
-				if(!addressTextField.getText().isEmpty()){
+				if(addressTextField.getText().isEmpty()){
 					errorStack.add("Address cannot be empty");
 				}
 				if(passwordField.getPassword().length == 0){
@@ -174,7 +170,8 @@ public class SignupPanel extends JPanel {
 					} catch (SQLException ex) {
 						throw new RuntimeException(ex);
 					}
-				}
+				}else
+					errorStack.forEach(error -> controller.openDialog(error,"Error", JOptionPane.ERROR_MESSAGE));
             }
 		});
 

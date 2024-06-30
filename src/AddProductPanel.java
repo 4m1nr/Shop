@@ -6,6 +6,7 @@ import java.awt.Insets;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.sql.SQLException;
 
 public class AddProductPanel extends JPanel {
 
@@ -109,6 +110,13 @@ public class AddProductPanel extends JPanel {
 		gbc_addButton.gridx = 1;
 		gbc_addButton.gridy = 4;
 		add(addButton, gbc_addButton);
+		addButton.addActionListener(e -> {
+            try {
+                controller.addProduct(nameTextField.getText(), Double.parseDouble(priceTextField.getText()), imageTextField.getText(), Integer.parseInt(productCountTextField.getText()));
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
 	}
 

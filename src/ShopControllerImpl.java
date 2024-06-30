@@ -96,7 +96,7 @@ public class ShopControllerImpl{
             productService.updateProduct(new Product(productID,name,description,price, stock, rating ,images,category));
     }
 
-    public void viewCartByEveryThing(int page,String searchByThis) throws SQLException {
+    public void viewCartByEveryThing(int page) throws SQLException {
         ArrayList<ProductInCartPanel> products = new ArrayList<>();
 
         HashMap<String,Integer> cartMapFromRS = cartService.extractCartMapFromRS(this.getUser(),page,sortByThis);
@@ -109,11 +109,11 @@ public class ShopControllerImpl{
             }
         });
         while (products.size() < 6) products.add(new ProductInCartPanel(null,0,this));
-        mainFrame.setMainPanel(new CartPanel(products, "Default"));
+        mainFrame.setMainPanel(new CartPanel(this,page,products));
     }
    
     public void viewCart() throws SQLException {
-        viewCartByEveryThing(1,"Default");
+        viewCartByEveryThing(1);
     }
 
    

@@ -111,6 +111,10 @@ public class ShopControllerImpl{
         while (products.size() < 6) products.add(new ProductInCartPanel(null,0,this));
         mainFrame.setMainPanel(new CartPanel(this,page,products));
     }
+
+    public int maxPageNumCart() throws SQLException{
+        return productService.maxPageNumCart(6);
+    }
    
     public void viewCart() throws SQLException {
         viewCartByEveryThing(1);

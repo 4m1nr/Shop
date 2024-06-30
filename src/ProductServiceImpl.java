@@ -73,6 +73,10 @@ public class ProductServiceImpl{
         return productDAO.maxPageNum(numPerPage,sortByThis,searchByThis);
     }
 
+    public int maxPageNumCart(int numPerPage)throws SQLException{
+        return productDAO.maxPageNumCart(numPerPage);
+    }
+
     public ArrayList<Product> getProductsBySearch(String searchByThis, int page, int numPerPage) throws SQLException{
         return productDAO.getProductsBySearch(searchByThis,page,numPerPage);
     }

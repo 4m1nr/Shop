@@ -183,7 +183,14 @@ public class CartPanel extends JPanel {
 		gbc_btnNewButton.gridy = 0;
 		panel_7.add(btnNewButton, gbc_btnNewButton);
 
-
+		if (page == 1)
+			btnNewButton_1.setVisible(false);
+		try {
+			if (page >= controller.maxPageNumCart());
+				btnNewButton.setVisible(false);
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		}
 
 	}
 }

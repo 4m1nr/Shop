@@ -30,8 +30,8 @@ public class AllProductsPanel extends JPanel {
 		gridBagLayout.columnWeights = new double[]{0.0, 1.0, 0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 1.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);
-		
-		
+
+
 		String sort[]={"Default", "Rating: Low to High" , "Rating: High to Low", "Price: Low to High", "Price: High to Low"};
 		JComboBox comboBox = new JComboBox(sort);
 		comboBox.setSelectedItem(sortType);
@@ -57,9 +57,9 @@ public class AllProductsPanel extends JPanel {
 		gbc_comboBox.gridx = 1;
 		gbc_comboBox.gridy = 1;
 		add(comboBox, gbc_comboBox);
-		
+
 		JPanel panel = new JPanel();
-		
+
 		GridBagConstraints gbc_panel = new GridBagConstraints();
 		gbc_panel.insets = new Insets(0, 0, 5, 5);
 		gbc_panel.fill = GridBagConstraints.BOTH;
@@ -72,7 +72,7 @@ public class AllProductsPanel extends JPanel {
 		gbl_panel.columnWeights = new double[]{1.0, 1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);
-		
+
 
 		GridBagConstraints gbc_panel_1 = new GridBagConstraints();
 		gbc_panel_1.fill = GridBagConstraints.BOTH;
@@ -81,7 +81,7 @@ public class AllProductsPanel extends JPanel {
 		gbc_panel_1.gridy = 0;
 		panel.add(panels1.get(0), gbc_panel_1);
 
-		
+
 		//JPanel panel_2 = new JPanel();
 		GridBagConstraints gbc_panel_2 = new GridBagConstraints();
 		gbc_panel_2.fill = GridBagConstraints.BOTH;
@@ -89,7 +89,7 @@ public class AllProductsPanel extends JPanel {
 		gbc_panel_2.gridx = 1;
 		gbc_panel_2.gridy = 0;
 		panel.add(panels1.get(1), gbc_panel_2);
-		
+
 		//JPanel panel_3 = new JPanel();
 		GridBagConstraints gbc_panel_3 = new GridBagConstraints();
 		gbc_panel_3.fill = GridBagConstraints.BOTH;
@@ -97,7 +97,7 @@ public class AllProductsPanel extends JPanel {
 		gbc_panel_3.gridx = 2;
 		gbc_panel_3.gridy = 0;
 		panel.add(panels1.get(2), gbc_panel_3);
-		
+
 		//JPanel panel_4 = new JPanel();
 		GridBagConstraints gbc_panel_4 = new GridBagConstraints();
 		gbc_panel_4.fill = GridBagConstraints.BOTH;
@@ -105,7 +105,7 @@ public class AllProductsPanel extends JPanel {
 		gbc_panel_4.gridx = 0;
 		gbc_panel_4.gridy = 1;
 		panel.add(panels1.get(3), gbc_panel_4);
-		
+
 		//JPanel panel_5 = new JPanel();
 		GridBagConstraints gbc_panel_5 = new GridBagConstraints();
 		gbc_panel_5.fill = GridBagConstraints.BOTH;
@@ -113,14 +113,14 @@ public class AllProductsPanel extends JPanel {
 		gbc_panel_5.gridx = 1;
 		gbc_panel_5.gridy = 1;
 		panel.add(panels1.get(4), gbc_panel_5);
-		
+
 		//JPanel panel_6 = new JPanel();
 		GridBagConstraints gbc_panel_6 = new GridBagConstraints();
 		gbc_panel_6.fill = GridBagConstraints.BOTH;
 		gbc_panel_6.gridx = 2;
 		gbc_panel_6.gridy = 1;
 		panel.add(panels1.get(5), gbc_panel_6);
-		
+
 		JPanel panel_7 = new JPanel();
 		panel_7.setOpaque(false);
 		GridBagConstraints gbc_panel_7 = new GridBagConstraints();
@@ -135,19 +135,16 @@ public class AllProductsPanel extends JPanel {
 		gbl_panel_7.columnWeights = new double[]{1.0, 1.0, Double.MIN_VALUE};
 		gbl_panel_7.rowWeights = new double[]{1.0, Double.MIN_VALUE};
 		panel_7.setLayout(gbl_panel_7);
-		
+
 		btnNewButton_1 = new JButton("previous");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					if (page > 1)
-						controller.viewProducts(page - 1, controller.getSortByThis(), controller.getSearchByThis());
-					else
-						controller.viewProducts(controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis()),
-								controller.getSortByThis(), controller.getSearchByThis());
+				try{
+					/*if(page > 1)*/
+						controller.viewProducts(page-1,controller.getSortByThis(),controller.getSearchByThis());
 				}
-				catch (Exception ex){
-					throw new RuntimeException(ex);
+				catch (SQLException ex){
+					throw new RuntimeException(ex.getMessage());
 				}
 			}
 		});
@@ -156,15 +153,13 @@ public class AllProductsPanel extends JPanel {
 		gbc_btnNewButton_1.gridx = 0;
 		gbc_btnNewButton_1.gridy = 0;
 		panel_7.add(btnNewButton_1, gbc_btnNewButton_1);
-		
+
 		btnNewButton = new JButton("next");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
-					if(page < controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis())) {
-						controller.viewProducts(page + 1, controller.getSortByThis(), controller.getSearchByThis());
-					}
-					else controller.viewProducts(1,controller.getSortByThis(), controller.getSearchByThis());
+					/*if(page < controller.maxPageNum(controller.getSortByThis(), controller.getSearchByThis()))*/
+						controller.viewProducts(page+1,controller.getSortByThis(),controller.getSearchByThis());
 				}
 				catch (SQLException ex){
 					throw new RuntimeException(ex.getMessage());
@@ -175,7 +170,7 @@ public class AllProductsPanel extends JPanel {
 		gbc_btnNewButton.gridx = 1;
 		gbc_btnNewButton.gridy = 0;
 		panel_7.add(btnNewButton, gbc_btnNewButton);
-		
+
 		if (page == 1)
 			btnNewButton_1.setVisible(false);
         try {

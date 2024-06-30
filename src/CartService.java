@@ -28,6 +28,10 @@ public class CartService {
         return cartDAO.extractCartMapFromRS(user, page, sortByThis);
     }
 
+    public int maxPageNumCart(int numPerPage)throws SQLException{
+        return cartDAO.maxPageNumCart(numPerPage);
+    }
+
     public Cart createCart(Cart cart) throws SQLException {
        return cartDAO.createCart(cart);
     }

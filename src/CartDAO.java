@@ -79,6 +79,11 @@ public class CartDAO {
         preparedStatement.executeUpdate();
     }
 
+    public int maxPageNumCart(int numPerPage) throws SQLException{
+        String SQL = "SELECT * FROM " + cartsItemsTableName;
+        return (int) Math.ceil(extractCartMapFromRS(SQL).size() / (double) numPerPage);
+    }
+
     public void deleteProductFromCart(Cart cart, Product product) throws SQLException {
         String SQL = "DELETE FROM " + cartsItemsTableName + " WHERE cart_id = " + cart.getCartID() + " AND product_id = " + product.getId();
         statement.executeUpdate(SQL);

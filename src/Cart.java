@@ -1,5 +1,3 @@
-import com.mysql.cj.conf.ConnectionUrlParser;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 

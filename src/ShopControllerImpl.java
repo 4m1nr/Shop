@@ -113,7 +113,7 @@ public class ShopControllerImpl{
     }
 
     public int maxPageNumCart() throws SQLException{
-        return productService.maxPageNumCart(6);
+        return cartService.maxPageNumCart(6);
     }
    
     public void viewCart() throws SQLException {
